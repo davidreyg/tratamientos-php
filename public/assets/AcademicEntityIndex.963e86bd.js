@@ -1,0 +1,3 @@
+import{_ as c}from"./BasePage.2a141dec.js";import{u as i}from"./academicEntityFetchAllQuery.2707358f.js";import{h as n,m as t,q as o,A as r,u as a,D as m,E as _,F as p}from"./index.8e1e529b.js";import"./QPage.29776a48.js";import"./QueryTypes.b72dec59.js";import"./index.1c9af67c.js";const l={key:0},D=n({__name:"AcademicEntityIndex",setup(d){const{data:e,isFetching:u,isSuccess:f,isLoading:h,refetch:y}=i();return(A,E)=>(t(),o(c,{title:"Facultades y Escuelas",loading:!1},{content:r(()=>[a(e)?(t(),m("pre",l,`        FIXME: AYUDA
+ `+_(a(e).filter(s=>s.parent_academic_entity_id===4))+`
+ `,1)):p("",!0)]),_:1}))}});export{D as default};

@@ -1,0 +1,1 @@
+var l=(E=>(E.ROLES_ALL="roles-all",E.CHECK_PHP_REQUIREMENTS="check-php-requirements",E.CHECK_FOLDER_PERMISSIONS="check-folder-permissions",E.CHECK_STEP="check-step",E.PERIODS_ALL="periods-all",E.GOL_ALL="gol-all",E.ACADEMIC_ENTITY_ALL="academic-entity-all",E))(l||{});export{l as Q};
