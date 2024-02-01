@@ -1,1 +1,0 @@
-import{u as o,aT as n,o as t}from"./index.8e1e529b.js";function i(e){return n()?(t(e),!0):!1}function s(e){return typeof e=="function"?e():o(e)}const r=typeof window!="undefined"&&typeof document!="undefined";typeof WorkerGlobalScope!="undefined"&&globalThis instanceof WorkerGlobalScope;const u=e=>typeof e!="undefined";export{u as a,i as b,r as i,s as t};
