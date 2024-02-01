@@ -15,14 +15,14 @@ class PersonaFactory extends ParentFactory
     {
         return [
             // Add your model fields here
-            'nombre' => $this->faker->name(),
+            'nombres' => $this->faker->firstName(),
             'apellido_paterno' => $this->faker->lastName(),
             'apellido_materno' => $this->faker->lastName(),
             'numero_documento' => $this->faker->randomNumber(9, true),
             'fecha_nacimiento' => now(),
             'edad' => $this->faker->numberBetween(10, 80),
             'sexo' => $this->faker->randomElement(['Masculino', 'Femenino']),
-            'direccion' => 'SIn calle',
+            'direccion' => $this->faker->streetAddress(),
             'telefono' => $this->faker->randomNumber(9, true),
             'historia_clinica' => $this->faker->randomNumber(6, true),
             'tipo_documento_id' => TipoDocumento::inRandomOrder()->value('id'),
