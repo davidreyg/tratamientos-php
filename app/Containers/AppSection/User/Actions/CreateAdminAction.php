@@ -30,10 +30,10 @@ class CreateAdminAction extends ParentAction
         return DB::transaction(function () use ($data) {
             $user = $this->createUserTask->run($data);
             $adminRoleName = config('appSection-authorization.admin_role');
-            foreach (array_keys(config('auth.guards')) as $guardName) {
-                $adminRole = $this->findRoleTask->run($adminRoleName, $guardName);
-                $this->assignRolesToUserTask->run($user, $adminRole);
-            }
+            // foreach (array_keys(config('auth.guards')) as $guardName) {
+            $adminRole = $this->findRoleTask->run($adminRoleName, 'api');
+            $this->assignRolesToUserTask->run($user, $adminRole);
+            // }
             // $user->email_verified_at = now();
             // $user->save();
 

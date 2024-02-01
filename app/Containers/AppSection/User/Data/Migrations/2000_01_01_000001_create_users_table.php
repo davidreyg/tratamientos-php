@@ -16,6 +16,7 @@ return new class () extends Migration {
             // $table->string('email')->unique()->nullable();
             // $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();
+            $table->foreignId('establecimiento_id')->constrained();
             // $table->string('gender')->nullable();
             // $table->date('birth')->nullable();
             // $table->rememberToken();

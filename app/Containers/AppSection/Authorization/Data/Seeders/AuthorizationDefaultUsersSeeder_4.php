@@ -30,7 +30,7 @@ class AuthorizationDefaultUsersSeeder_4 extends ParentSeeder
     private function createSuperAdmin(): void
     {
         $userData = [
-            // 'email' => 'admin@admin.com',
+            'establecimiento_id' => 1,
             'password' => 'admin',
             'name' => 'admin',
         ];

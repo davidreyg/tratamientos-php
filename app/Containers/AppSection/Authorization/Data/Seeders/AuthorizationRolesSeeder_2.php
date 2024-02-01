@@ -19,8 +19,8 @@ class AuthorizationRolesSeeder_2 extends ParentSeeder
     public function run(): void
     {
         // Default Roles for every Guard ----------------------------------------------------------------
-        foreach (array_keys(config('auth.guards')) as $guardName) {
-            $this->createRoleTask->run(config('appSection-authorization.admin_role'), 'Administrator', 'Administrator Role', $guardName);
-        }
+        // foreach (array_keys(config('auth.guards')) as $guardName) {
+        $this->createRoleTask->run(config('appSection-authorization.admin_role'), 'Administrator', 'Super Administrador', 'api');
+        // }
     }
 }
