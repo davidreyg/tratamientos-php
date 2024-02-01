@@ -2,12 +2,10 @@
 
 namespace App\Containers\AppSection\User\Models;
 
-use App\Containers\AppSection\Authentication\Notifications\VerifyEmail;
 use App\Containers\AppSection\Authentication\Traits\AuthenticationTrait;
 use App\Containers\AppSection\Authorization\Traits\AuthorizationTrait;
-use App\Ship\Contracts\MustVerifyEmail;
+use App\Containers\AppSection\Establecimiento\Models\Establecimiento;
 use App\Ship\Parents\Models\UserModel as ParentUserModel;
-use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Validation\Rules\Password;
 
 class User extends ParentUserModel
@@ -18,6 +16,7 @@ class User extends ParentUserModel
     protected $fillable = [
         'name',
         'password',
+        'establecimiento_id',
     ];
 
     protected $hidden = [
@@ -40,15 +39,8 @@ class User extends ParentUserModel
             ->symbols();
     }
 
-    // public function sendEmailVerificationNotificationWithVerificationUrl(string $verificationUrl): void
-    // {
-    //     $this->notify(new VerifyEmail($verificationUrl));
-    // }
-
-    // protected function email(): Attribute
-    // {
-    //     return new Attribute(
-    //         get: fn(?string $value): ?string => is_null($value) ? null : strtolower($value),
-    //     );
-    // }
+    public function establecimiento()
+    {
+        return $this->belongsTo(Establecimiento::class);
+    }
 }
