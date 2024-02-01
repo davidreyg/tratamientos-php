@@ -6,7 +6,7 @@ use App\Ship\Parents\Models\Model as ParentModel;
 
 class Persona extends ParentModel
 {
-
+    protected $with = ['tipo_documento', 'tipo_persona'];
     public $timestamps = false;
     protected $fillable = [
         'nombres',
@@ -19,6 +19,8 @@ class Persona extends ParentModel
         'direccion',
         'telefono',
         'historia_clinica',
+        'tipo_documento_id',
+        'tipo_persona_id',
     ];
 
     protected $hidden = [
@@ -33,4 +35,13 @@ class Persona extends ParentModel
      * A resource key to be used in the serialized responses.
      */
     protected string $resourceKey = 'Persona';
+
+    public function tipo_documento()
+    {
+        return $this->belongsTo(TipoDocumento::class);
+    }
+    public function tipo_persona()
+    {
+        return $this->belongsTo(TipoPersona::class);
+    }
 }

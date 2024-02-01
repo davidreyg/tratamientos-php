@@ -30,6 +30,8 @@ class PersonaTransformer extends ParentTransformer
             'direccion' => $persona->direccion,
             'telefono' => $persona->telefono,
             'historia_clinica' => $persona->historia_clinica,
+            'tipo_documento' => $persona->tipo_documento->nombre,
+            'tipo_persona' => $persona->tipo_persona->nombre,
 
         ];
 

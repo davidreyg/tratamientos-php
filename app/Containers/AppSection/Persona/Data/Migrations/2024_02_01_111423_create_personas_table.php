@@ -22,6 +22,13 @@ return new class extends Migration {
             $table->string('direccion', 50);
             $table->integer('telefono')->unsigned()->nullable();
             $table->integer('historia_clinica')->unsigned()->unique();
+
+            // Claves foráneas que referencia a la tabla personas para tipo documento y tipo persona
+            $table->unsignedBigInteger('tipo_persona_id');
+            $table->foreign('tipo_persona_id')->references('id')->on('tipo_personas');
+            $table->unsignedBigInteger('tipo_documento_id');
+            $table->foreign('tipo_documento_id')->references('id')->on('tipo_documentos');
+
             // $table->timestamps();
         });
     }
