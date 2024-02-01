@@ -21,9 +21,7 @@ class UpdateEstablecimientoAction extends ParentAction
      */
     public function run(UpdateEstablecimientoRequest $request): Establecimiento
     {
-        $data = $request->sanitizeInput([
-            // add your request data here
-        ]);
+        $data = $request->validated();
 
         return app(UpdateEstablecimientoTask::class)->run($data, $request->id);
     }

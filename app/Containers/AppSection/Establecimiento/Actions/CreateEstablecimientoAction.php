@@ -19,9 +19,7 @@ class CreateEstablecimientoAction extends ParentAction
      */
     public function run(CreateEstablecimientoRequest $request): Establecimiento
     {
-        $data = $request->sanitizeInput([
-            // add your request data here
-        ]);
+        $data = $request->validated();
 
         return app(CreateEstablecimientoTask::class)->run($data);
     }
