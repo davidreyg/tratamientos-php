@@ -18,6 +18,6 @@ class LoginProxyForWebClientController extends ApiController
     {
         $result = $this->apiLoginProxyForWebClientAction->run($request);
 
-        return $this->json($result['response_content'])->withCookie($result['refresh_cookie']);
+        return $this->json(['data' => $result['response_content']])->withCookie($result['refresh_cookie']);
     }
 }

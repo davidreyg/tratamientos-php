@@ -61,7 +61,7 @@ return [
         */
 
         'attributes' => [
-            'email' => ['email'],
+            'name' => ['required'],
         ],
 
         /*
