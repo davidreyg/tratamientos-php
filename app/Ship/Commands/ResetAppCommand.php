@@ -4,6 +4,7 @@ namespace App\Ship\Commands;
 
 use App\Ship\Parents\Commands\ConsoleCommand;
 use Artisan;
+use msztorc\LaravelEnv\Env;
 
 class ResetAppCommand extends ConsoleCommand
 {
@@ -54,13 +55,25 @@ class ResetAppCommand extends ConsoleCommand
             ->where('id', '=', 2)
             ->value('secret');
 
-        $key = 'CLIENT_WEB_SECRET';
+        $CLIENT_WEB_SECRET = 'CLIENT_WEB_SECRET';
+        $CLIENT_WEB_ID = 'CLIENT_WEB_ID';
         if (\App::environment(['local'])) {
-            file_put_contents(base_path('.env'), str_replace(
-                $key . '=' . env($key, 'default'),
-                $key . '=' . $webClientToken,
-                file_get_contents(base_path('.env'))
-            ));
+            file_put_contents(
+                base_path('.env'),
+                str_replace(
+                    $CLIENT_WEB_SECRET . '=' . env($CLIENT_WEB_SECRET, ''),
+                    $CLIENT_WEB_SECRET . '=' . $webClientToken,
+                    file_get_contents(base_path('.env'))
+                )
+            );
+            file_put_contents(
+                base_path('.env'),
+                str_replace(
+                    $CLIENT_WEB_ID . '=' . env($CLIENT_WEB_ID, ''),
+                    $CLIENT_WEB_ID . '=' . '2',
+                    file_get_contents(base_path('.env'))
+                )
+            );
         }
     }
 
@@ -73,61 +86,62 @@ class ResetAppCommand extends ConsoleCommand
 
     function initArray()
     {
-        array_push($this->array_commands,
+        array_push(
+            $this->array_commands,
             [
-                'message'  => 'Generating APP KEY ......',
+                'message' => 'Generating APP KEY ......',
                 'function' => function () {
                     Artisan::call('key:generate --force');
                 },
-                'info'     => '1. App Key generated successfully',
+                'info' => '1. App Key generated successfully',
             ],
             [
-                'message'  => 'Running optimize clear...',
+                'message' => 'Running optimize clear...',
                 'function' => function () {
                     Artisan::call('optimize:clear -n');
                     Artisan::call('config:clear');
                     Artisan::call('cache:clear');
                 },
-                'info'     => '2. App clear successfully',
+                'info' => '2. App clear successfully',
             ],
             [
-                'message'  => 'Storage link to public..',
+                'message' => 'Storage link to public..',
                 'function' => function () {
                     Artisan::call('storage:link');
                 },
-                'info'     => '3. Storage link created',
+                'info' => '3. Storage link created',
             ],
             [
-                'message'  => 'Wiping DB Data............',
+                'message' => 'Wiping DB Data............',
                 'function' => function () {
                     Artisan::call('db:wipe --force');
                 },
-                'info'     => '4. Data wiped successfully',
+                'info' => '4. Data wiped successfully',
             ],
             [
-                'message'  => 'Running Migrations........',
+                'message' => 'Running Migrations........',
                 'function' => function () {
                     Artisan::call('migrate:refresh --seed --force');
                 },
-                'info'     => '5. Migrations ran successfully',
+                'info' => '5. Migrations ran successfully',
             ],
             [
-                'message'  => 'Installing passport.......',
+                'message' => 'Installing passport.......',
                 'function' => function () {
                     Artisan::call('passport:install --force');
                 },
-                'info'     => '6. Passport installed successfully',
+                'info' => '6. Passport installed successfully',
             ],
 
 
         );
         if (\App::environment(['local'])) {
             array_push($this->array_commands, [
-                'message'  => 'Copying KEY into .env ....',
+                'message' => 'Copying KEY into .env ....',
                 'function' => function () {
                     $this->updatePasswordEnv();
                 },
-                'info'     => '7. Passport API KEY set successfully (Only in local...)',
+                'info' => '7. Passport API KEY set successfully (Only in local...)',
             ]);
         }
     }
