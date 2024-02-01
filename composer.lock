@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "58032f9594ed295358eb0093dd49378f",
+    "content-hash": "095bc7f8b27a604d6c69bb3d7aa70460",
     "packages": [
         {
             "name": "apiato/container-installer",
@@ -169,39 +169,6 @@
                 "source": "https://github.com/apiato/documentation-generator-container/tree/v3.0.5"
             },
             "time": "2023-12-17T12:09:05+00:00"
-        },
-        {
-            "name": "apiato/welcome-container",
-            "version": "v2.0.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/apiato/welcome-container.git",
-                "reference": "68a73c7a8603db49ee81856233fb8d12f8ebb86d"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/apiato/welcome-container/zipball/68a73c7a8603db49ee81856233fb8d12f8ebb86d",
-                "reference": "68a73c7a8603db49ee81856233fb8d12f8ebb86d",
-                "shasum": ""
-            },
-            "type": "apiato-container",
-            "extra": {
-                "apiato": {
-                    "container": {
-                        "name": "Welcome"
-                    }
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "description": "An Apiato container which welcomes the user in different languages! And it is also an example of a container extracted using container installer!",
-            "support": {
-                "issues": "https://github.com/apiato/welcome-container/issues",
-                "source": "https://github.com/apiato/welcome-container/tree/v2.0.1"
-            },
-            "time": "2022-04-22T17:14:03+00:00"
         },
         {
             "name": "brick/math",
@@ -2994,6 +2961,75 @@
                 }
             ],
             "time": "2023-10-27T15:32:31+00:00"
+        },
+        {
+            "name": "msztorc/laravel-env",
+            "version": "1.2.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/msztorc/laravel-env.git",
+                "reference": "f861b9d166db94850e74e2d925b301e0528a9c53"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/msztorc/laravel-env/zipball/f861b9d166db94850e74e2d925b301e0528a9c53",
+                "reference": "f861b9d166db94850e74e2d925b301e0528a9c53",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "illuminate/support": "^6.0|^7.0|^8.0|^9.0|^10.0",
+                "php": "^7.3|^7.4|^8.0|^8.1|^8.2"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2 || ^3",
+                "orchestra/testbench": "^4.0|^5.0|^6.0||^7.0|^8.0",
+                "phpunit/phpunit": "^8.0 || ^9.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "msztorc\\LaravelEnv\\LaravelEnvServiceProvider"
+                    ],
+                    "aliases": {
+                        "LaravelEnv": "msztorc\\LaravelEnv\\LaravelEnvFacade"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "msztorc\\LaravelEnv\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Miroslaw Sztorc",
+                    "email": "miroslaw@sztorc.com",
+                    "homepage": "https://sztorc.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Laravel env helper commands",
+            "homepage": "https://github.com/msztorc/laravel-env",
+            "keywords": [
+                "artisan",
+                "command",
+                "env",
+                "environment",
+                "laravel",
+                "laravel-env",
+                "variables"
+            ],
+            "support": {
+                "issues": "https://github.com/msztorc/laravel-env/issues",
+                "source": "https://github.com/msztorc/laravel-env/tree/1.2.7"
+            },
+            "time": "2023-11-29T21:12:49+00:00"
         },
         {
             "name": "nesbot/carbon",
@@ -13911,14 +13947,14 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
+        "php": "^8.1",
         "ext-curl": "*",
         "ext-gettext": "*",
         "ext-mbstring": "*",
         "ext-openssl": "*",
         "ext-pdo": "*",
         "ext-sodium": "*",
-        "ext-tokenizer": "*",
-        "php": "^8.1"
+        "ext-tokenizer": "*"
     },
     "platform-dev": {
         "ext-intl": "*",

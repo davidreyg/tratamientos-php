@@ -28,6 +28,7 @@
         }
     ],
     "require": {
+        "php": "^8.1",
         "ext-curl": "*",
         "ext-gettext": "*",
         "ext-mbstring": "*",
@@ -39,7 +40,7 @@
         "laravel/framework": "^10.0",
         "laravel/tinker": "^2.8",
         "lcobucci/clock": "3.0.0",
-        "php": "^8.1",
+        "msztorc/laravel-env": "^1.2",
         "wikimedia/composer-merge-plugin": "^2.0.1"
     },
     "require-dev": {
