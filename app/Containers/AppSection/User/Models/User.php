@@ -10,28 +10,25 @@ use App\Ship\Parents\Models\UserModel as ParentUserModel;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Validation\Rules\Password;
 
-class User extends ParentUserModel implements MustVerifyEmail
+class User extends ParentUserModel
 {
     use AuthorizationTrait;
     use AuthenticationTrait;
 
     protected $fillable = [
         'name',
-        'email',
         'password',
-        'gender',
-        'birth',
     ];
 
     protected $hidden = [
         'password',
-        'remember_token',
+        // 'remember_token',
     ];
 
     protected $casts = [
-        'email_verified_at' => 'datetime',
+        // 'email_verified_at' => 'datetime',
         'password' => 'hashed',
-        'birth' => 'date',
+        // 'birth' => 'date',
     ];
 
     public static function getPasswordValidationRules(): Password
@@ -43,15 +40,15 @@ class User extends ParentUserModel implements MustVerifyEmail
             ->symbols();
     }
 
-    public function sendEmailVerificationNotificationWithVerificationUrl(string $verificationUrl): void
-    {
-        $this->notify(new VerifyEmail($verificationUrl));
-    }
+    // public function sendEmailVerificationNotificationWithVerificationUrl(string $verificationUrl): void
+    // {
+    //     $this->notify(new VerifyEmail($verificationUrl));
+    // }
 
-    protected function email(): Attribute
-    {
-        return new Attribute(
-            get: fn (?string $value): ?string => is_null($value) ? null : strtolower($value),
-        );
-    }
+    // protected function email(): Attribute
+    // {
+    //     return new Attribute(
+    //         get: fn(?string $value): ?string => is_null($value) ? null : strtolower($value),
+    //     );
+    // }
 }

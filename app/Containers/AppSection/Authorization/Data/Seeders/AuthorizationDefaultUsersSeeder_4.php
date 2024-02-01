@@ -30,9 +30,9 @@ class AuthorizationDefaultUsersSeeder_4 extends ParentSeeder
     private function createSuperAdmin(): void
     {
         $userData = [
-            'email' => 'admin@admin.com',
+            // 'email' => 'admin@admin.com',
             'password' => 'admin',
-            'name' => 'Super Admin',
+            'name' => 'admin',
         ];
 
         $this->createAdminAction->run($userData);

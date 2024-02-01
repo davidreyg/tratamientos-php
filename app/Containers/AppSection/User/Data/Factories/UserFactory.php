@@ -17,12 +17,12 @@ class UserFactory extends ParentFactory
 
         return [
             'name' => $this->faker->name(),
-            'email' => $this->faker->unique()->safeEmail(),
+            // 'email' => $this->faker->unique()->safeEmail(),
             'password' => $password ?: $password = Hash::make('testing-password'),
-            'email_verified_at' => now(),
-            'remember_token' => Str::random(10),
-            'gender' => $this->faker->randomElement(['male', 'female', 'unspecified']),
-            'birth' => $this->faker->date(),
+            // 'email_verified_at' => now(),
+            // 'remember_token' => Str::random(10),
+            // 'gender' => $this->faker->randomElement(['male', 'female', 'unspecified']),
+            // 'birth' => $this->faker->date(),
         ];
     }
 

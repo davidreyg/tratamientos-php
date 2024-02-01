@@ -34,8 +34,8 @@ class CreateAdminAction extends ParentAction
                 $adminRole = $this->findRoleTask->run($adminRoleName, $guardName);
                 $this->assignRolesToUserTask->run($user, $adminRole);
             }
-            $user->email_verified_at = now();
-            $user->save();
+            // $user->email_verified_at = now();
+            // $user->save();
 
             return $user;
         });

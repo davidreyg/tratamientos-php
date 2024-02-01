@@ -9,8 +9,8 @@ class UserRepository extends ParentRepository
     protected $fieldSearchable = [
         'name' => 'like',
         'id' => '=',
-        'email' => '=',
-        'email_verified_at' => '=',
+        // 'email' => '=',
+        // 'email_verified_at' => '=',
         'created_at' => 'like',
     ];
 
