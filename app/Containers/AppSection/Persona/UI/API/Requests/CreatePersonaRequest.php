@@ -38,7 +38,7 @@ class CreatePersonaRequest extends ParentRequest
             'nombres' => ['required', 'string', 'max:50'],
             'apellido_paterno' => ['required', 'string', 'max:50'],
             'apellido_materno' => ['required', 'string', 'max:50'],
-            'numero_documento' => ['required', 'numeric', 'integer', 'gt:0', 'max:11', 'unique:personas'],
+            'numero_documento' => ['required', 'numeric', 'integer', 'gt:0', 'unique:personas'],
             'fecha_nacimiento' => ['required', 'date'],
             'edad' => ['required', 'numeric', 'integer', 'gt:0'],
             'sexo' => ['required', 'in:Masculino,Femenino'],
