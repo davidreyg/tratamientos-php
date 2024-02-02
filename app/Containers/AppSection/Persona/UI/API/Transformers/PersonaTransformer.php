@@ -2,17 +2,18 @@
 
 namespace App\Containers\AppSection\Persona\UI\API\Transformers;
 
+use App\Containers\AppSection\Diagnostico\UI\API\Transformers\DiagnosticoTransformer;
 use App\Containers\AppSection\Persona\Models\Persona;
 use App\Ship\Parents\Transformers\Transformer as ParentTransformer;
 
 class PersonaTransformer extends ParentTransformer
 {
     protected array $defaultIncludes = [
-
+        'diagnosticos'
     ];
 
     protected array $availableIncludes = [
-
+        'diagnosticos'
     ];
 
     public function transform(Persona $persona): array
@@ -33,6 +34,7 @@ class PersonaTransformer extends ParentTransformer
             'tipo_documento' => $persona->tipo_documento->nombre,
             'tipo_documento_id' => $persona->tipo_documento_id,
             'tipo_persona' => $persona->tipo_persona->nombre,
+            'tipo_persona_id' => $persona->tipo_persona_id,
 
         ];
 
@@ -44,5 +46,10 @@ class PersonaTransformer extends ParentTransformer
             // 'readable_updated_at' => $persona->updated_at->diffForHumans(),
             // 'deleted_at' => $persona->deleted_at,
         ], $response);
+    }
+
+    public function includeDiagnosticos(Persona $persona)
+    {
+        return $this->collection($persona->diagnosticos, new DiagnosticoTransformer());
     }
 }

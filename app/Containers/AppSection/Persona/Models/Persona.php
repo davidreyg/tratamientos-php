@@ -2,11 +2,12 @@
 
 namespace App\Containers\AppSection\Persona\Models;
 
+use App\Containers\AppSection\Diagnostico\Models\Diagnostico;
 use App\Ship\Parents\Models\Model as ParentModel;
 
 class Persona extends ParentModel
 {
-    protected $with = ['tipo_documento', 'tipo_persona'];
+    protected $with = ['tipo_documento', 'tipo_persona', 'diagnosticos'];
     public $timestamps = false;
     protected $fillable = [
         'nombres',
@@ -43,5 +44,10 @@ class Persona extends ParentModel
     public function tipo_persona()
     {
         return $this->belongsTo(TipoPersona::class);
+    }
+
+    public function diagnosticos()
+    {
+        return $this->hasMany(Diagnostico::class, 'paciente_id');
     }
 }

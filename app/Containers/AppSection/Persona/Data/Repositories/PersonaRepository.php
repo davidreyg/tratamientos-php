@@ -12,6 +12,7 @@ class PersonaRepository extends ParentRepository
     protected $fieldSearchable = [
         'id' => '=',
         'numero_documento' => '=',
+        'tipo_persona_id' => '=',
         // ...
     ];
 }
