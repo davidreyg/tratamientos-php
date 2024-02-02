@@ -7,6 +7,7 @@ use Apiato\Core\Exceptions\InvalidTransformerException;
 use App\Containers\AppSection\Persona\Actions\CreatePersonaAction;
 use App\Containers\AppSection\Persona\Actions\DeletePersonaAction;
 use App\Containers\AppSection\Persona\Actions\FindPersonaByIdAction;
+use App\Containers\AppSection\Persona\Actions\GetAllPacientesAction;
 use App\Containers\AppSection\Persona\Actions\GetAllPersonasAction;
 use App\Containers\AppSection\Persona\Actions\UpdatePersonaAction;
 use App\Containers\AppSection\Persona\UI\API\Requests\CreatePersonaRequest;
@@ -63,6 +64,20 @@ class Controller extends ApiController
         $personas = app(GetAllPersonasAction::class)->run($request);
 
         return $this->transform($personas, PersonaTransformer::class);
+    }
+
+    /**
+     * @param GetAllPersonasRequest $request
+     * @return array
+     * @throws InvalidTransformerException
+     * @throws CoreInternalErrorException
+     * @throws RepositoryException
+     */
+    public function getAllPacientes(GetAllPersonasRequest $request): array
+    {
+        $pacientes = app(GetAllPacientesAction::class)->run($request);
+
+        return $this->transform($pacientes, PersonaTransformer::class);
     }
 
     /**
