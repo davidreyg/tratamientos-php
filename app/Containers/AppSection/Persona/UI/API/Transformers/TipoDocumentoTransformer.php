@@ -19,7 +19,7 @@ class TipoDocumentoTransformer extends ParentTransformer
     {
         $response = [
             'object' => $tipo_documento->getResourceKey(),
-            'id' => $tipo_documento->getHashedKey(),
+            'id' => $tipo_documento->id,
             'nombre' => $tipo_documento->nombre,
             'digitos' => $tipo_documento->digitos,
 
