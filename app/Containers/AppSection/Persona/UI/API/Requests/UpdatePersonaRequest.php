@@ -36,18 +36,18 @@ class UpdatePersonaRequest extends ParentRequest
     public function rules(): array
     {
         return [
-            'nombres' => ['required', 'string', 'max:50'],
-            'apellido_paterno' => ['required', 'string', 'max:50'],
-            'apellido_materno' => ['required', 'string', 'max:50'],
-            'numero_documento' => ['required', 'numeric', 'integer', 'gt:0', Rule::unique('personas')->ignore($this->id)],
-            'fecha_nacimiento' => ['required', 'date'],
-            'edad' => ['required', 'numeric', 'integer', 'gt:0'],
-            'sexo' => ['required', 'in:Masculino,Femenino'],
+            // 'nombres' => ['required', 'string', 'max:50'],
+            // 'apellido_paterno' => ['required', 'string', 'max:50'],
+            // 'apellido_materno' => ['required', 'string', 'max:50'],
+            // 'numero_documento' => ['required', 'numeric', 'integer', 'gt:0', Rule::unique('personas')->ignore($this->id)],
+            // 'fecha_nacimiento' => ['required', 'date'],
+            // 'edad' => ['required', 'numeric', 'integer', 'gt:0'],
+            // 'sexo' => ['required', 'in:Masculino,Femenino'],
             'direccion' => ['required', 'string', 'max:50'],
             'telefono' => ['nullable', 'numeric', 'integer', 'gt:0', 'digits:9',],
             'historia_clinica' => ['required', 'numeric', 'integer', 'gt:0', Rule::unique('personas')->ignore($this->id)],
-            'tipo_persona_id' => ['required', 'exists:tipo_personas,id'],
-            'tipo_documento_id' => ['required', 'exists:tipo_documentos,id'],
+            // 'tipo_persona_id' => ['required', 'exists:tipo_personas,id'],
+            // 'tipo_documento_id' => ['required', 'exists:tipo_documentos,id'],
         ];
     }
 
