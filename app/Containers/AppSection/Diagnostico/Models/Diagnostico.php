@@ -28,4 +28,11 @@ class Diagnostico extends ParentModel
      * A resource key to be used in the serialized responses.
      */
     protected string $resourceKey = 'Diagnostico';
+
+
+    public function enfermedades()
+    {
+        return $this->belongsToMany(Enfermedad::class)
+            ->using(DiagnosticoEnfermedad::class);
+    }
 }
