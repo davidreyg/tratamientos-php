@@ -20,6 +20,6 @@ class GetAllControlsTask extends ParentTask
      */
     public function run(): mixed
     {
-        return $this->addRequestCriteria()->repository->paginate();
+        return $this->addRequestCriteria(null, ['id', 'diagnostico_id'])->repository->paginate();
     }
 }

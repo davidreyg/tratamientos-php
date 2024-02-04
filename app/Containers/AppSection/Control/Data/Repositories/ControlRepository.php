@@ -11,6 +11,7 @@ class ControlRepository extends ParentRepository
      */
     protected $fieldSearchable = [
         'id' => '=',
+        'diagnostico_id' => '=',
         // ...
     ];
 }
