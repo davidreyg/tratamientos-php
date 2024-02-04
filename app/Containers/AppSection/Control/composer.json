@@ -1,0 +1,6 @@
+{
+    "name": "apiato/control",
+    "description": "Control Container for apiato.",
+    "require": {
+    }
+}
