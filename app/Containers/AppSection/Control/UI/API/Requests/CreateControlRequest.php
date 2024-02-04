@@ -3,6 +3,8 @@
 namespace App\Containers\AppSection\Control\UI\API\Requests;
 
 use App\Ship\Parents\Requests\Request as ParentRequest;
+use Illuminate\Database\Query\Builder;
+use Illuminate\Validation\Rule;
 
 class CreateControlRequest extends ParentRequest
 {
@@ -18,7 +20,10 @@ class CreateControlRequest extends ParentRequest
      * Id's that needs decoding before applying the validation rules.
      */
     protected array $decode = [
-        // 'id',
+        'diagnostico_id',
+        'medicamentos.*',
+        'medico_id',
+        'complicaciones.*',
     ];
 
     /**
@@ -35,8 +40,32 @@ class CreateControlRequest extends ParentRequest
     public function rules(): array
     {
         return [
-            // 'id' => 'required',
+            'estado' => ['required', 'boolean'],
+            'diagnostico_id' => ['required', 'exists:diagnosticos,id'],
+            'fecha_inicio' => ['required', 'date'],
+            'fecha_fin' => ['required', 'date'],
+            'medico_id' => [
+                'required',
+                Rule::exists('personas', 'id')->where(function (Builder $query) {
+                    return $query->where('tipo_persona_id', 1);
+                }),
+            ],
+            'medicamentos' => ['array', 'required'],
+            'medicamentos.*' => ['required', 'exists:enfermedads,id'],
+            'complicaciones' => ['array', 'nullable'],
+            'complicaciones.*' => ['required', 'exists:complicacions,id'],
         ];
+    }
+
+    /**
+     * Prepare the data for validation.
+     */
+    protected function prepareForValidation(): void
+    {
+        $this->merge([
+            'estado' => true,
+            // 'user_id' => auth()->id(),
+        ]);
     }
 
     /**

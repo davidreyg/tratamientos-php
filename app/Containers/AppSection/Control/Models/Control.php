@@ -2,10 +2,13 @@
 
 namespace App\Containers\AppSection\Control\Models;
 
+use App\Containers\AppSection\Diagnostico\Models\Diagnostico;
+use App\Containers\AppSection\Persona\Models\Persona;
 use App\Ship\Parents\Models\Model as ParentModel;
 
 class Control extends ParentModel
 {
+    protected $with = ['medicamentos', 'complicaciones', 'medico', 'diagnostico'];
     public $timestamps = false;
     protected $fillable = [
         'fecha_inicio',
@@ -38,5 +41,15 @@ class Control extends ParentModel
     {
         return $this->belongsToMany(Complicacion::class)
             ->using(ComplicacionControl::class);
+    }
+
+    public function medico()
+    {
+        return $this->belongsTo(Persona::class, 'medico_id');
+    }
+
+    public function diagnostico()
+    {
+        return $this->belongsTo(Diagnostico::class);
     }
 }

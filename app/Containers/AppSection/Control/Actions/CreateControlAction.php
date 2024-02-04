@@ -11,6 +11,11 @@ use App\Ship\Parents\Actions\Action as ParentAction;
 
 class CreateControlAction extends ParentAction
 {
+
+    public function __construct(
+        private readonly CreateControlTask $createControlTask,
+    ) {
+    }
     /**
      * @param CreateControlRequest $request
      * @return Control
@@ -20,7 +25,11 @@ class CreateControlAction extends ParentAction
     public function run(CreateControlRequest $request): Control
     {
         $data = $request->validated();
-
-        return app(CreateControlTask::class)->run($data);
+        $control = $this->createControlTask->run($data);
+        $control->medicamentos()->sync($request->medicamentos);
+        if ($request->complicaciones) {
+            $control->complicaciones()->sync($request->complicaciones);
+        }
+        return $control;
     }
 }

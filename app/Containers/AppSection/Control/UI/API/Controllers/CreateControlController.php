@@ -22,7 +22,7 @@ class CreateControlController extends ApiController
      */
     public function createControl(CreateControlRequest $request): JsonResponse
     {
-        $control = app(CreateControlAction::class)->run($request);
+        $control = app(CreateControlAction::class)->transactionalRun($request);
 
         return $this->created($this->transform($control, ControlTransformer::class));
     }
