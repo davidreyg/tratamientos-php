@@ -16,7 +16,7 @@ class DiagnosticoFactory extends ParentFactory
     {
         return [
             // Add your model fields here
-            'descripcion' => $this->faker->words(3),
+            'estado' => false,
             // 'fecha' => now(),
             'observaciones' => $this->faker->words(3),
             'establecimento_id' => Establecimiento::inRandomOrder()->value('id'),

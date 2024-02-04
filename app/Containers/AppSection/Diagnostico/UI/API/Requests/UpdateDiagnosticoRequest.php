@@ -37,7 +37,7 @@ class UpdateDiagnosticoRequest extends ParentRequest
     public function rules(): array
     {
         return [
-            'descripcion' => ['required', 'max:100'],
+            'estado' => ['required', 'boolean'],
             'observaciones' => ['nullable', 'max:100'],
             'user_id' => ['required', 'exists:users,id'],
             'financiamiento_id' => ['required', 'exists:financiamientos,id'],

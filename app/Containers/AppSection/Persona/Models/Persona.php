@@ -7,7 +7,7 @@ use App\Ship\Parents\Models\Model as ParentModel;
 
 class Persona extends ParentModel
 {
-    protected $with = ['tipo_documento', 'tipo_persona', 'diagnosticos'];
+    protected $with = ['tipo_documento', 'tipo_persona'];
     public $timestamps = false;
     protected $fillable = [
         'nombres',

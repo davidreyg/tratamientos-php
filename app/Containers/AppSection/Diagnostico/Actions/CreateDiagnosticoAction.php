@@ -11,6 +11,11 @@ use App\Ship\Parents\Actions\Action as ParentAction;
 
 class CreateDiagnosticoAction extends ParentAction
 {
+    public function __construct(
+        private readonly CreateDiagnosticoTask $createDiagnosticoTask,
+    ) {
+    }
+
     /**
      * @param CreateDiagnosticoRequest $request
      * @return Diagnostico
@@ -21,6 +26,9 @@ class CreateDiagnosticoAction extends ParentAction
     {
         $data = $request->validated();
 
-        return app(CreateDiagnosticoTask::class)->run($data);
+        $diagnostico = $this->createDiagnosticoTask->run($data);
+        $diagnostico->enfermedades()->sync($request->enfermedades);
+        //FIXME: Falta que al registrarlo ponga en inactivo todos los demas diagnosticos
+        return $diagnostico;
     }
 }

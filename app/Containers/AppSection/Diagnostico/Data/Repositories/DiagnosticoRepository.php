@@ -11,6 +11,7 @@ class DiagnosticoRepository extends ParentRepository
      */
     protected $fieldSearchable = [
         'id' => '=',
+        'paciente_id' => '=',
         // ...
     ];
 }

@@ -6,9 +6,10 @@ use App\Ship\Parents\Models\Model as ParentModel;
 
 class Diagnostico extends ParentModel
 {
+    protected $with = ['enfermedades'];
     protected $fillable = [
-        'descripcion',
-        // 'fecha',
+        // 'descripcion',
+        'estado',
         'observaciones',
         'user_id',
         'paciente_id',
@@ -21,7 +22,7 @@ class Diagnostico extends ParentModel
     ];
 
     protected $casts = [
-
+        'estado' => 'boolean'
     ];
 
     /**

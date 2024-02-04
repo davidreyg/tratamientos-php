@@ -9,7 +9,7 @@ use App\Ship\Parents\Transformers\Transformer as ParentTransformer;
 class PersonaTransformer extends ParentTransformer
 {
     protected array $defaultIncludes = [
-        'diagnosticos'
+        // 'diagnosticos'
     ];
 
     protected array $availableIncludes = [

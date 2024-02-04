@@ -12,7 +12,7 @@ return new class extends Migration {
     {
         Schema::create('diagnostico_enfermedad', function (Blueprint $table) {
             // $table->id();
-            $table->string('nombre', 100);
+            // $table->string('nombre', 100);
 
             $table->unsignedBigInteger('diagnostico_id');
             $table->foreign('diagnostico_id')->references('id')->on('diagnosticos');

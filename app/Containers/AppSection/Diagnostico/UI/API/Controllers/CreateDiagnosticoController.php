@@ -22,7 +22,7 @@ class CreateDiagnosticoController extends ApiController
      */
     public function createDiagnostico(CreateDiagnosticoRequest $request): JsonResponse
     {
-        $diagnostico = app(CreateDiagnosticoAction::class)->run($request);
+        $diagnostico = app(CreateDiagnosticoAction::class)->transactionalRun($request);
 
         return $this->created($this->transform($diagnostico, DiagnosticoTransformer::class));
     }

@@ -20,7 +20,10 @@ class CreateDiagnosticoRequest extends ParentRequest
      * Id's that needs decoding before applying the validation rules.
      */
     protected array $decode = [
-        // 'id',
+        'enfermedades.*',
+        'financiamiento_id',
+        'medico_id',
+        'paciente_id',
     ];
 
     /**
@@ -38,23 +41,36 @@ class CreateDiagnosticoRequest extends ParentRequest
     public function rules(): array
     {
         return [
-            'descripcion' => ['required', 'max:100'],
+            'estado' => ['required', 'boolean'],
             'observaciones' => ['nullable', 'max:100'],
             'user_id' => ['required', 'exists:users,id'],
             'financiamiento_id' => ['required', 'exists:financiamientos,id'],
             'medico_id' => [
                 'required',
                 Rule::exists('personas', 'id')->where(function (Builder $query) {
-                    return $query->where('id', 1);
+                    return $query->where('tipo_persona_id', 1);
                 }),
             ],
             'paciente_id' => [
                 'required',
                 Rule::exists('personas', 'id')->where(function (Builder $query) {
-                    return $query->where('id', 2);
+                    return $query->where('tipo_persona_id', 2);
                 }),
             ],
+            'enfermedades' => ['array', 'required'],
+            'enfermedades.*' => ['required', 'exists:enfermedads,id']
         ];
+    }
+
+    /**
+     * Prepare the data for validation.
+     */
+    protected function prepareForValidation(): void
+    {
+        $this->merge([
+            'estado' => true,
+            'user_id' => auth()->id(),
+        ]);
     }
 
     /**
