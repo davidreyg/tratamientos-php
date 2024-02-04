@@ -2,11 +2,13 @@
 
 namespace App\Containers\AppSection\Diagnostico\Models;
 
+use App\Containers\AppSection\Financiamiento\Models\Financiamiento;
+use App\Containers\AppSection\Persona\Models\Persona;
 use App\Ship\Parents\Models\Model as ParentModel;
 
 class Diagnostico extends ParentModel
 {
-    protected $with = ['enfermedades'];
+    protected $with = ['enfermedades', 'paciente', 'medico', 'financiamiento'];
     protected $fillable = [
         // 'descripcion',
         'estado',
@@ -35,5 +37,20 @@ class Diagnostico extends ParentModel
     {
         return $this->belongsToMany(Enfermedad::class)
             ->using(DiagnosticoEnfermedad::class);
+    }
+
+    public function paciente()
+    {
+        return $this->belongsTo(Persona::class, 'paciente_id');
+    }
+
+    public function medico()
+    {
+        return $this->belongsTo(Persona::class, 'medico_id');
+    }
+
+    public function financiamiento()
+    {
+        return $this->belongsTo(Financiamiento::class);
     }
 }
