@@ -41,6 +41,7 @@
         "laravel/tinker": "^2.8",
         "lcobucci/clock": "3.0.0",
         "msztorc/laravel-env": "^1.2",
+        "staudenmeir/belongs-to-through": "^2.5",
         "wikimedia/composer-merge-plugin": "^2.0.1"
     },
     "require-dev": {

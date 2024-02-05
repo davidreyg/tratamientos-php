@@ -3,6 +3,7 @@
 namespace App\Containers\AppSection\Diagnostico\UI\API\Transformers;
 
 use App\Containers\AppSection\Diagnostico\Models\Diagnostico;
+use App\Containers\AppSection\Establecimiento\UI\API\Transformers\EstablecimientoTransformer;
 use App\Containers\AppSection\Financiamiento\UI\API\Transformers\FinanciamientoTransformer;
 use App\Containers\AppSection\Persona\UI\API\Transformers\PersonaTransformer;
 use App\Ship\Parents\Transformers\Transformer as ParentTransformer;
@@ -14,6 +15,7 @@ class DiagnosticoTransformer extends ParentTransformer
         'paciente',
         'medico',
         'financiamiento',
+        'establecimiento',
     ];
 
     protected array $availableIncludes = [
@@ -21,6 +23,7 @@ class DiagnosticoTransformer extends ParentTransformer
         'paciente',
         'medico',
         'financiamiento',
+        'establecimiento',
     ];
 
     public function transform(Diagnostico $diagnostico): array
@@ -57,6 +60,12 @@ class DiagnosticoTransformer extends ParentTransformer
     {
         return $this->item($diagnostico->medico, new PersonaTransformer());
     }
+
+    public function includeEstablecimiento(Diagnostico $diagnostico)
+    {
+        return $this->item($diagnostico->establecimiento, new EstablecimientoTransformer());
+    }
+
     public function includeFinanciamiento(Diagnostico $diagnostico)
     {
         return $this->item($diagnostico->financiamiento, new FinanciamientoTransformer());

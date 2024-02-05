@@ -2,13 +2,17 @@
 
 namespace App\Containers\AppSection\Diagnostico\Models;
 
+use App\Containers\AppSection\Establecimiento\Models\Establecimiento;
 use App\Containers\AppSection\Financiamiento\Models\Financiamiento;
 use App\Containers\AppSection\Persona\Models\Persona;
+use App\Containers\AppSection\User\Models\User;
 use App\Ship\Parents\Models\Model as ParentModel;
+use Znck\Eloquent\Traits\BelongsToThrough;
 
 class Diagnostico extends ParentModel
 {
-    protected $with = ['enfermedades', 'paciente', 'medico', 'financiamiento'];
+    use BelongsToThrough;
+    protected $with = ['enfermedades', 'paciente', 'medico', 'financiamiento', 'establecimiento'];
     protected $fillable = [
         // 'descripcion',
         'estado',
@@ -52,5 +56,11 @@ class Diagnostico extends ParentModel
     public function financiamiento()
     {
         return $this->belongsTo(Financiamiento::class);
+    }
+
+    /**belongs to thorugnt */
+    public function establecimiento()
+    {
+        return $this->belongsToThrough(Establecimiento::class, User::class);
     }
 }
