@@ -33,6 +33,8 @@ class AuthorizationDefaultUsersSeeder_4 extends ParentSeeder
             'establecimiento_id' => 1,
             'password' => 'admin',
             'name' => 'admin',
+            'nombre_completo' => 'Gilbert Gil Gutierrez Luyo',
+            'cargo' => 'Ingeniero de Sistemas',
         ];
 
         $this->createAdminAction->run($userData);

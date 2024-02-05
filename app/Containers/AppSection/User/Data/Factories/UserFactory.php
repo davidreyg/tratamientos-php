@@ -16,7 +16,9 @@ class UserFactory extends ParentFactory
         static $password;
 
         return [
-            'name' => $this->faker->name(),
+            'name' => $this->faker->userName(),
+            'nombre_completo' => $this->faker->name() . ' ' . $this->faker->lastName(),
+            'cargo' => $this->faker->jobTitle(),
             // 'email' => $this->faker->unique()->safeEmail(),
             'password' => $password ?: $password = Hash::make('testing-password'),
             // 'email_verified_at' => now(),

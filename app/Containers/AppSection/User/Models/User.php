@@ -14,6 +14,8 @@ class User extends ParentUserModel
     use AuthenticationTrait;
 
     protected $fillable = [
+        'nombre_completo',
+        'cargo',
         'name',
         'password',
         'establecimiento_id',
