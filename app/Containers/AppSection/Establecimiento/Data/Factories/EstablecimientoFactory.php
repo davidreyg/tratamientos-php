@@ -13,7 +13,11 @@ class EstablecimientoFactory extends ParentFactory
     {
         return [
             // Add your model fields here
-            // 'name' => $this->faker->name(),
+            'nombre' => $this->faker->word(),
+            'codigo' => $this->faker->numerify('ESTABLECIMIENTO-####'),
+            'direccion' => $this->faker->streetAddress(),
+            'telefono' => $this->faker->randomNumber(9, true),
+            'ris' => $this->faker->country(),
         ];
     }
 }

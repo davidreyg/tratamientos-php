@@ -2,6 +2,7 @@
 
 namespace App\Containers\AppSection\User\Data\Factories;
 
+use App\Containers\AppSection\Establecimiento\Models\Establecimiento;
 use App\Containers\AppSection\User\Models\User;
 use App\Ship\Parents\Factories\Factory as ParentFactory;
 use Illuminate\Support\Facades\Hash;
@@ -20,7 +21,8 @@ class UserFactory extends ParentFactory
             'nombre_completo' => $this->faker->name() . ' ' . $this->faker->lastName(),
             'cargo' => $this->faker->jobTitle(),
             // 'email' => $this->faker->unique()->safeEmail(),
-            'password' => $password ?: $password = Hash::make('testing-password'),
+            'password' => $password ?: $password = Hash::make('password'),
+            'establecimiento_id' => Establecimiento::inRandomOrder()->value('id'),
             // 'email_verified_at' => now(),
             // 'remember_token' => Str::random(10),
             // 'gender' => $this->faker->randomElement(['male', 'female', 'unspecified']),
