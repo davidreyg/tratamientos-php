@@ -20,6 +20,6 @@ class GetAllDiagnosticosTask extends ParentTask
      */
     public function run(): mixed
     {
-        return $this->addRequestCriteria(null, ['id', 'paciente_id'])->repository->paginate();
+        return $this->addRequestCriteria(null, ['id', 'paciente_id'])->repository->orderBy('estado', 'desc')->all();
     }
 }
