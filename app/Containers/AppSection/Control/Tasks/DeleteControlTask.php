@@ -26,8 +26,8 @@ class DeleteControlTask extends ParentTask
             return $this->repository->delete($id);
         } catch (ModelNotFoundException) {
             throw new NotFoundException();
-        } catch (Exception) {
-            throw new DeleteResourceFailedException();
+        } catch (Exception $e) {
+            throw new DeleteResourceFailedException($e->getMessage());
         }
     }
 }

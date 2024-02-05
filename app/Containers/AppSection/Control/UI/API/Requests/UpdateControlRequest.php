@@ -3,6 +3,8 @@
 namespace App\Containers\AppSection\Control\UI\API\Requests;
 
 use App\Ship\Parents\Requests\Request as ParentRequest;
+use Illuminate\Database\Query\Builder;
+use Illuminate\Validation\Rule;
 
 class UpdateControlRequest extends ParentRequest
 {
@@ -19,7 +21,12 @@ class UpdateControlRequest extends ParentRequest
      */
     protected array $decode = [
         'id',
+        'diagnostico_id',
+        'medicamentos.*',
+        'medico_id',
+        'complicaciones.*',
     ];
+
 
     /**
      * Defining the URL parameters (e.g, `/user/{id}`) allows applying
@@ -35,7 +42,20 @@ class UpdateControlRequest extends ParentRequest
     public function rules(): array
     {
         return [
-            // 'id' => 'required'
+            'observaciones' => ['nullable', 'string', 'max:100'],
+            'diagnostico_id' => ['required', 'exists:diagnosticos,id'],
+            'fecha_inicio' => ['required', 'date'],
+            'fecha_fin' => ['required', 'date'],
+            'medico_id' => [
+                'required',
+                Rule::exists('personas', 'id')->where(function (Builder $query) {
+                    return $query->where('tipo_persona_id', 1);
+                }),
+            ],
+            'medicamentos' => ['array', 'required'],
+            'medicamentos.*' => ['required', 'exists:enfermedads,id'],
+            'complicaciones' => ['array', 'nullable'],
+            'complicaciones.*' => ['required', 'exists:complicacions,id'],
         ];
     }
 

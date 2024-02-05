@@ -40,7 +40,7 @@ class CreateControlRequest extends ParentRequest
     public function rules(): array
     {
         return [
-            'estado' => ['required', 'boolean'],
+            'observaciones' => ['nullable', 'string', 'max:100'],
             'diagnostico_id' => ['required', 'exists:diagnosticos,id'],
             'fecha_inicio' => ['required', 'date'],
             'fecha_fin' => ['required', 'date'],
@@ -57,16 +57,6 @@ class CreateControlRequest extends ParentRequest
         ];
     }
 
-    /**
-     * Prepare the data for validation.
-     */
-    protected function prepareForValidation(): void
-    {
-        $this->merge([
-            'estado' => true,
-            // 'user_id' => auth()->id(),
-        ]);
-    }
 
     /**
      * Determine if the user is authorized to make this request.

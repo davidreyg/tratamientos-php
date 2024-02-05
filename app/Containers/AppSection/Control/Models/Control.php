@@ -13,7 +13,7 @@ class Control extends ParentModel
     protected $fillable = [
         'fecha_inicio',
         'fecha_fin',
-        'estado',
+        'observaciones',
         'medico_id',
         'diagnostico_id',
     ];

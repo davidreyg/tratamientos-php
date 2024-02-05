@@ -12,6 +12,10 @@ use App\Ship\Parents\Actions\Action as ParentAction;
 
 class UpdateControlAction extends ParentAction
 {
+    public function __construct(
+        private readonly UpdateControlTask $updateControlTask,
+    ) {
+    }
     /**
      * @param UpdateControlRequest $request
      * @return Control
@@ -22,7 +26,11 @@ class UpdateControlAction extends ParentAction
     public function run(UpdateControlRequest $request): Control
     {
         $data = $request->validated();
-
-        return app(UpdateControlTask::class)->run($data, $request->id);
+        $control = $this->updateControlTask->run($data, $request->id);
+        $control->medicamentos()->sync($request->medicamentos);
+        if ($request->complicaciones) {
+            $control->complicaciones()->sync($request->complicaciones);
+        }
+        return $control;
     }
 }

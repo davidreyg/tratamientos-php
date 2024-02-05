@@ -12,7 +12,7 @@ return new class extends Migration {
     {
         Schema::create('control_medicamento', function (Blueprint $table) {
             $table->unsignedBigInteger('control_id');
-            $table->foreign('control_id')->references('id')->on('controls');
+            $table->foreign('control_id')->references('id')->on('controls')->onDelete('cascade');
             $table->unsignedBigInteger('medicamento_id');
             $table->foreign('medicamento_id')->references('id')->on('medicamentos');
         });

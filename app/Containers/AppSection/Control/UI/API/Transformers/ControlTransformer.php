@@ -28,7 +28,7 @@ class ControlTransformer extends ParentTransformer
         $response = [
             'object' => $control->getResourceKey(),
             'id' => $control->getHashedKey(),
-            'estado' => $control->estado,
+            'observaciones' => $control->observaciones,
             'fecha_inicio' => $control->fecha_inicio,
             'fecha_fin' => $control->fecha_fin,
         ];

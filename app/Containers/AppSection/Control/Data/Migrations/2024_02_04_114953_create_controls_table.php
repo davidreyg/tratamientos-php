@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->id();
             $table->date('fecha_inicio');
             $table->date('fecha_fin');
-            $table->boolean('estado');
+            $table->string('observaciones', 100)->nullable();
 
             $table->unsignedBigInteger('diagnostico_id');
             $table->foreign('diagnostico_id')->references('id')->on('diagnosticos');
