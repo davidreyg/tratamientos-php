@@ -28,9 +28,9 @@ class UpdateControlAction extends ParentAction
         $data = $request->validated();
         $control = $this->updateControlTask->run($data, $request->id);
         $control->medicamentos()->sync($request->medicamentos);
-        if ($request->complicaciones) {
-            $control->complicaciones()->sync($request->complicaciones);
-        }
+        // if ($request->complicaciones) {
+        $control->complicaciones()->sync($request->complicaciones);
+        // }
         return $control;
     }
 }
