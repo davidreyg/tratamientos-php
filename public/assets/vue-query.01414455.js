@@ -1,0 +1,1 @@
+import{b as r}from"./index.1d581a10.js";import{V as o}from"./index.5241467b.js";var t=r(async({app:e})=>{e.use(o,{queryClientConfig:{defaultOptions:{queries:{refetchOnWindowFocus:!1,retry:!1}}}})});export{t as default};
