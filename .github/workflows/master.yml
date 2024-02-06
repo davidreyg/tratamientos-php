@@ -15,5 +15,5 @@ jobs:
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
       with:
         server: ftp.dirislimasur.gob.pe
-        username: laravel@dirislimasur.gob.pe
+        username: laravel@sgecdls.dirislimasur.gob.pe
         password: Daregu3005
