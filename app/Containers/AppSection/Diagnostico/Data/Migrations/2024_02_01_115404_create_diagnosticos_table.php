@@ -12,7 +12,7 @@ return new class extends Migration {
     {
         Schema::create('diagnosticos', function (Blueprint $table) {
             $table->id();
-            // $table->string('descripcion', 100);
+            $table->string('motivo_finalizacion', 100)->nullable();
             $table->boolean('estado');
             // $table->date('fecha');
             $table->string('observaciones', 100)->nullable();

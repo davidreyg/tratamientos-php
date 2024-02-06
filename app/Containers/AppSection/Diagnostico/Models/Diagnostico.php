@@ -14,7 +14,7 @@ class Diagnostico extends ParentModel
     use BelongsToThrough;
     protected $with = ['enfermedades', 'paciente', 'medico', 'financiamiento', 'establecimiento'];
     protected $fillable = [
-        // 'descripcion',
+        'motivo_finalizacion',
         'estado',
         'observaciones',
         'user_id',

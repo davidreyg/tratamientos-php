@@ -34,7 +34,7 @@ class DiagnosticoTransformer extends ParentTransformer
             'estado' => $diagnostico->estado,
             'observaciones' => $diagnostico->observaciones,
             'paciente_id' => $diagnostico->paciente_id,
-            // 'paciente' => $diagnostico->paciente->nombres,
+            'motivo_finalizacion' => $diagnostico->motivo_finalizacion,
             'created_at' => $diagnostico->created_at,
         ];
 

@@ -36,6 +36,7 @@ class FinalizarDiagnosticoRequest extends ParentRequest
     {
         return [
             'estado' => ['required', 'boolean'],
+            'motivo_finalizacion' => ['required', 'string', 'max:100'],
         ];
     }
 
