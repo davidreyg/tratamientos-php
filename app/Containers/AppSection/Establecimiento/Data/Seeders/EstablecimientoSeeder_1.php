@@ -21,7 +21,7 @@ class EstablecimientoSeeder_1 extends ParentSeeder
     {
         $data = [
             'nombre' => 'Establecmiento1',
-            'codigo' => 'CODIGO1',
+            'codigo' => 123456,
             'direccion' => 'Calle Los Pepitos S/N',
             'telefono' => 955927839,
             'ris' => 'LIMA'

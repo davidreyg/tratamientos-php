@@ -20,6 +20,7 @@ return new class extends Migration {
             $table->integer('edad')->unsigned();
             $table->string('sexo', 10);
             $table->string('direccion', 50);
+            $table->integer('codigo_establecimiento')->unsigned()->nullable();
             $table->integer('telefono')->unsigned()->nullable();
             $table->integer('historia_clinica')->unsigned()->unique();
 

@@ -14,7 +14,7 @@ class EstablecimientoFactory extends ParentFactory
         return [
             // Add your model fields here
             'nombre' => $this->faker->word(),
-            'codigo' => $this->faker->numerify('ESTABLECIMIENTO-####'),
+            'codigo' => $this->faker->randomNumber(6),
             'direccion' => $this->faker->streetAddress(),
             'telefono' => $this->faker->randomNumber(9, true),
             'ris' => $this->faker->country(),
