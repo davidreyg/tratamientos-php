@@ -27,7 +27,7 @@ class PersonaFactory extends ParentFactory
             'telefono' => $this->faker->randomNumber(9, true),
             'historia_clinica' => $this->faker->randomNumber(6, true),
             'tipo_documento_id' => TipoDocumento::inRandomOrder()->value('id'),
-            'tipo_persona_id' => 1,
+            'tipo_persona_id' => 2,
         ];
     }
 
@@ -47,7 +47,7 @@ class PersonaFactory extends ParentFactory
                 'telefono' => $this->faker->randomNumber(9, true),
                 'historia_clinica' => $this->faker->randomNumber(6, true),
                 'tipo_documento_id' => TipoDocumento::inRandomOrder()->value('id'),
-                'tipo_persona_id' => 2,
+                'tipo_persona_id' => 1,
                 'codigo_establecimiento' => $codigo,
             ];
         });
