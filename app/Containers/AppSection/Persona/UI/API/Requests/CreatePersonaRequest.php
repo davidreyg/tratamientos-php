@@ -43,12 +43,24 @@ class CreatePersonaRequest extends ParentRequest
             'edad' => ['required', 'numeric', 'integer', 'gt:0'],
             'sexo' => ['required', 'in:Masculino,Femenino'],
             'direccion' => ['required', 'string', 'max:50'],
-            'telefono' => ['nullable', 'numeric', 'integer', 'gt:0', 'digits:9',],
-            'historia_clinica' => ['required', 'numeric', 'integer', 'gt:0', 'unique:personas'],
+            'telefono' => ['nullable', 'numeric', 'integer', 'gt:0',],
+            'historia_clinica' => ['required', 'string', 'max:50', 'unique:personas'],
             'tipo_persona_id' => ['required', 'exists:tipo_personas,id'],
             'tipo_documento_id' => ['required', 'exists:tipo_documentos,id'],
         ];
     }
+
+    /**
+     * Prepare the data for validation.
+     */
+    protected function prepareForValidation(): void
+    {
+        $this->merge([
+            // 'estado' => true,
+            'tipo_persona_id' => 2,
+        ]);
+    }
+
 
     /**
      * Determine if the user is authorized to make this request.

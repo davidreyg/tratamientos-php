@@ -15,14 +15,14 @@ return new class extends Migration {
             $table->string('nombres', 50);
             $table->string('apellido_paterno', 50);
             $table->string('apellido_materno', 50);
-            $table->integer('numero_documento')->unsigned()->unique();
+            $table->bigInteger('numero_documento')->unsigned()->unique();
             $table->date('fecha_nacimiento');
             $table->integer('edad')->unsigned();
             $table->string('sexo', 10);
             $table->string('direccion', 50);
             $table->integer('codigo_establecimiento')->unsigned()->nullable();
-            $table->integer('telefono')->unsigned()->nullable();
-            $table->integer('historia_clinica')->unsigned()->unique();
+            $table->bigInteger('telefono')->unsigned()->nullable();
+            $table->string('historia_clinica', 50)->unique();
 
             // Claves foráneas que referencia a la tabla personas para tipo documento y tipo persona
             $table->unsignedBigInteger('tipo_persona_id');
