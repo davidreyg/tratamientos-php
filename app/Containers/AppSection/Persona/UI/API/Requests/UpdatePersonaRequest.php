@@ -45,7 +45,7 @@ class UpdatePersonaRequest extends ParentRequest
             // 'sexo' => ['required', 'in:Masculino,Femenino'],
             'direccion' => ['required', 'string', 'max:50'],
             'telefono' => ['nullable', 'numeric', 'integer', 'gt:0',],
-            'historia_clinica' => ['required', 'string', 'max:50', 'unique:personas'],
+            'historia_clinica' => ['required', 'string', 'max:50', Rule::unique('personas')->ignore($this->id)],
             // 'tipo_persona_id' => ['required', 'exists:tipo_personas,id'],
             // 'tipo_documento_id' => ['required', 'exists:tipo_documentos,id'],
         ];

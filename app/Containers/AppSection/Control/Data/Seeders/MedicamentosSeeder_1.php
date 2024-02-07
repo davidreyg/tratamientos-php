@@ -10,8 +10,8 @@ class MedicamentosSeeder_1 extends ParentSeeder
 
     public function run(): void
     {
-        Medicamento::create(['nombre' => 'Paracetamol']);
-        Medicamento::create(['nombre' => 'Ibuprofeno']);
-        Medicamento::create(['nombre' => 'Otro medicamento :)']);
+        Medicamento::create(['nombre' => 'Paracetamol', 'codigo' => 123456]);
+        Medicamento::create(['nombre' => 'Ibuprofeno', 'codigo' => 255151]);
+        Medicamento::create(['nombre' => 'Otro medicamento :)', 'codigo' => 354885]);
     }
 }

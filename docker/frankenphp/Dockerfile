@@ -33,6 +33,6 @@ RUN apt-get -y install default-mysql-client \
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 # WORKDIR /app
-
-# RUN ../bash.sh
+COPY /docker/bash.sh /
+RUN chmod u+x /bash.sh
 # ENTRYPOINT [ "docker/entrypoint.sh" ]

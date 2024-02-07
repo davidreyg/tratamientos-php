@@ -11,11 +11,11 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('diagnostico_enfermedad', function (Blueprint $table) {
-            // $table->id();
+            $table->id();
             // $table->string('nombre', 100);
 
             $table->unsignedBigInteger('diagnostico_id');
-            $table->foreign('diagnostico_id')->references('id')->on('diagnosticos');
+            $table->foreign('diagnostico_id')->references('id')->on('diagnosticos')->onDelete('cascade');
             $table->unsignedBigInteger('enfermedad_id');
             $table->foreign('enfermedad_id')->references('id')->on('enfermedads');
         });

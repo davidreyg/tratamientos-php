@@ -21,6 +21,7 @@ class MedicamentoTransformer extends ParentTransformer
             'object' => $medicamento->getResourceKey(),
             'id' => $medicamento->getHashedKey(),
             'nombre' => $medicamento->nombre,
+            'codigo' => $medicamento->codigo,
         ];
 
         return $this->ifAdmin([

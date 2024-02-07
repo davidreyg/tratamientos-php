@@ -9,6 +9,7 @@ class Medicamento extends ParentModel
     public $timestamps = false;
     protected $fillable = [
         'nombre',
+        'codigo',
     ];
 
     protected $hidden = [

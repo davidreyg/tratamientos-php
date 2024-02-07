@@ -11,6 +11,7 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('control_medicamento', function (Blueprint $table) {
+            $table->id();
             $table->unsignedBigInteger('control_id');
             $table->foreign('control_id')->references('id')->on('controls')->onDelete('cascade');
             $table->unsignedBigInteger('medicamento_id');
