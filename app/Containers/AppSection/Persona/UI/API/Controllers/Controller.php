@@ -14,14 +14,18 @@ use App\Containers\AppSection\Persona\Actions\UpdatePersonaAction;
 use App\Containers\AppSection\Persona\UI\API\Requests\CreatePersonaRequest;
 use App\Containers\AppSection\Persona\UI\API\Requests\DeletePersonaRequest;
 use App\Containers\AppSection\Persona\UI\API\Requests\FindPersonaByIdRequest;
+use App\Containers\AppSection\Persona\UI\API\Requests\FindReniecRequest;
 use App\Containers\AppSection\Persona\UI\API\Requests\GetAllPersonasRequest;
 use App\Containers\AppSection\Persona\UI\API\Requests\UpdatePersonaRequest;
 use App\Containers\AppSection\Persona\UI\API\Transformers\PersonaTransformer;
 use App\Ship\Exceptions\CreateResourceFailedException;
 use App\Ship\Exceptions\DeleteResourceFailedException;
+use App\Ship\Exceptions\InternalErrorException;
 use App\Ship\Exceptions\NotFoundException;
 use App\Ship\Exceptions\UpdateResourceFailedException;
 use App\Ship\Parents\Controllers\ApiController;
+use GuzzleHttp\Utils;
+use Http;
 use Illuminate\Http\JsonResponse;
 use Prettus\Repository\Exceptions\RepositoryException;
 
@@ -51,6 +55,32 @@ class Controller extends ApiController
         $persona = app(FindPersonaByIdAction::class)->run($request);
 
         return $this->transform($persona, PersonaTransformer::class);
+    }
+    /**
+     * @param FindReniecRequest $request
+     * @throws InvalidTransformerException
+     * @throws NotFoundException
+     */
+    public function findReniec(FindReniecRequest $request)
+    {
+        $response = Http::withOptions([
+            'verify' => false,
+        ])
+            ->withHeaders(['Authorization' => 'token eed63ab26117dacf4986f37ca1e61c4ccafc2aea'])
+            ->get('https://38.43.129.230/api/web-service/person-complete/' . $request->dni);
+        // dd($response);
+        $content = Utils::jsonDecode($response, true);
+        if (is_array($content)) {
+            # code...
+            if (array_key_exists('id', $content)) {
+                return $this->json(['data' => $content]);
+            } else {
+                throw new NotFoundException("No se encontro al ciudadano");
+
+            }
+        } else {
+            return throw new InternalErrorException("Servicio no disponible por el momento.");
+        }
     }
 
     /**

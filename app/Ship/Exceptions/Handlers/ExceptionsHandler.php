@@ -51,7 +51,7 @@ class ExceptionsHandler extends CoreExceptionsHandler
 
         $this->renderable(function (NotFoundHttpException $e, $request) {
             if ($this->shouldReturnJson($request, $e)) {
-                return $this->buildJsonResponse(new NotFoundException());
+                return $this->buildJsonResponse(new NotFoundException($e->getMessage()));
             }
 
             return $this->renderExceptionResponse($request, $e);
