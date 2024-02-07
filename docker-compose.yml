@@ -1,0 +1,39 @@
+services:
+    db:
+        image: mariadb
+        restart: always
+        volumes:
+            - db:/var/lib/mysql
+            # If you want to persist data on the host, comment the line above this one...
+            # and uncomment the line under this one.
+            #- ./docker-compose/db/data:/var/lib/mysql:rw,delegated
+        environment:
+            MYSQL_USER: ${DB_USERNAME}
+            MYSQL_PASSWORD: ${DB_PASSWORD}
+            MYSQL_DATABASE: ${DB_DATABASE}
+            MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+        ports:
+            - "33006:3306"
+        networks:
+            - daregu
+
+    frankenphp:
+        build:
+            args:
+                user: daregu-user
+                uid: 1000
+            dockerfile: ./docker/frankenphp/Dockerfile
+        restart: unless-stopped
+        ports:
+            - 81:80
+            - 443:443
+        volumes:
+            - ./:/app
+        networks:
+            - daregu
+volumes:
+    db:
+
+networks:
+    daregu:
+        driver: bridge
