@@ -53,7 +53,7 @@ class UpdateControlRequest extends ParentRequest
                 }),
             ],
             'medicamentos' => ['array', 'required'],
-            'medicamentos.*' => ['required', 'exists:enfermedads,id'],
+            'medicamentos.*' => ['required', 'exists:medicamentos,id'],
             'complicaciones' => ['array', 'nullable'],
             'complicaciones.*' => ['required', 'exists:complicacions,id'],
         ];
