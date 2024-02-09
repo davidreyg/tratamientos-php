@@ -25,7 +25,6 @@ class CreateDiagnosticoAction extends ParentAction
     public function run(CreateDiagnosticoRequest $request): Diagnostico
     {
         $data = $request->validated();
-
         $diagnostico = $this->createDiagnosticoTask->run($data);
         $diagnostico->enfermedades()->sync($request->enfermedades);
         //FIXME: Falta que al registrarlo ponga en inactivo todos los demas diagnosticos

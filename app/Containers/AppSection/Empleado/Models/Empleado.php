@@ -2,10 +2,15 @@
 
 namespace App\Containers\AppSection\Empleado\Models;
 
+use App\Containers\AppSection\Cargo\Models\Cargo;
+use App\Containers\AppSection\Diagnostico\Models\Diagnostico;
+use App\Containers\AppSection\Establecimiento\Models\Establecimiento;
+use App\Containers\AppSection\TipoDocumento\Models\TipoDocumento;
 use App\Ship\Parents\Models\Model as ParentModel;
 
 class Empleado extends ParentModel
 {
+    protected $with = ['tipo_documento', 'cargo', 'establecimiento'];
     protected $fillable = [
         'nombres',
         'apellido_paterno',
@@ -34,4 +39,25 @@ class Empleado extends ParentModel
      * A resource key to be used in the serialized responses.
      */
     protected string $resourceKey = 'Empleado';
+
+    public function tipo_documento()
+    {
+        return $this->belongsTo(TipoDocumento::class);
+    }
+
+    public function cargo()
+    {
+        return $this->belongsTo(Cargo::class);
+    }
+
+    public function establecimiento()
+    {
+        return $this->belongsTo(Establecimiento::class);
+    }
+
+    public function diagnosticos()
+    {
+        return $this->hasMany(Diagnostico::class);
+    }
+
 }

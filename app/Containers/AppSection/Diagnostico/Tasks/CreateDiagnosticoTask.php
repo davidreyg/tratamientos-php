@@ -22,8 +22,8 @@ class CreateDiagnosticoTask extends ParentTask
     {
         try {
             return $this->repository->create($data);
-        } catch (Exception) {
-            throw new CreateResourceFailedException();
+        } catch (Exception $e) {
+            throw new CreateResourceFailedException($e->getMessage());
         }
     }
 }

@@ -4,7 +4,7 @@ namespace App\Containers\AppSection\Control\UI\API\Transformers;
 
 use App\Containers\AppSection\Control\Models\Control;
 use App\Containers\AppSection\Diagnostico\UI\API\Transformers\DiagnosticoTransformer;
-use App\Containers\AppSection\Persona\UI\API\Transformers\PersonaTransformer;
+use App\Containers\AppSection\Empleado\UI\API\Transformers\EmpleadoTransformer;
 use App\Ship\Parents\Transformers\Transformer as ParentTransformer;
 
 class ControlTransformer extends ParentTransformer
@@ -46,7 +46,7 @@ class ControlTransformer extends ParentTransformer
 
     public function includeMedico(Control $control)
     {
-        return $this->item($control->medico, new PersonaTransformer());
+        return $this->item($control->medico, new EmpleadoTransformer());
     }
 
     public function includeDiagnostico(Control $control)

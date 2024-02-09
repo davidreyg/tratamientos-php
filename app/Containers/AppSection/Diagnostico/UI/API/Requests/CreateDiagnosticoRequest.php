@@ -20,10 +20,10 @@ class CreateDiagnosticoRequest extends ParentRequest
      * Id's that needs decoding before applying the validation rules.
      */
     protected array $decode = [
-        'enfermedades.*',
-        'financiamiento_id',
-        'medico_id',
-        'paciente_id',
+        // 'enfermedades.*',
+        // 'financiamiento_id',
+        // 'medico_id',
+        // 'paciente_id',
     ];
 
     /**
@@ -45,18 +45,13 @@ class CreateDiagnosticoRequest extends ParentRequest
             'observaciones' => ['nullable', 'max:100'],
             'user_id' => ['required', 'exists:users,id'],
             'financiamiento_id' => ['required', 'exists:financiamientos,id'],
-            'medico_id' => [
+            'empleado_id' => [
                 'required',
-                Rule::exists('personas', 'id')->where(function (Builder $query) {
-                    return $query->where('tipo_persona_id', 1);
+                Rule::exists('empleados', 'id')->where(function (Builder $query) {
+                    return $query->where('cargo_id', 1);
                 }),
             ],
-            'paciente_id' => [
-                'required',
-                Rule::exists('personas', 'id')->where(function (Builder $query) {
-                    return $query->where('tipo_persona_id', 2);
-                }),
-            ],
+            'paciente_id' => ['required', 'exists:pacientes,id'],
             'enfermedades' => ['array', 'required'],
             'enfermedades.*' => ['required', 'exists:enfermedads,id']
         ];

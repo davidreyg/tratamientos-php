@@ -15,7 +15,7 @@ class Control extends ParentModel
         'fecha_inicio',
         'fecha_fin',
         'observaciones',
-        'medico_id',
+        'empleado_id',
         'diagnostico_id',
     ];
 
@@ -46,7 +46,7 @@ class Control extends ParentModel
 
     public function medico()
     {
-        return $this->belongsTo(Empleado::class);
+        return $this->belongsTo(Empleado::class, 'empleado_id');
     }
 
     public function diagnostico()

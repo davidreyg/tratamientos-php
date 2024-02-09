@@ -6,7 +6,6 @@ use App\Containers\AppSection\Empleado\Models\Empleado;
 use App\Containers\AppSection\Establecimiento\Models\Establecimiento;
 use App\Containers\AppSection\Financiamiento\Models\Financiamiento;
 use App\Containers\AppSection\Paciente\Models\Paciente;
-use App\Containers\AppSection\Persona\Models\Persona;
 use App\Containers\AppSection\User\Models\User;
 use App\Ship\Parents\Models\Model as ParentModel;
 use Znck\Eloquent\Traits\BelongsToThrough;
@@ -21,7 +20,7 @@ class Diagnostico extends ParentModel
         'observaciones',
         'user_id',
         'paciente_id',
-        'medico_id',
+        'empleado_id',
         'financiamiento_id',
     ];
 
@@ -52,7 +51,7 @@ class Diagnostico extends ParentModel
 
     public function medico()
     {
-        return $this->belongsTo(Empleado::class);
+        return $this->belongsTo(Empleado::class, 'empleado_id');
     }
 
     public function financiamiento()

@@ -3,9 +3,10 @@
 namespace App\Containers\AppSection\Diagnostico\UI\API\Transformers;
 
 use App\Containers\AppSection\Diagnostico\Models\Diagnostico;
+use App\Containers\AppSection\Empleado\UI\API\Transformers\EmpleadoTransformer;
 use App\Containers\AppSection\Establecimiento\UI\API\Transformers\EstablecimientoTransformer;
 use App\Containers\AppSection\Financiamiento\UI\API\Transformers\FinanciamientoTransformer;
-use App\Containers\AppSection\Persona\UI\API\Transformers\PersonaTransformer;
+use App\Containers\AppSection\Paciente\UI\API\Transformers\PacienteTransformer;
 use App\Ship\Parents\Transformers\Transformer as ParentTransformer;
 
 class DiagnosticoTransformer extends ParentTransformer
@@ -53,12 +54,12 @@ class DiagnosticoTransformer extends ParentTransformer
 
     public function includePaciente(Diagnostico $diagnostico)
     {
-        return $this->item($diagnostico->paciente, new PersonaTransformer());
+        return $this->item($diagnostico->paciente, new PacienteTransformer());
     }
 
     public function includeMedico(Diagnostico $diagnostico)
     {
-        return $this->item($diagnostico->medico, new PersonaTransformer());
+        return $this->item($diagnostico->medico, new EmpleadoTransformer());
     }
 
     public function includeEstablecimiento(Diagnostico $diagnostico)

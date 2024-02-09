@@ -11,6 +11,7 @@ class EmpleadoRepository extends ParentRepository
      */
     protected $fieldSearchable = [
         'id' => '=',
+        'cargo_id' => '=',
         // ...
     ];
 }

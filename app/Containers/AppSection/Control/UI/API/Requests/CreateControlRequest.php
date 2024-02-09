@@ -44,10 +44,10 @@ class CreateControlRequest extends ParentRequest
             'diagnostico_id' => ['required', 'exists:diagnosticos,id'],
             'fecha_inicio' => ['required', 'date'],
             'fecha_fin' => ['required', 'date'],
-            'medico_id' => [
+            'empleado_id' => [
                 'required',
-                Rule::exists('personas', 'id')->where(function (Builder $query) {
-                    return $query->where('tipo_persona_id', 1);
+                Rule::exists('empleados', 'id')->where(function (Builder $query) {
+                    return $query->where('cargo_id', 1);
                 }),
             ],
             'medicamentos' => ['array', 'required'],
