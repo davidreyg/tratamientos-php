@@ -1,0 +1,7 @@
+Para hacer que funcione frankenphp y poder acceder desde el S.O local, tuvimos que desactivar el https
+mediante:
+
+environment:
+    - SERVER_NAME=:80
+
+en docker-compose.yml
