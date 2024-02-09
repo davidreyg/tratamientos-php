@@ -2,8 +2,10 @@
 
 namespace App\Containers\AppSection\Diagnostico\Models;
 
+use App\Containers\AppSection\Empleado\Models\Empleado;
 use App\Containers\AppSection\Establecimiento\Models\Establecimiento;
 use App\Containers\AppSection\Financiamiento\Models\Financiamiento;
+use App\Containers\AppSection\Paciente\Models\Paciente;
 use App\Containers\AppSection\Persona\Models\Persona;
 use App\Containers\AppSection\User\Models\User;
 use App\Ship\Parents\Models\Model as ParentModel;
@@ -45,12 +47,12 @@ class Diagnostico extends ParentModel
 
     public function paciente()
     {
-        return $this->belongsTo(Persona::class, 'paciente_id');
+        return $this->belongsTo(Paciente::class);
     }
 
     public function medico()
     {
-        return $this->belongsTo(Persona::class, 'medico_id');
+        return $this->belongsTo(Empleado::class);
     }
 
     public function financiamiento()

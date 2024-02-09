@@ -1,0 +1,6 @@
+{
+    "name": "apiato/empleado",
+    "description": "Empleado Container for apiato.",
+    "require": {
+    }
+}

@@ -3,6 +3,7 @@
 namespace App\Containers\AppSection\Control\Models;
 
 use App\Containers\AppSection\Diagnostico\Models\Diagnostico;
+use App\Containers\AppSection\Empleado\Models\Empleado;
 use App\Containers\AppSection\Persona\Models\Persona;
 use App\Ship\Parents\Models\Model as ParentModel;
 
@@ -45,7 +46,7 @@ class Control extends ParentModel
 
     public function medico()
     {
-        return $this->belongsTo(Persona::class, 'medico_id');
+        return $this->belongsTo(Empleado::class);
     }
 
     public function diagnostico()

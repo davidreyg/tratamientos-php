@@ -20,11 +20,11 @@ return new class extends Migration {
             $table->foreignId('financiamiento_id')->constrained();
 
             // Claves foráneas que referencia a la tabla personas para medico y paciente
-            $table->unsignedBigInteger('medico_id');
-            $table->foreign('medico_id')->references('id')->on('personas');
+            $table->unsignedBigInteger('empleado_id');
+            $table->foreign('empleado_id')->references('id')->on('empleados');
 
             $table->unsignedBigInteger('paciente_id');
-            $table->foreign('paciente_id')->references('id')->on('personas');
+            $table->foreign('paciente_id')->references('id')->on('pacientes');
 
             $table->timestamps();
         });

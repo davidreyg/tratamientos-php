@@ -18,8 +18,8 @@ return new class extends Migration {
 
             $table->unsignedBigInteger('diagnostico_id');
             $table->foreign('diagnostico_id')->references('id')->on('diagnosticos');
-            $table->unsignedBigInteger('medico_id');
-            $table->foreign('medico_id')->references('id')->on('personas');
+            $table->unsignedBigInteger('empleado_id');
+            $table->foreign('empleado_id')->references('id')->on('empleados');
         });
     }
 

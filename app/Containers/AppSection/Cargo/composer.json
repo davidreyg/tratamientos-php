@@ -1,0 +1,6 @@
+{
+    "name": "apiato/cargo",
+    "description": "Cargo Container for apiato.",
+    "require": {
+    }
+}

@@ -5,3 +5,6 @@ environment:
     - SERVER_NAME=:80
 
 en docker-compose.yml
+
+1. Desactivar el HASH_ID en el .env
+2. Copiar la clave de oauth de la base de datos al .env

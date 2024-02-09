@@ -1,0 +1,37 @@
+<?php
+
+namespace App\Containers\AppSection\Empleado\Models;
+
+use App\Ship\Parents\Models\Model as ParentModel;
+
+class Empleado extends ParentModel
+{
+    protected $fillable = [
+        'nombres',
+        'apellido_paterno',
+        'apellido_materno',
+        'numero_documento',
+        'fecha_nacimiento',
+        'edad',
+        'sexo',
+        'direccion',
+        'telefono',
+        'historia_clinica',
+        'tipo_documento_id',
+        'cargo_id',
+        'establecimiento_id',
+    ];
+
+    protected $hidden = [
+
+    ];
+
+    protected $casts = [
+
+    ];
+
+    /**
+     * A resource key to be used in the serialized responses.
+     */
+    protected string $resourceKey = 'Empleado';
+}
