@@ -17,4 +17,9 @@ class Role extends SpatieRole
         'display_name',
         'description',
     ];
+
+    public function privilegios()
+    {
+        return $this->belongsToMany(Privilegio::class);
+    }
 }

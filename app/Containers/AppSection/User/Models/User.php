@@ -32,6 +32,22 @@ class User extends ParentUserModel
         // 'birth' => 'date',
     ];
 
+    public function getPrivilegiosAttribute()
+    {
+        if ($this->roles->isEmpty()) {
+            return collect();
+        }
+
+        $privilegios = collect();
+
+        foreach ($this->roles as $role) {
+            $privilegios = $privilegios->merge($role->privilegios);
+        }
+
+        return $privilegios->unique('id');
+    }
+
+
     public static function getPasswordValidationRules(): Password
     {
         return Password::min(8)
