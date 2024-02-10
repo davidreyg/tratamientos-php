@@ -23,6 +23,7 @@ class PrivilegioTransformer extends ParentTransformer
             'descripcion' => $privilegio->descripcion,
             'ruta' => $privilegio->ruta,
             'icono' => $privilegio->icono,
+            'parent_id' => $privilegio->parent_id,
             // 'display_name' => $privilegio->display_name,
         ];
 

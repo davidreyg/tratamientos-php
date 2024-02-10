@@ -24,32 +24,40 @@ class AuthorizationPrivilegiosSeeder_1 extends ParentSeeder
         Privilegio::create([
             'nombre' => 'Registrar Diagnostico',
             'icono' => 'fas fa-file-lines',
-            'ruta' => 'diagnosticos.',
+            'ruta' => 'diagnosticos.registrar',
             'parent_id' => $modulo1->id,
 
         ]);
-        $modulo2 = Privilegio::create([
+        Privilegio::create([
             'nombre' => 'Reportes',
             'icono' => 'fas fa-chart-pie',
             // 'ruta' => '',
             // 'ruta' => '',
 
         ]);
+
+        $modulo3 = Privilegio::create([
+            'nombre' => 'Mantenimiento',
+            'icono' => 'fas fa-screwdriver-wrench',
+            // 'ruta' => '',
+            // 'ruta' => '',
+
+        ]);
+
         Privilegio::create([
             'nombre' => 'Tipo de Documento',
             'icono' => 'fas fa-address-card',
-            'ruta' => 'diagnosticos.',
-            'parent_id' => $modulo2->id,
+            'ruta' => 'tipo-documentos.index',
+            'parent_id' => $modulo3->id,
 
         ]);
         Privilegio::create([
-            'nombre' => 'Mantenimiento',
-            'icono' => 'fas fa-building-flag',
-            // 'ruta' => '',
-            // 'ruta' => '',
+            'nombre' => 'Roles',
+            'icono' => 'fas fa-shield-halved',
+            'ruta' => 'roles.index',
+            'parent_id' => $modulo3->id,
 
         ]);
-
 
 
 

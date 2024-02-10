@@ -13,6 +13,9 @@ class UsersSeeder_2 extends ParentSeeder
      */
     public function run(): void
     {
-        User::factory()->count(20)->create();
+        User::factory()->count(20)->create()->each(function ($user) {
+            // Asignar un rol a cada usuario creado
+            $user->assignRole('medico');
+        });
     }
 }
