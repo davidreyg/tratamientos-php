@@ -3,6 +3,7 @@
 namespace App\Containers\AppSection\Empleado\UI\API\Requests;
 
 use App\Ship\Parents\Requests\Request as ParentRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateEmpleadoRequest extends ParentRequest
 {
@@ -35,7 +36,25 @@ class UpdateEmpleadoRequest extends ParentRequest
     public function rules(): array
     {
         return [
-            // 'id' => 'required'
+            'nombres' => ['required', 'string', 'max:50'],
+            'apellido_paterno' => ['required', 'string', 'max:50'],
+            'apellido_materno' => ['required', 'string', 'max:50'],
+            'numero_documento' => [
+                'required',
+                'numeric',
+                'integer',
+                'gt:0',
+                Rule::unique('empleados')->ignore($this->id)
+            ],
+            'fecha_nacimiento' => ['required', 'date'],
+            'edad' => ['required', 'numeric', 'integer', 'gt:0'],
+            'sexo' => ['required', 'in:Masculino,Femenino'],
+            'direccion' => ['required', 'string', 'max:50'],
+            'telefono' => ['nullable', 'numeric', 'integer', 'gt:0',],
+            // 'historia_clinica' => ['required', 'string', 'max:50', 'unique:empleados'],
+            'tipo_documento_id' => ['required', 'exists:tipo_documentos,id'],
+            'establecimiento_id' => ['required', 'exists:establecimientos,id'],
+            'cargo_id' => ['required', 'exists:cargos,id'],
         ];
     }
 

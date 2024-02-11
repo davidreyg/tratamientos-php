@@ -23,7 +23,7 @@ class EmpleadoFactory extends ParentFactory
             'sexo' => $this->faker->randomElement(['Masculino', 'Femenino']),
             'direccion' => $this->faker->streetAddress(),
             'telefono' => $this->faker->randomNumber(9, true),
-            'historia_clinica' => $this->faker->randomNumber(6, true),
+            // 'historia_clinica' => $this->faker->randomNumber(6, true),
             'tipo_documento_id' => TipoDocumento::inRandomOrder()->value('id'),
         ];
     }
@@ -42,7 +42,7 @@ class EmpleadoFactory extends ParentFactory
                 'sexo' => $this->faker->randomElement(['Masculino', 'Femenino']),
                 'direccion' => $this->faker->streetAddress(),
                 'telefono' => $this->faker->randomNumber(9, true),
-                'historia_clinica' => $this->faker->randomNumber(6, true),
+                // 'historia_clinica' => $this->faker->randomNumber(6, true),
                 'tipo_documento_id' => TipoDocumento::inRandomOrder()->value('id'),
                 'cargo_id' => 1,
                 'establecimiento_id' => $establecimiento_id,

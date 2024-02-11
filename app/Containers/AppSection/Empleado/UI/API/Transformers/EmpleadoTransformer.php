@@ -2,13 +2,16 @@
 
 namespace App\Containers\AppSection\Empleado\UI\API\Transformers;
 
+use App\Containers\AppSection\Cargo\UI\API\Transformers\CargoTransformer;
 use App\Containers\AppSection\Empleado\Models\Empleado;
+use App\Containers\AppSection\Establecimiento\UI\API\Transformers\EstablecimientoTransformer;
 use App\Ship\Parents\Transformers\Transformer as ParentTransformer;
 
 class EmpleadoTransformer extends ParentTransformer
 {
     protected array $defaultIncludes = [
-
+        'establecimiento',
+        'cargo',
     ];
 
     protected array $availableIncludes = [
@@ -29,9 +32,11 @@ class EmpleadoTransformer extends ParentTransformer
             'sexo' => $empleado->sexo,
             'direccion' => $empleado->direccion,
             'telefono' => $empleado->telefono,
-            'historia_clinica' => $empleado->historia_clinica,
+            // 'historia_clinica' => $empleado->historia_clinica,
             'tipo_documento' => $empleado->tipo_documento->nombre,
             'tipo_documento_id' => $empleado->tipo_documento_id,
+            'cargo_id' => $empleado->cargo_id,
+            'establecimiento_id' => $empleado->establecimiento_id,
         ];
 
         return $this->ifAdmin([
@@ -42,5 +47,15 @@ class EmpleadoTransformer extends ParentTransformer
             'readable_updated_at' => $empleado->updated_at->diffForHumans(),
             // 'deleted_at' => $empleado->deleted_at,
         ], $response);
+    }
+
+    public function includeEstablecimiento(Empleado $empleado)
+    {
+        return $this->item($empleado->establecimiento, new EstablecimientoTransformer());
+    }
+
+    public function includeCargo(Empleado $empleado)
+    {
+        return $this->item($empleado->cargo, new CargoTransformer());
     }
 }

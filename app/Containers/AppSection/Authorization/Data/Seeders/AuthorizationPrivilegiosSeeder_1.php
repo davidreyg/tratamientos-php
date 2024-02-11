@@ -51,6 +51,15 @@ class AuthorizationPrivilegiosSeeder_1 extends ParentSeeder
             'parent_id' => $modulo3->id,
 
         ]);
+
+        Privilegio::create([
+            'nombre' => 'Personal Administrativo',
+            'icono' => 'fas fa-people-group',
+            'ruta' => 'empleados.index',
+            'parent_id' => $modulo3->id,
+
+        ]);
+
         Privilegio::create([
             'nombre' => 'Roles',
             'icono' => 'fas fa-shield-halved',

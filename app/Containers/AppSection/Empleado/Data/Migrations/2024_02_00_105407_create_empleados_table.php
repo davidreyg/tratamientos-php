@@ -21,7 +21,7 @@ return new class extends Migration {
             $table->string('sexo', 10);
             $table->string('direccion', 50);
             $table->bigInteger('telefono')->unsigned()->nullable();
-            $table->string('historia_clinica', 50)->unique();
+            // $table->string('historia_clinica', 50)->unique();
 
             // Claves foráneas que referencia a la tabla personas para tipo documento y tipo persona
             $table->unsignedBigInteger('tipo_documento_id');

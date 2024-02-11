@@ -16,6 +16,6 @@ class GetAllEmpleadosAction extends ParentAction
      */
     public function run(GetAllEmpleadosRequest $request): mixed
     {
-        return app(GetAllEmpleadosTask::class)->run();
+        return app(GetAllEmpleadosTask::class)->run($request->fetchAll ?? false);
     }
 }

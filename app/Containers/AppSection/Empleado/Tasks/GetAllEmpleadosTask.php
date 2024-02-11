@@ -19,9 +19,11 @@ class GetAllEmpleadosTask extends ParentTask
      * @throws CoreInternalErrorException
      * @throws RepositoryException
      */
-    public function run(): mixed
+    public function run(bool $all): mixed
     {
-        $this->repository->pushCriteria(new IsOwnEstablecimientoCriteria());
+        if (!$all) {
+            $this->repository->pushCriteria(new IsOwnEstablecimientoCriteria());
+        }
         return $this->addRequestCriteria()->repository->paginate();
     }
 }

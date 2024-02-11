@@ -21,7 +21,7 @@ class Empleado extends ParentModel
         'sexo',
         'direccion',
         'telefono',
-        'historia_clinica',
+        // 'historia_clinica',
         'tipo_documento_id',
         'cargo_id',
         'establecimiento_id',

@@ -12,6 +12,11 @@ class EmpleadoRepository extends ParentRepository
     protected $fieldSearchable = [
         'id' => '=',
         'cargo_id' => '=',
+        'establecimiento_id' => '=',
+        'numero_documento' => 'like',
+        'nombres' => 'like',
+        'apellido_paterno' => 'like',
+        'apellido_materno' => 'like',
         // ...
     ];
 }
