@@ -42,7 +42,7 @@ class CreatePacienteRequest extends ParentRequest
             'fecha_nacimiento' => ['required', 'date'],
             'edad' => ['required', 'numeric', 'integer', 'gt:0'],
             'sexo' => ['required', 'in:Masculino,Femenino'],
-            'direccion' => ['required', 'string', 'max:50'],
+            'direccion' => ['required', 'string', 'max:200'],
             'telefono' => ['nullable', 'numeric', 'integer', 'gt:0',],
             'historia_clinica' => ['required', 'string', 'max:50', 'unique:pacientes'],
             'tipo_documento_id' => ['required', 'exists:tipo_documentos,id'],
