@@ -19,8 +19,8 @@
  * @apiUse             PermissionSuccessMultipleResponse
  */
 
-use App\Containers\AppSection\Authorization\UI\API\Controllers\GetRolePermissionsController;
+use App\Containers\AppSection\Authorization\UI\API\Controllers\GetRolePrivilegiosController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('roles/{id}/privilegios', GetRolePermissionsController::class)
+Route::get('roles/{id}/privilegios', GetRolePrivilegiosController::class)
     ->middleware(['auth:api']);
