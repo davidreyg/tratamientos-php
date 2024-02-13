@@ -45,6 +45,14 @@ class AuthorizationPrivilegiosSeeder_1 extends ParentSeeder
         ]);
 
         Privilegio::create([
+            'nombre' => 'Diagnosticos',
+            'icono' => 'fas fa-folder-open',
+            'ruta' => 'diagnosticos.index',
+            'parent_id' => $modulo3->id,
+
+        ]);
+
+        Privilegio::create([
             'nombre' => 'Tipo de Documento',
             'icono' => 'fas fa-address-card',
             'ruta' => 'tipo-documentos.index',
@@ -67,8 +75,5 @@ class AuthorizationPrivilegiosSeeder_1 extends ParentSeeder
             'parent_id' => $modulo3->id,
 
         ]);
-
-
-
     }
 }
