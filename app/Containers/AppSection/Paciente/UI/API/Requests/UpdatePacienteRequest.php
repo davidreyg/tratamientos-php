@@ -38,7 +38,7 @@ class UpdatePacienteRequest extends ParentRequest
         return [
             'direccion' => ['required', 'string', 'max:200'],
             'telefono' => ['nullable', 'numeric', 'integer', 'gt:0',],
-            'historia_clinica' => ['required', 'string', 'max:50', Rule::unique('personas')->ignore($this->id)],
+            'historia_clinica' => ['required', 'string', 'max:50', Rule::unique('pacientes')->ignore($this->id)],
         ];
     }
 
