@@ -14,6 +14,7 @@ class ControlTransformer extends ParentTransformer
         'diagnostico',
         'complicaciones',
         'medicamentos',
+        'signos',
     ];
 
     protected array $availableIncludes = [
@@ -21,6 +22,7 @@ class ControlTransformer extends ParentTransformer
         'diagnostico',
         'complicaciones',
         'medicamentos',
+        'signos',
     ];
 
     public function transform(Control $control): array
@@ -62,5 +64,10 @@ class ControlTransformer extends ParentTransformer
     public function includeMedicamentos(Control $control)
     {
         return $this->collection($control->medicamentos, new MedicamentoTransformer());
+    }
+
+    public function includeSignos(Control $control)
+    {
+        return $this->collection($control->signos, new SignoTransformer());
     }
 }

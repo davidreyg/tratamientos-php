@@ -1,1 +1,0 @@
-import{b as t,a as o}from"./index.c50cd903.js";var e=t(async({app:a})=>{a.use(o,{transition:"Vue-Toastification__bounce",maxToasts:20,newestOnTop:!0})});export{e as default};
