@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Containers\AppSection\Control\Data\Seeders;
+namespace App\Containers\AppSection\Triaje\Data\Seeders;
 
-use App\Containers\AppSection\Control\Models\Signo;
+use App\Containers\AppSection\Triaje\Models\Signo;
 use App\Ship\Parents\Seeders\Seeder as ParentSeeder;
 
 class SignosSeeder_1 extends ParentSeeder

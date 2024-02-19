@@ -10,10 +10,10 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('control_signo', function (Blueprint $table) {
+        Schema::create('signo_triaje', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('control_id');
-            $table->foreign('control_id')->references('id')->on('controls')->onDelete('cascade');
+            $table->unsignedBigInteger('triaje_id');
+            $table->foreign('triaje_id')->references('id')->on('triajes')->onDelete('cascade');
             $table->unsignedBigInteger('signo_id');
             $table->foreign('signo_id')->references('id')->on('signos');
             $table->float('valor')->unsigned();
@@ -25,6 +25,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('control_signo');
+        Schema::dropIfExists('signo_triaje');
     }
 };

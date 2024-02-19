@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Containers\AppSection\Control\Models;
+namespace App\Containers\AppSection\Triaje\Models;
 
 use App\Ship\Parents\Models\Model as ParentModel;
 

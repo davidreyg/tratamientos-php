@@ -44,12 +44,6 @@ class Control extends ParentModel
             ->using(ComplicacionControl::class);
     }
 
-    public function signos()
-    {
-        return $this->belongsToMany(Signo::class)
-            ->using(ComplicacionControl::class)->withPivot(['valor']);
-    }
-
     public function medico()
     {
         return $this->belongsTo(Empleado::class, 'empleado_id');

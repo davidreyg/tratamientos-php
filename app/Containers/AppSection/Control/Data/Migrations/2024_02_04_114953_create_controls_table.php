@@ -20,6 +20,8 @@ return new class extends Migration {
             $table->foreign('diagnostico_id')->references('id')->on('diagnosticos');
             $table->unsignedBigInteger('empleado_id');
             $table->foreign('empleado_id')->references('id')->on('empleados');
+            $table->unsignedBigInteger('triaje_id');
+            $table->foreign('triaje_id')->references('id')->on('triajes');
         });
     }
 

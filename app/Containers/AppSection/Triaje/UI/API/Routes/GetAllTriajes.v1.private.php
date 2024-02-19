@@ -1,10 +1,10 @@
 <?php
 
 /**
- * @apiGroup           Control
- * @apiName            GetAllControls
+ * @apiGroup           Triaje
+ * @apiName            GetAllTriajes
  *
- * @api                {GET} /v1/controls Get All Controls
+ * @api                {GET} /v1/triajes Get All Triajes
  * @apiDescription     Endpoint description here...
  *
  * @apiVersion         1.0.0
@@ -22,9 +22,9 @@
  * }
  */
 
-use App\Containers\AppSection\Control\UI\API\Controllers\GetAllSignosController;
+use App\Containers\AppSection\Triaje\UI\API\Controllers\GetAllTriajesController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('signos', [GetAllSignosController::class, 'getAll'])
+Route::get('triajes', [GetAllTriajesController::class, 'getAllTriajes'])
     ->middleware(['auth:api']);
 

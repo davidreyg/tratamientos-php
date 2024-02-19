@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Containers\AppSection\Control\UI\API\Transformers;
+namespace App\Containers\AppSection\Triaje\UI\API\Transformers;
 
-use App\Containers\AppSection\Control\Models\Signo;
+use App\Containers\AppSection\Triaje\Models\Signo;
 use App\Ship\Parents\Transformers\Transformer as ParentTransformer;
 
 class SignoTransformer extends ParentTransformer

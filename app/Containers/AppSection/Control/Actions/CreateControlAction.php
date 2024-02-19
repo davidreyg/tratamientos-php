@@ -27,17 +27,7 @@ class CreateControlAction extends ParentAction
         $data = $request->validated();
         $control = $this->createControlTask->run($data);
         $control->medicamentos()->sync($request->medicamentos);
-        //INSERTAR SIGNOS VITALES O TRIAJE :)
-        // Obtener ids y valores de triaje
-        $triajeIds = array_column($data['triaje'], 'id');
-        $triajePivots = array_column($data['triaje'], null, 'id');
 
-        // Formato para sync
-        $syncData = [];
-        foreach ($triajePivots as $id => $pivot) {
-            $syncData[$id] = ['valor' => $pivot['valor']];
-        }
-        $control->signos()->sync($syncData);
         if ($request->complicaciones) {
             $control->complicaciones()->sync($request->complicaciones);
         }
