@@ -22,6 +22,13 @@ class AuthorizationPrivilegiosSeeder_1 extends ParentSeeder
 
         ]);
         Privilegio::create([
+            'nombre' => 'Registrar Triaje',
+            'icono' => 'fas fa-stethoscope',
+            'ruta' => '/triajes/registrar',
+            'parent_id' => $modulo1->id,
+
+        ]);
+        Privilegio::create([
             'nombre' => 'Registrar Diagnostico',
             'icono' => 'fas fa-file-lines',
             'ruta' => '/diagnosticos/formulario',

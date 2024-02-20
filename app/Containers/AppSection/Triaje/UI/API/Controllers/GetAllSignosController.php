@@ -4,6 +4,7 @@ namespace App\Containers\AppSection\Triaje\UI\API\Controllers;
 
 use Apiato\Core\Exceptions\CoreInternalErrorException;
 use Apiato\Core\Exceptions\InvalidTransformerException;
+use App\Containers\AppSection\Triaje\Actions\GetAllSignosAction;
 use App\Containers\AppSection\Triaje\Models\Signo;
 use App\Containers\AppSection\Triaje\UI\API\Requests\GetAllSignosRequest;
 use App\Containers\AppSection\Triaje\UI\API\Transformers\SignoTransformer;
@@ -19,7 +20,7 @@ class GetAllSignosController extends ApiController
      */
     public function getAll(GetAllSignosRequest $request): array
     {
-        $signos = Signo::all();
+        $signos = app(GetAllSignosAction::class)->run($request);
 
         return $this->transform($signos, SignoTransformer::class);
     }
