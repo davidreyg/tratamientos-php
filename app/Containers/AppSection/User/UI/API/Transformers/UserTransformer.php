@@ -16,6 +16,8 @@ class UserTransformer extends ParentTransformer
     ];
 
     protected array $defaultIncludes = [
+        'roles',
+        'permissions',
     ];
 
     public function transform(User $user): array
@@ -26,6 +28,8 @@ class UserTransformer extends ParentTransformer
             'name' => $user->name,
             'nombre_completo' => $user->nombre_completo,
             'cargo' => $user->cargo,
+            'establecimiento_id' => $user->establecimiento_id,
+            'role_ids' => $user->roles->pluck('id'),
             // 'email' => $user->email,
             // 'email_verified_at' => $user->email_verified_at,
             // 'gender' => $user->gender,

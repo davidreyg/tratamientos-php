@@ -10,6 +10,7 @@ use Illuminate\Validation\Rules\Password;
 
 class User extends ParentUserModel
 {
+    protected $with = ['roles', 'permissions'];
     use AuthorizationTrait;
     use AuthenticationTrait;
 

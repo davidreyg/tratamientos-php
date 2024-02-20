@@ -16,7 +16,7 @@ class UpdateUserController extends ApiController
 
     public function __invoke(UpdateUserRequest $request): array
     {
-        $user = $this->updateUserAction->run($request);
+        $user = $this->updateUserAction->transactionalRun($request);
 
         return $this->transform($user, UserTransformer::class);
     }

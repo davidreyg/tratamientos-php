@@ -5,7 +5,7 @@ namespace App\Containers\AppSection\User\UI\API\Requests;
 use App\Containers\AppSection\Authorization\Traits\IsResourceOwnerTrait;
 use App\Ship\Parents\Requests\Request as ParentRequest;
 
-class UpdateUserRequest extends ParentRequest
+class CreateUserRequest extends ParentRequest
 {
     use IsResourceOwnerTrait;
 
@@ -13,7 +13,7 @@ class UpdateUserRequest extends ParentRequest
      * Define which Roles and/or Permissions has access to this request.
      */
     protected array $access = [
-        'permissions' => 'update-users',
+        'permissions' => 'create-users',
         'roles' => '',
     ];
 
@@ -21,7 +21,7 @@ class UpdateUserRequest extends ParentRequest
      * Id's that needs decoding before applying the validation rules.
      */
     protected array $decode = [
-        'id',
+        // 'id',
     ];
 
     /**
@@ -29,7 +29,7 @@ class UpdateUserRequest extends ParentRequest
      * validation rules on them and allows accessing them like request data.
      */
     protected array $urlParameters = [
-        'id',
+        // 'id',
     ];
 
     public function rules(): array
@@ -37,7 +37,7 @@ class UpdateUserRequest extends ParentRequest
         return [
             'name' => 'required|min:2|max:50',
             'nombre_completo' => ['required', 'min:2'],
-            'password' => ['nullable', 'min:5'],
+            'password' => ['required', 'min:5'],
             'establecimiento_id' => ['required', 'exists:establecimientos,id'],
             'cargo' => ['required', 'min:2'],
             'role_ids' => ['nullable', 'array'],
@@ -48,7 +48,7 @@ class UpdateUserRequest extends ParentRequest
     public function authorize(): bool
     {
         return $this->check([
-            'hasAccess|isResourceOwner',
+            'hasAccess',
         ]);
     }
 }
