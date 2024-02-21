@@ -28,4 +28,10 @@ class Signo extends ParentModel
      * A resource key to be used in the serialized responses.
      */
     protected string $resourceKey = 'Signo';
+
+
+    public function triajes()
+    {
+        return $this->belongsToMany(Triaje::class)->withPivot(['valor']);
+    }
 }

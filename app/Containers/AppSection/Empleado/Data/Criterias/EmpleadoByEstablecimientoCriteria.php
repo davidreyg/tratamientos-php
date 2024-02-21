@@ -5,7 +5,7 @@ namespace App\Containers\AppSection\Empleado\Data\Criterias;
 use App\Ship\Parents\Criterias\Criteria;
 use Prettus\Repository\Contracts\RepositoryInterface as PrettusRepositoryInterface;
 
-class IsOwnEstablecimientoCriteria extends Criteria
+class EmpleadoByEstablecimientoCriteria extends Criteria
 {
 
     public function apply($model, PrettusRepositoryInterface $repository)

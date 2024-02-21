@@ -35,11 +35,22 @@ class CreateTriajeRequest extends ParentRequest
     public function rules(): array
     {
         return [
-            // 'id' => 'required',
-            'triaje' => ['array', 'required'],
-            'triaje.*.id' => ['required', 'exists:signos,id'],
-            'triaje.*.valor' => ['required', 'numeric', 'gt:0'],
+            'fecha_registro' => ['required', 'date'],
+            'user_id' => 'required|exists:users,id',
+            'paciente_id' => 'required|exists:pacientes,id',
+            'pivot' => ['array', 'required'],
+            'pivot.*.signo_id' => ['required', 'exists:signos,id'],
+            'pivot.*.valor' => ['required', 'numeric', 'gt:0'],
         ];
+    }
+
+
+    protected function prepareForValidation(): void
+    {
+        $this->merge([
+            // 'estado' => true,
+            'user_id' => auth()->id(),
+        ]);
     }
 
     /**

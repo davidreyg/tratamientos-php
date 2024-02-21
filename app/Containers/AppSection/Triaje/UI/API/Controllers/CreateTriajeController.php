@@ -22,7 +22,7 @@ class CreateTriajeController extends ApiController
      */
     public function createTriaje(CreateTriajeRequest $request): JsonResponse
     {
-        $triaje = app(CreateTriajeAction::class)->run($request);
+        $triaje = app(CreateTriajeAction::class)->transactionalRun($request);
 
         return $this->created($this->transform($triaje, TriajeTransformer::class));
     }

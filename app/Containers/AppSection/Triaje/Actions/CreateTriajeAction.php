@@ -11,6 +11,10 @@ use App\Ship\Parents\Actions\Action as ParentAction;
 
 class CreateTriajeAction extends ParentAction
 {
+    public function __construct(
+        private readonly CreateTriajeTask $createTriajeTask,
+    ) {
+    }
     /**
      * @param CreateTriajeRequest $request
      * @return Triaje
@@ -19,21 +23,20 @@ class CreateTriajeAction extends ParentAction
      */
     public function run(CreateTriajeRequest $request): Triaje
     {
-        $data = $request->sanitizeInput([
-            // add your request data here
-        ]);
+        $data = $request->validated();
 
-        $triaje = app(CreateTriajeTask::class)->run($data);
+        $triaje = $this->createTriajeTask->run($data);
 
         //INSERTAR SIGNOS VITALES O TRIAJE :)
         // Obtener ids y valores de triaje
-        $signosPivot = array_column($data['triaje'], null, 'id');
+        $signosPivot = array_column($data['pivot'], null, 'signo_id');
 
         // Formato para sync
         $syncData = [];
         foreach ($signosPivot as $id => $pivot) {
             $syncData[$id] = ['valor' => $pivot['valor']];
         }
+
         $triaje->signos()->sync($syncData);
         return $triaje;
     }

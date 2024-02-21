@@ -12,5 +12,6 @@ class TriajeRepository extends ParentRepository
     protected $fieldSearchable = [
         'id' => '=',
         'paciente_id' => '=',
+        'fecha_registro' => '=',
     ];
 }

@@ -16,6 +16,6 @@ class GetAllTriajesAction extends ParentAction
      */
     public function run(GetAllTriajesRequest $request): mixed
     {
-        return app(GetAllTriajesTask::class)->run();
+        return app(GetAllTriajesTask::class)->run($request->fetchAll ?? false);
     }
 }
