@@ -8,11 +8,11 @@ use App\Ship\Parents\Transformers\Transformer as ParentTransformer;
 class TriajeTransformer extends ParentTransformer
 {
     protected array $defaultIncludes = [
-        // 'signos'
+        'signos'
     ];
 
     protected array $availableIncludes = [
-        // 'signos'
+        'signos'
     ];
 
     public function transform(Triaje $triaje): array
@@ -23,7 +23,7 @@ class TriajeTransformer extends ParentTransformer
             'fecha_registro' => $triaje->fecha_registro,
             'user_id' => $triaje->user_id,
             'paciente_id' => $triaje->paciente_id,
-            'xd' => $triaje->signos->map(function ($signo) use ($triaje) {
+            'pivot' => $triaje->signos->map(function ($signo) use ($triaje) {
                 return [
                     'triaje_id' => $triaje->id,
                     'signo_id' => $signo->id,

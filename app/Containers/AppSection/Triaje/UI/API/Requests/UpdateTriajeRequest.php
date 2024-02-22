@@ -35,7 +35,12 @@ class UpdateTriajeRequest extends ParentRequest
     public function rules(): array
     {
         return [
-            // 'id' => 'required'
+            'fecha_registro' => ['required', 'date'],
+            // 'user_id' => 'required|exists:users,id',
+            // 'paciente_id' => 'required|exists:pacientes,id',
+            'pivot' => ['array', 'required'],
+            'pivot.*.signo_id' => ['required', 'exists:signos,id'],
+            'pivot.*.valor' => ['required', 'numeric', 'gt:0'],
         ];
     }
 

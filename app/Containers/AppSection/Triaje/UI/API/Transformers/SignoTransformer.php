@@ -27,7 +27,7 @@ class SignoTransformer extends ParentTransformer
             'maximo' => $signo->maximo,
             'is_required' => $signo->is_required,
             'estado' => $signo->estado,
-            'pivot' => $signo->pivot,
+            // 'pivot' => $signo->pivot,
         ];
 
         return $this->ifAdmin([

@@ -23,7 +23,7 @@ class UpdateTriajeController extends ApiController
      */
     public function updateTriaje(UpdateTriajeRequest $request): array
     {
-        $triaje = app(UpdateTriajeAction::class)->run($request);
+        $triaje = app(UpdateTriajeAction::class)->transactionalRun($request);
 
         return $this->transform($triaje, TriajeTransformer::class);
     }
