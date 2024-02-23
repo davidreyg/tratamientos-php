@@ -54,9 +54,7 @@ class CreateControlRequest extends ParentRequest
             'medicamentos.*' => ['required', 'exists:medicamentos,id'],
             'complicaciones' => ['array', 'nullable'],
             'complicaciones.*' => ['required', 'exists:complicacions,id'],
-            // 'triaje' => ['array', 'required'],
-            // 'triaje.*.id' => ['required', 'exists:signos,id'],
-            // 'triaje.*.valor' => ['required', 'numeric', 'gt:0'],
+            'triaje_id' => ['required', 'exists:triajes,id'],
         ];
     }
 

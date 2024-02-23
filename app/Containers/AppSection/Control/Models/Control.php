@@ -5,11 +5,12 @@ namespace App\Containers\AppSection\Control\Models;
 use App\Containers\AppSection\Diagnostico\Models\Diagnostico;
 use App\Containers\AppSection\Empleado\Models\Empleado;
 use App\Containers\AppSection\Persona\Models\Persona;
+use App\Containers\AppSection\Triaje\Models\Triaje;
 use App\Ship\Parents\Models\Model as ParentModel;
 
 class Control extends ParentModel
 {
-    protected $with = ['medicamentos', 'complicaciones', 'medico', 'diagnostico'];
+    protected $with = ['medicamentos', 'complicaciones', 'medico', 'diagnostico', 'triaje'];
     public $timestamps = false;
     protected $fillable = [
         'fecha_inicio',
@@ -17,6 +18,7 @@ class Control extends ParentModel
         'observaciones',
         'empleado_id',
         'diagnostico_id',
+        'triaje_id',
     ];
 
     protected $hidden = [
@@ -52,5 +54,10 @@ class Control extends ParentModel
     public function diagnostico()
     {
         return $this->belongsTo(Diagnostico::class);
+    }
+
+    public function triaje()
+    {
+        return $this->belongsTo(Triaje::class);
     }
 }

@@ -5,6 +5,7 @@ namespace App\Containers\AppSection\Control\UI\API\Transformers;
 use App\Containers\AppSection\Control\Models\Control;
 use App\Containers\AppSection\Diagnostico\UI\API\Transformers\DiagnosticoTransformer;
 use App\Containers\AppSection\Empleado\UI\API\Transformers\EmpleadoTransformer;
+use App\Containers\AppSection\Triaje\UI\API\Transformers\TriajeTransformer;
 use App\Ship\Parents\Transformers\Transformer as ParentTransformer;
 
 class ControlTransformer extends ParentTransformer
@@ -14,6 +15,7 @@ class ControlTransformer extends ParentTransformer
         'diagnostico',
         'complicaciones',
         'medicamentos',
+        'triaje',
     ];
 
     protected array $availableIncludes = [
@@ -21,6 +23,7 @@ class ControlTransformer extends ParentTransformer
         'diagnostico',
         'complicaciones',
         'medicamentos',
+        'triaje',
     ];
 
     public function transform(Control $control): array
@@ -52,6 +55,11 @@ class ControlTransformer extends ParentTransformer
     public function includeDiagnostico(Control $control)
     {
         return $this->item($control->diagnostico, new DiagnosticoTransformer());
+    }
+
+    public function includeTriaje(Control $control)
+    {
+        return $this->item($control->triaje, new TriajeTransformer());
     }
 
     public function includeComplicaciones(Control $control)
