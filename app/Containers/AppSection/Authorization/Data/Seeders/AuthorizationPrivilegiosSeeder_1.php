@@ -15,7 +15,7 @@ class AuthorizationPrivilegiosSeeder_1 extends ParentSeeder
     public function run(): void
     {
         $modulo1 = Privilegio::create([
-            'nombre' => 'Gestionar establecimiento',
+            'nombre' => 'Gestionar Diagnosticos',
             'icono' => 'fas fa-building-flag',
             // 'ruta' => '',
             // 'ruta' => '',
@@ -35,11 +35,19 @@ class AuthorizationPrivilegiosSeeder_1 extends ParentSeeder
             'parent_id' => $modulo1->id,
 
         ]);
+
+        $modulo2 = Privilegio::create([
+            'nombre' => 'Gestionar Laboratorio',
+            'icono' => 'fas fa-vials',
+            // 'ruta' => '',
+            // 'ruta' => '',
+
+        ]);
         Privilegio::create([
-            'nombre' => 'Reportes',
-            'icono' => 'fas fa-chart-pie',
-            // 'ruta' => '',
-            // 'ruta' => '',
+            'nombre' => 'Gestionar Orden',
+            'icono' => 'fas fa-receipt',
+            'ruta' => '/laboratorio/generar-orden',
+            'parent_id' => $modulo2->id,
 
         ]);
 
