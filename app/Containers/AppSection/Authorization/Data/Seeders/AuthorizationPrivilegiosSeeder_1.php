@@ -97,5 +97,12 @@ class AuthorizationPrivilegiosSeeder_1 extends ParentSeeder
             'parent_id' => $modulo3->id,
 
         ]);
+        Privilegio::create([
+            'nombre' => 'Paquetes',
+            'icono' => 'fas fa-box',
+            'ruta' => '/paquetes',
+            'parent_id' => $modulo3->id,
+
+        ]);
     }
 }
