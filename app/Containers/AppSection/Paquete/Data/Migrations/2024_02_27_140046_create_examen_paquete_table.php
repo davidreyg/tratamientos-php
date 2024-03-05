@@ -12,7 +12,7 @@ return new class extends Migration {
     {
         Schema::create('examen_paquete', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('paquete_id')->constrained();
+            $table->foreignId('paquete_id')->constrained()->cascadeOnDelete();
             $table->foreignId('examen_id')->constrained();
         });
     }

@@ -36,7 +36,8 @@ class CreatePaqueteRequest extends ParentRequest
     {
         return [
             'nombre' => 'required',
-            'examen_ids.*' => ['required', 'exists:examens,id']
+            'examen_ids' => ['array', 'required'],
+            'examen_ids.*' => ['required', 'exists:examens,id'],
         ];
     }
 

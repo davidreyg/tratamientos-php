@@ -12,6 +12,10 @@ use App\Ship\Parents\Actions\Action as ParentAction;
 
 class UpdatePaqueteAction extends ParentAction
 {
+    public function __construct(
+        private readonly UpdatePaqueteTask $updatePaqueteTask,
+    ) {
+    }
     /**
      * @param UpdatePaqueteRequest $request
      * @return Paquete
@@ -23,6 +27,8 @@ class UpdatePaqueteAction extends ParentAction
     {
         $data = $request->validated();
 
-        return app(UpdatePaqueteTask::class)->run($data, $request->id);
+        $paquete = $this->updatePaqueteTask->run($data, $request->id);
+        $paquete->examens()->sync($request->examen_ids);
+        return $paquete;
     }
 }

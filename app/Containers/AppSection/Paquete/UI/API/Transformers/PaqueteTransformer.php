@@ -21,6 +21,9 @@ class PaqueteTransformer extends ParentTransformer
             'object' => $paquete->getResourceKey(),
             'id' => $paquete->getHashedKey(),
             'nombre' => $paquete->nombre,
+            'examen_ids' => $paquete->examens->map(function ($signo) {
+                return $signo->pivot->examen_id;
+            })
         ];
 
         return $this->ifAdmin([

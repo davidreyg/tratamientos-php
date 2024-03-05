@@ -22,7 +22,7 @@ class CreatePaqueteController extends ApiController
      */
     public function createPaquete(CreatePaqueteRequest $request): JsonResponse
     {
-        $paquete = app(CreatePaqueteAction::class)->run($request);
+        $paquete = app(CreatePaqueteAction::class)->transactionalRun($request);
 
         return $this->created($this->transform($paquete, PaqueteTransformer::class));
     }

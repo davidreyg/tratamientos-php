@@ -6,7 +6,7 @@ use App\Ship\Parents\Models\Model as ParentModel;
 
 class Examen extends ParentModel
 {
-
+    protected $with = ['categoria'];
     public $timestamps = false;
     protected $fillable = [
         'nombre',

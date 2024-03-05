@@ -11,6 +11,10 @@ use App\Ship\Parents\Actions\Action as ParentAction;
 
 class CreatePaqueteAction extends ParentAction
 {
+    public function __construct(
+        private readonly CreatePaqueteTask $createPaqueteTask,
+    ) {
+    }
     /**
      * @param CreatePaqueteRequest $request
      * @return Paquete
@@ -21,6 +25,8 @@ class CreatePaqueteAction extends ParentAction
     {
         $data = $request->validated();
 
-        return app(CreatePaqueteTask::class)->run($data);
+        $paquete = $this->createPaqueteTask->run($data);
+        $paquete->examens()->sync($request->examen_ids);
+        return $paquete;
     }
 }
