@@ -46,6 +46,7 @@ class CreateOrdenRequest extends ParentRequest
             'examen_ids.*' => ['required', 'exists:examens,id'],
             'paciente_id' => ['required', 'exists:pacientes,id'],
             'establecimiento_id' => ['nullable', 'exists:establecimientos,id'],
+            'establecimiento_otro' => ['nullable', 'max:100'],
             'user_id' => ['required', 'exists:users,id'],
         ];
     }

@@ -22,7 +22,7 @@ class CreateOrdenController extends ApiController
      */
     public function createOrden(CreateOrdenRequest $request): JsonResponse
     {
-        $orden = app(CreateOrdenAction::class)->run($request);
+        $orden = app(CreateOrdenAction::class)->transactionalRun($request);
 
         return $this->created($this->transform($orden, OrdenTransformer::class));
     }

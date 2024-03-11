@@ -2,6 +2,7 @@
 
 namespace App\Containers\AppSection\Orden\Models;
 
+use App\Containers\AppSection\Examen\Models\Examen;
 use App\Ship\Parents\Models\Model as ParentModel;
 
 class Orden extends ParentModel
@@ -33,4 +34,9 @@ class Orden extends ParentModel
      * A resource key to be used in the serialized responses.
      */
     protected string $resourceKey = 'Orden';
+
+    public function examens()
+    {
+        return $this->belongsToMany(Examen::class);
+    }
 }
