@@ -17,6 +17,7 @@ return new class extends Migration {
             $table->string('direccion', 60);
             $table->string('ris', 60);
             $table->integer('telefono')->unsigned();
+            $table->boolean('has_lab');
             // $table->timestamps();
             //$table->softDeletes();
         });

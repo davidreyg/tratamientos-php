@@ -18,6 +18,7 @@ class EstablecimientoFactory extends ParentFactory
             'direccion' => $this->faker->streetAddress(),
             'telefono' => $this->faker->randomNumber(9, true),
             'ris' => $this->faker->country(),
+            'has_lab' => $this->faker->randomElement([true, false]),
         ];
     }
 }

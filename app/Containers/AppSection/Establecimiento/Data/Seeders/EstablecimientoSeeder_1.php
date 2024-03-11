@@ -24,7 +24,8 @@ class EstablecimientoSeeder_1 extends ParentSeeder
             'codigo' => 123456,
             'direccion' => 'Calle Los Pepitos S/N',
             'telefono' => 955927839,
-            'ris' => 'LIMA'
+            'ris' => 'LIMA',
+            'has_lab' => true,
         ];
         $this->createEstablecimientoTask->run($data);
         Establecimiento::factory(10)->create();

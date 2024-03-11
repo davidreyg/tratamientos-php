@@ -14,8 +14,10 @@ class Orden extends ParentModel
         'EG',
         'codigo_atencion',
         'fecha_registro',
+        'medico',
         'paciente_id',
-        'empleado_id',
+        'establecimiento_id',
+        'establecimiento_otro',
         'user_id',
     ];
 

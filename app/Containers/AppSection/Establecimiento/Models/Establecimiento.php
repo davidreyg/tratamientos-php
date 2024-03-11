@@ -15,6 +15,7 @@ class Establecimiento extends ParentModel
         'direccion',
         'telefono',
         'ris',
+        'has_lab',
     ];
 
     protected $hidden = [
@@ -22,7 +23,7 @@ class Establecimiento extends ParentModel
     ];
 
     protected $casts = [
-
+        'has_lab' => 'boolean'
     ];
 
     /**

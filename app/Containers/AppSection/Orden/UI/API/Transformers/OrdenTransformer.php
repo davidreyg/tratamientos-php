@@ -25,7 +25,8 @@ class OrdenTransformer extends ParentTransformer
             'CPN' => $orden->CPN,
             'EG' => $orden->EG,
             'codigo_atencion' => $orden->codigo_atencion,
-            'fecha_orden' => $orden->fecha_orden,
+            'fecha_registro' => $orden->fecha_registro,
+            'medico' => $orden->medico,
         ];
 
         return $this->ifAdmin([

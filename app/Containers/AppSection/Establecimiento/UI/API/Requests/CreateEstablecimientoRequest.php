@@ -40,6 +40,7 @@ class CreateEstablecimientoRequest extends ParentRequest
             'direccion' => ['required', 'string', 'max:60',],
             'telefono' => ['nullable', 'numeric', 'integer', 'gt:0', 'digits:9'],
             'ris' => ['required', 'string', 'max:60'],
+            'has_lab' => ['required', 'boolean'],
         ];
     }
 

@@ -25,6 +25,7 @@ class EstablecimientoTransformer extends ParentTransformer
             'direccion' => $establecimiento->direccion,
             'telefono' => $establecimiento->telefono,
             'ris' => $establecimiento->ris,
+            'has_lab' => $establecimiento->has_lab,
         ];
 
         return $this->ifAdmin([

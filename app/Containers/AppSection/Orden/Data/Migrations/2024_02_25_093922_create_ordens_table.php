@@ -19,10 +19,11 @@ return new class extends Migration {
             $table->string('codigo_atencion', 255);
             $table->date('fecha_registro');
             $table->foreignId('paciente_id')->constrained();
-            $table->foreignId('empleado_id')->constrained();
+            $table->foreignId('establecimiento_id')->nullable()->constrained();
+            // $table->foreignId('empleado_id')->constrained();
             $table->foreignId('user_id')->constrained();
-            $table->string('establecimiento_otro', 100)->nullable();
-            $table->string('medico_otro', 100)->nullable();
+            $table->string('establecimiento_otro', 255)->nullable();
+            $table->string('medico', 100);
         });
     }
 

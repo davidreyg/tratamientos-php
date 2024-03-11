@@ -35,8 +35,27 @@ class CreateOrdenRequest extends ParentRequest
     public function rules(): array
     {
         return [
-            // 'id' => 'required',
+            'diagnostico' => ['required'],
+            'CI10' => ['required'],
+            'CPN' => ['required'],
+            'EG' => ['required'],
+            'codigo_atencion' => ['required'],
+            'fecha_registro' => ['required', 'date'],
+            'medico' => ['required'],
+            'examen_ids' => ['array', 'required'],
+            'examen_ids.*' => ['required', 'exists:examens,id'],
+            'paciente_id' => ['required', 'exists:pacientes,id'],
+            'establecimiento_id' => ['nullable', 'exists:establecimientos,id'],
+            'user_id' => ['required', 'exists:users,id'],
         ];
+    }
+
+    protected function prepareForValidation(): void
+    {
+        $this->merge([
+            // 'estado' => true,
+            'user_id' => auth()->id(),
+        ]);
     }
 
     /**
