@@ -3,10 +3,15 @@
 namespace App\Containers\AppSection\Orden\Models;
 
 use App\Containers\AppSection\Examen\Models\Examen;
+use App\Containers\AppSection\User\Models\User;
 use App\Ship\Parents\Models\Model as ParentModel;
 
 class Orden extends ParentModel
 {
+    protected $with = ['examens'];
+    public static $PENDIENTE = 0;
+    public static $REGISTRADO = 1;
+    public static $VERIFICADO = 2;
     public $timestamps = false;
     protected $fillable = [
         'diagnostico',
@@ -20,6 +25,7 @@ class Orden extends ParentModel
         'establecimiento_id',
         'establecimiento_otro',
         'user_id',
+        'estado',
     ];
 
     protected $hidden = [
@@ -37,6 +43,17 @@ class Orden extends ParentModel
 
     public function examens()
     {
-        return $this->belongsToMany(Examen::class);
+        return $this->belongsToMany(Examen::class)
+            ->withPivot(['resultado', 'fecha_resultado', 'unidad']);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function getEstadoDetalleAttribute()
+    {
+        return config('appSection-orden.estados')[$this->estado];
     }
 }

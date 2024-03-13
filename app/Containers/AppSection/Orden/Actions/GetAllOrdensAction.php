@@ -16,6 +16,6 @@ class GetAllOrdensAction extends ParentAction
      */
     public function run(GetAllOrdensRequest $request): mixed
     {
-        return app(GetAllOrdensTask::class)->run();
+        return app(GetAllOrdensTask::class)->run($request->fetchAll ?? false);
     }
 }

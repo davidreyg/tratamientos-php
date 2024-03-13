@@ -22,7 +22,9 @@ class ExamenTransformer extends ParentTransformer
             'id' => $examen->getHashedKey(),
             'nombre' => $examen->nombre,
             // 'referencia' => $examen->referencia,
-            'unidad' => $examen->unidad,
+            'unidad1' => $examen->unidad1,
+            'unidad2' => $examen->unidad2,
+            'unidades' => $examen->unidades,
             'precio' => $examen->precio,
             'categoria_id' => $examen->categoria_id,
         ];

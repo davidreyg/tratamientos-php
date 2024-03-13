@@ -2,6 +2,7 @@
 
 namespace App\Containers\AppSection\Orden\UI\API\Requests;
 
+use App\Containers\AppSection\Orden\Models\Orden;
 use App\Ship\Parents\Requests\Request as ParentRequest;
 
 class CreateOrdenRequest extends ParentRequest
@@ -48,6 +49,7 @@ class CreateOrdenRequest extends ParentRequest
             'establecimiento_id' => ['nullable', 'exists:establecimientos,id'],
             'establecimiento_otro' => ['nullable', 'max:100'],
             'user_id' => ['required', 'exists:users,id'],
+            'estado' => ['required', 'numeric'],
         ];
     }
 
@@ -56,6 +58,7 @@ class CreateOrdenRequest extends ParentRequest
         $this->merge([
             // 'estado' => true,
             'user_id' => auth()->id(),
+            'estado' => Orden::$PENDIENTE,
         ]);
     }
 

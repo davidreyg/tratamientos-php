@@ -14,7 +14,8 @@ return new class extends Migration {
             $table->id();
             $table->string('nombre', 200);
             // $table->string('referencia', 200);
-            $table->string('unidad', 100);
+            $table->string('unidad1', 100);
+            $table->string('unidad2', 100);
             $table->float('precio');
             $table->foreignId('categoria_id')->constrained();
             // $table->timestamps();

@@ -11,6 +11,9 @@ class OrdenRepository extends ParentRepository
      */
     protected $fieldSearchable = [
         'id' => '=',
+        'paciente_id' => '=',
+        'fecha_registro' => 'like',
+        'estado' => 'in',
         // ...
     ];
 }

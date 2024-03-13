@@ -27,6 +27,19 @@ class OrdenTransformer extends ParentTransformer
             'codigo_atencion' => $orden->codigo_atencion,
             'fecha_registro' => $orden->fecha_registro,
             'medico' => $orden->medico,
+            'estado' => $orden->estado,
+            'estado_detalle' => $orden->estado_detalle,
+            'establecimiento_id' => $orden->establecimiento_id,
+            'establecimiento_otro' => $orden->establecimiento_otro,
+            'pivot' => $orden->examens->map(function ($examen) use ($orden) {
+                return [
+                    'orden_id' => $orden->id,
+                    'examen_id' => $examen->id,
+                    'resultado' => $examen->pivot->resultado,
+                    'fecha_resultado' => $examen->pivot->fecha_resultado,
+                    'unidad' => $examen->pivot->unidad,
+                ];
+            })
         ];
 
         return $this->ifAdmin([

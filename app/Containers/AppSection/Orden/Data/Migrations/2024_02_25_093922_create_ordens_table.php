@@ -24,6 +24,7 @@ return new class extends Migration {
             $table->foreignId('user_id')->constrained();
             $table->string('establecimiento_otro', 255)->nullable();
             $table->string('medico', 100);
+            $table->tinyInteger('estado');
         });
     }
 

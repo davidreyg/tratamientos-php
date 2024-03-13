@@ -14,6 +14,9 @@ return new class extends Migration {
             $table->id();
             $table->foreignId('orden_id')->constrained();
             $table->foreignId('examen_id')->constrained();
+            $table->float('resultado')->nullable();
+            $table->string('unidad', 100)->nullable();
+            $table->date('fecha_resultado')->nullable();
         });
     }
 
