@@ -11,9 +11,6 @@ class Examen extends ParentModel
     public $timestamps = false;
     protected $fillable = [
         'nombre',
-        // 'referencia',
-        'unidad1',
-        'unidad2',
         'precio',
         'categoria_id',
     ];
@@ -25,22 +22,6 @@ class Examen extends ParentModel
     protected $casts = [
 
     ];
-
-    public function getUnidadesAttribute()
-    {
-        $unidades = [
-            $this->unidad1,
-            $this->unidad2,
-        ];
-
-        // Filtra las unidades para eliminar valores nulos
-        $unidades = array_filter($unidades, function ($valor) {
-            // Ignora nulos, vacíos y undefined
-            return !empty ($valor);
-        });
-
-        return $unidades;
-    }
 
     /**
      * A resource key to be used in the serialized responses.

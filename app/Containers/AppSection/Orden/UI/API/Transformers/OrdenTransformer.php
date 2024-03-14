@@ -39,7 +39,7 @@ class OrdenTransformer extends ParentTransformer
                     'examen_id' => $examen->id,
                     'resultado' => $examen->pivot->resultado,
                     'fecha_resultado' => $examen->pivot->fecha_resultado,
-                    'unidad' => $examen->pivot->unidad,
+                    'unidad_id' => $examen->pivot->unidad_id,
                 ];
             })
         ];

@@ -44,7 +44,7 @@ class Orden extends ParentModel
     public function examens()
     {
         return $this->belongsToMany(Examen::class)
-            ->withPivot(['resultado', 'fecha_resultado', 'unidad']);
+            ->withPivot(['resultado', 'fecha_resultado', 'unidad_id']);
     }
 
     public function user()
