@@ -27,6 +27,15 @@ class ExamenTransformer extends ParentTransformer
             'unidades' => $examen->unidades,
             'precio' => $examen->precio,
             'categoria_id' => $examen->categoria_id,
+            'pivot' => $examen->unidads->map(function ($unidad) {
+                return [
+                    'examen_id' => $unidad->pivot->examen_id,
+                    'unidad_id' => $unidad->pivot->unidad_id,
+                    'minimo' => $unidad->pivot->minimo,
+                    'maximo' => $unidad->pivot->maximo
+                ];
+            })
+
         ];
 
         return $this->ifAdmin([

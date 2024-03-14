@@ -2,17 +2,19 @@
 
 namespace App\Containers\AppSection\Orden\UI\API\Transformers;
 
+use App\Containers\AppSection\Examen\UI\API\Transformers\ExamenTransformer;
 use App\Containers\AppSection\Orden\Models\Orden;
 use App\Ship\Parents\Transformers\Transformer as ParentTransformer;
+use League\Fractal\Resource\Collection;
 
 class OrdenTransformer extends ParentTransformer
 {
     protected array $defaultIncludes = [
-
+        'examens'
     ];
 
     protected array $availableIncludes = [
-
+        'examens'
     ];
 
     public function transform(Orden $orden): array
@@ -44,11 +46,11 @@ class OrdenTransformer extends ParentTransformer
 
         return $this->ifAdmin([
             'real_id' => $orden->id,
-            // 'created_at' => $orden->created_at,
-            // 'updated_at' => $orden->updated_at,
-            // 'readable_created_at' => $orden->created_at->diffForHumans(),
-            // 'readable_updated_at' => $orden->updated_at->diffForHumans(),
-            // 'deleted_at' => $orden->deleted_at,
         ], $response);
+    }
+
+    public function includeExamens(Orden $orden): Collection
+    {
+        return $this->collection($orden->examens, new ExamenTransformer());
     }
 }
