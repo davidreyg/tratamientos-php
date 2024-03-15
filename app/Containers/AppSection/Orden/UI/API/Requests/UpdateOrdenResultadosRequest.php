@@ -41,23 +41,9 @@ class UpdateOrdenResultadosRequest extends ParentRequest
             'pivot.*.fecha_resultado' => ['required', 'date',],
             'pivot.*.examen_id' => ['required', 'exists:examens,id'],
             'pivot.*.resultado' => ['sometimes', 'nullable', 'numeric', 'gt:0'],
+            'pivot.*.motivo' => ['sometimes', 'nullable', 'max:100'],
             'pivot.*.unidad_id' => ['sometimes', 'nullable', 'exists:unidads,id'],
         ];
-        if ($this->input('pivot')) {
-            foreach ($this->input('pivot') as $key => $value) {
-                if ($value['is_canceled']) {
-                    // Agrega las reglas de validación para motivo y unidad_id si is_canceled es verdadero
-                    $rules["pivot.{$key}.motivo"] = ['required', 'max:100'];
-                    // $rules["pivot.{$key}.unidad_id"] = ['nullable',];
-                    // $rules["pivot.{$key}.resultado"] = ['nullable',];
-                } else {
-                    $rules["pivot.{$key}.motivo"] = ['nullable', 'max:100'];
-                    // $rules["pivot.{$key}.unidad_id"] = ['sometimes', 'required', 'exists:unidads,id'];
-                    // $rules["pivot.{$key}.resultado"] = ['sometimes', 'numeric', 'gt:0'];
-
-                }
-            }
-        }
         return $rules;
     }
     /**
