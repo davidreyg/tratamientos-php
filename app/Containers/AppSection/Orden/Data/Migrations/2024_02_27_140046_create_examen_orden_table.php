@@ -17,6 +17,8 @@ return new class extends Migration {
             $table->foreignId('unidad_id')->nullable()->constrained();
             $table->float('resultado')->nullable();
             $table->date('fecha_resultado')->nullable();
+            $table->boolean('is_canceled')->default(false);
+            $table->string('motivo', 100)->nullable();
         });
     }
 

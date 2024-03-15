@@ -40,6 +40,9 @@ class OrdenTransformer extends ParentTransformer
                     'resultado' => $examen->pivot->resultado,
                     'fecha_resultado' => $examen->pivot->fecha_resultado,
                     'unidad_id' => $examen->pivot->unidad_id,
+                    'is_canceled' => (bool) $examen->pivot->is_canceled,
+                    'motivo' => $examen->pivot->motivo,
+                    'is_completed' => $examen->pivot->is_completed,
                 ];
             })
         ];

@@ -27,8 +27,8 @@ class UpdateOrdenTask extends ParentTask
             return $this->repository->update($data, $id);
         } catch (ModelNotFoundException) {
             throw new NotFoundException();
-        } catch (Exception) {
-            throw new UpdateResourceFailedException();
+        } catch (Exception $e) {
+            throw new UpdateResourceFailedException($e->getMessage());
         }
     }
 }

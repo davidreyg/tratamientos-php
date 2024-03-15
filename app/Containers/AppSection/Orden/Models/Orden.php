@@ -25,6 +25,7 @@ class Orden extends ParentModel
         'establecimiento_id',
         'establecimiento_otro',
         'user_id',
+        'registrador_id',
         'estado',
     ];
 
@@ -44,12 +45,24 @@ class Orden extends ParentModel
     public function examens()
     {
         return $this->belongsToMany(Examen::class)
-            ->withPivot(['resultado', 'fecha_resultado', 'unidad_id']);
+            ->withPivot([
+                'resultado',
+                'fecha_resultado',
+                'unidad_id',
+                'is_canceled',
+                'motivo',
+            ])
+            ->using(ExamenOrden::class);
     }
 
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function registrador()
+    {
+        return $this->belongsTo(User::class, 'registrador_id');
     }
 
     public function getEstadoDetalleAttribute()
