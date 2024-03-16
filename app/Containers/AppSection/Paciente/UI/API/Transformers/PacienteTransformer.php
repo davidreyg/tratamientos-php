@@ -21,6 +21,7 @@ class PacienteTransformer extends ParentTransformer
             'object' => $paciente->getResourceKey(),
             'id' => $paciente->getHashedKey(),
             'nombres' => $paciente->nombres,
+            'nombre_completo' => $paciente->nombre_completo,
             'apellido_paterno' => $paciente->apellido_paterno,
             'apellido_materno' => $paciente->apellido_materno,
             'numero_documento' => $paciente->numero_documento,

@@ -2,13 +2,15 @@
 
 namespace App\Containers\AppSection\Orden\Models;
 
+use App\Containers\AppSection\Establecimiento\Models\Establecimiento;
 use App\Containers\AppSection\Examen\Models\Examen;
+use App\Containers\AppSection\Paciente\Models\Paciente;
 use App\Containers\AppSection\User\Models\User;
 use App\Ship\Parents\Models\Model as ParentModel;
 
 class Orden extends ParentModel
 {
-    protected $with = ['examens'];
+    protected $with = ['examens', 'paciente', 'establecimiento'];
     public static $PENDIENTE = 0;
     public static $REGISTRADO = 1;
     public static $VERIFICADO = 2;
@@ -63,6 +65,16 @@ class Orden extends ParentModel
     public function registrador()
     {
         return $this->belongsTo(User::class, 'registrador_id');
+    }
+
+    public function paciente()
+    {
+        return $this->belongsTo(Paciente::class);
+    }
+
+    public function establecimiento()
+    {
+        return $this->belongsTo(Establecimiento::class);
     }
 
     public function getEstadoDetalleAttribute()

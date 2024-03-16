@@ -34,6 +34,11 @@ class Paciente extends ParentModel
 
     ];
 
+    public function getNombreCompletoAttribute()
+    {
+        return $this->nombres . ' ' . $this->apellido_paterno . ' ' . $this->apellido_materno;
+    }
+
     /**
      * A resource key to be used in the serialized responses.
      */

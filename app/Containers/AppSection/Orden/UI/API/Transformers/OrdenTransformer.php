@@ -2,19 +2,25 @@
 
 namespace App\Containers\AppSection\Orden\UI\API\Transformers;
 
+use App\Containers\AppSection\Establecimiento\UI\API\Transformers\EstablecimientoTransformer;
 use App\Containers\AppSection\Examen\UI\API\Transformers\ExamenTransformer;
 use App\Containers\AppSection\Orden\Models\Orden;
+use App\Containers\AppSection\Paciente\UI\API\Transformers\PacienteTransformer;
 use App\Ship\Parents\Transformers\Transformer as ParentTransformer;
 use League\Fractal\Resource\Collection;
 
 class OrdenTransformer extends ParentTransformer
 {
     protected array $defaultIncludes = [
-        'examens'
+        'examens',
+        'establecimiento',
+        'paciente',
     ];
 
     protected array $availableIncludes = [
-        'examens'
+        'examens',
+        'establecimiento',
+        'paciente',
     ];
 
     public function transform(Orden $orden): array
@@ -55,5 +61,14 @@ class OrdenTransformer extends ParentTransformer
     public function includeExamens(Orden $orden): Collection
     {
         return $this->collection($orden->examens, new ExamenTransformer());
+    }
+
+    public function includeEstablecimiento(Orden $orden)
+    {
+        return $this->nullableItem($orden->establecimiento, new EstablecimientoTransformer());
+    }
+    public function includePaciente(Orden $orden)
+    {
+        return $this->item($orden->paciente, new PacienteTransformer());
     }
 }
