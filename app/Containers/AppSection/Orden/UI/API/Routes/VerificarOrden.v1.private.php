@@ -22,9 +22,9 @@
  * }
  */
 
-use App\Containers\AppSection\Orden\UI\API\Controllers\UpdateOrdenEstadoController;
+use App\Containers\AppSection\Orden\UI\API\Controllers\VerificarOrdenController;
 use Illuminate\Support\Facades\Route;
 
-Route::patch('ordens/{id}/status', [UpdateOrdenEstadoController::class, 'updateOrden'])
+Route::patch('ordens/{id}/verificar', [VerificarOrdenController::class, 'updateOrden'])
     ->middleware(['auth:api']);
 

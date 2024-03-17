@@ -2,9 +2,10 @@
 
 namespace App\Containers\AppSection\Orden\UI\API\Requests;
 
+use App\Containers\AppSection\Orden\Models\Orden;
 use App\Ship\Parents\Requests\Request as ParentRequest;
 
-class UpdateOrdenEstadoRequest extends ParentRequest
+class RegistrarOrdenRequest extends ParentRequest
 {
     /**
      * Define which Roles and/or Permissions has access to this request.
@@ -43,7 +44,7 @@ class UpdateOrdenEstadoRequest extends ParentRequest
     protected function prepareForValidation(): void
     {
         $this->merge([
-            // 'estado' => true,
+            'estado' => Orden::$REGISTRADO,
             'registrador_id' => auth()->id(),
         ]);
     }

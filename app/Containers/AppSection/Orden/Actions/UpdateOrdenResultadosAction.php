@@ -4,6 +4,7 @@ namespace App\Containers\AppSection\Orden\Actions;
 
 use Apiato\Core\Exceptions\IncorrectIdException;
 use App\Containers\AppSection\Orden\Models\Orden;
+use App\Containers\AppSection\Orden\Tasks\UpdateOrdenTask;
 use App\Containers\AppSection\Orden\UI\API\Requests\UpdateOrdenResultadosRequest;
 use App\Ship\Exceptions\NotFoundException;
 use App\Ship\Exceptions\UpdateResourceFailedException;
@@ -12,7 +13,7 @@ use App\Ship\Parents\Actions\Action as ParentAction;
 class UpdateOrdenResultadosAction extends ParentAction
 {
     public function __construct(
-        private readonly FindOrdenByIdAction $findOrdenByIdAction,
+        private readonly UpdateOrdenTask $updateOrdenTask,
     ) {
     }
     /**
@@ -26,7 +27,7 @@ class UpdateOrdenResultadosAction extends ParentAction
     {
         $data = $request->validated();
 
-        $orden = Orden::findOrFail($request->id);
+        $orden = $this->updateOrdenTask->run($data, $request->id);
 
         // Obtener ids y valores de orden
         $pivotData = array_column($data['pivot'], null, 'examen_id');

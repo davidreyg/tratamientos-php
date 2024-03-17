@@ -24,9 +24,12 @@ return new class extends Migration {
             $table->foreignId('user_id')->constrained();
             $table->unsignedBigInteger('registrador_id')->nullable();
             $table->foreign('registrador_id')->references('id')->on('users');
+            $table->unsignedBigInteger('verificador_id')->nullable();
+            $table->foreign('verificador_id')->references('id')->on('users');
             $table->string('establecimiento_otro', 255)->nullable();
             $table->string('medico', 100);
             $table->tinyInteger('estado');
+            $table->string('observaciones', 255)->nullable();
         });
     }
 

@@ -2,10 +2,10 @@
 
 namespace App\Containers\AppSection\Orden\UI\API\Requests;
 
+use App\Containers\AppSection\Orden\Models\Orden;
 use App\Ship\Parents\Requests\Request as ParentRequest;
-use Illuminate\Validation\Rule;
 
-class UpdateOrdenResultadosRequest extends ParentRequest
+class VerificarOrdenRequest extends ParentRequest
 {
     /**
      * Define which Roles and/or Permissions has access to this request.
@@ -35,17 +35,18 @@ class UpdateOrdenResultadosRequest extends ParentRequest
      */
     public function rules(): array
     {
-        $rules = [
-            'observaciones' => ['nullable', 'max:255'],
-            'pivot' => ['array', 'required'],
-            'pivot.*.is_canceled' => ['required', 'boolean',],
-            'pivot.*.fecha_resultado' => ['required', 'date',],
-            'pivot.*.examen_id' => ['required', 'exists:examens,id'],
-            'pivot.*.resultado' => ['sometimes', 'nullable', 'numeric', 'gt:0'],
-            'pivot.*.motivo' => ['sometimes', 'nullable', 'max:100'],
-            'pivot.*.unidad_id' => ['sometimes', 'nullable', 'exists:unidads,id'],
+        return [
+            'estado' => ['required', 'numeric', 'integer', 'gt:0'],
+            'verificador_id' => ['required', 'exists:users,id',],
         ];
-        return $rules;
+    }
+
+    protected function prepareForValidation(): void
+    {
+        $this->merge([
+            'estado' => Orden::$VERIFICADO,
+            'verificador_id' => auth()->id(),
+        ]);
     }
     /**
      * Determine if the user is authorized to make this request.

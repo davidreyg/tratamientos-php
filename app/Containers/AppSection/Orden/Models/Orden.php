@@ -29,6 +29,7 @@ class Orden extends ParentModel
         'user_id',
         'registrador_id',
         'estado',
+        'observaciones',
     ];
 
     protected $hidden = [
