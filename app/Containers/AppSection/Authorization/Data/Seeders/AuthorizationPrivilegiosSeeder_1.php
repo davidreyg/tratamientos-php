@@ -51,6 +51,13 @@ class AuthorizationPrivilegiosSeeder_1 extends ParentSeeder
 
         ]);
         Privilegio::create([
+            'nombre' => 'Buscar Orden',
+            'icono' => 'fas fa-magnifying-glass',
+            'ruta' => '/laboratorio/buscar-orden',
+            'parent_id' => $modulo2->id,
+
+        ]);
+        Privilegio::create([
             'nombre' => 'Registrar Resultados',
             'icono' => 'fas fa-file-signature',
             'ruta' => '/laboratorio/registrar-resultados',

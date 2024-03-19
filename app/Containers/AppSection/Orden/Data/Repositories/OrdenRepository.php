@@ -14,6 +14,10 @@ class OrdenRepository extends ParentRepository
         'paciente_id' => '=',
         'fecha_registro' => 'like',
         'estado' => 'in',
+        'paciente.nombres' => 'like',
+        'paciente.apellido_paterno' => 'like',
+        'paciente.apellido_materno' => 'like',
+        'paciente.numero_documento' => 'like',
         // ...
     ];
 }
