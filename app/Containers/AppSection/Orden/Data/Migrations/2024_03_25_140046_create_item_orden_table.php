@@ -10,12 +10,12 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('examens', function (Blueprint $table) {
+        Schema::create('item_orden', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre', 200);
-            $table->float('precio');
-            $table->foreignId('categoria_id')->constrained();
-            $table->boolean('is_active');
+            $table->foreignId('orden_id')->constrained();
+            $table->foreignId('item_id')->constrained();
+            $table->foreignId('unidad_id')->nullable()->constrained();
+            $table->float('resultado')->nullable();
         });
     }
 
@@ -24,6 +24,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('examens');
+        Schema::dropIfExists('item_orden');
     }
 };

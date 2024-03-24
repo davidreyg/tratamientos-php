@@ -24,9 +24,9 @@ class ExamenTransformer extends ParentTransformer
             'object' => $examen->getResourceKey(),
             'id' => $examen->getHashedKey(),
             'nombre' => $examen->nombre,
-            // 'referencia' => $examen->referencia,
             'precio' => $examen->precio,
             'categoria_id' => $examen->categoria_id,
+            'is_active' => $examen->is_active,
             'pivot' => $examen->unidads->map(function ($unidad) {
                 return [
                     'examen_id' => $unidad->pivot->examen_id,

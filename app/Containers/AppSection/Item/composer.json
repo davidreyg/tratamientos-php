@@ -1,0 +1,6 @@
+{
+    "name": "apiato/item",
+    "description": "Item Container for apiato.",
+    "require": {
+    }
+}

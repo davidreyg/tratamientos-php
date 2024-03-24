@@ -10,12 +10,12 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('examens', function (Blueprint $table) {
+        Schema::create('item_unidad', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre', 200);
-            $table->float('precio');
-            $table->foreignId('categoria_id')->constrained();
-            $table->boolean('is_active');
+            $table->foreignId('item_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('unidad_id')->constrained();
+            $table->float('minimo');
+            $table->float('maximo');
         });
     }
 
@@ -24,6 +24,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('examens');
+        Schema::dropIfExists('item_unidad');
     }
 };

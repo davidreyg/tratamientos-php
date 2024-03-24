@@ -2,17 +2,21 @@
 
 namespace App\Containers\AppSection\Examen\Models;
 
+use App\Containers\AppSection\Item\Models\Item;
 use App\Containers\AppSection\Unidad\Models\Unidad;
 use App\Ship\Parents\Models\Model as ParentModel;
+use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 class Examen extends ParentModel
 {
+    // use HasRecursiveRelationships;
     protected $with = ['categoria', 'unidads'];
     public $timestamps = false;
     protected $fillable = [
         'nombre',
         'precio',
         'categoria_id',
+        'is_active',
     ];
 
     protected $hidden = [
@@ -20,7 +24,7 @@ class Examen extends ParentModel
     ];
 
     protected $casts = [
-
+        'is_active' => 'boolean'
     ];
 
     /**
@@ -37,5 +41,10 @@ class Examen extends ParentModel
     {
         return $this->belongsToMany(Unidad::class)
             ->withPivot(['minimo', 'maximo']);
+    }
+
+    public function items()
+    {
+        return $this->belongsToMany(Item::class);
     }
 }

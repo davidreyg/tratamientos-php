@@ -10,10 +10,10 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('orden_paquete', function (Blueprint $table) {
+        Schema::create('items', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('orden_id')->constrained();
-            $table->foreignId('paquete_id')->constrained();
+            $table->string('nombre', 100);
+            $table->foreignId('seccion_id')->constrained();
         });
     }
 
@@ -22,6 +22,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('orden_paquete');
+        Schema::dropIfExists('items');
     }
 };
