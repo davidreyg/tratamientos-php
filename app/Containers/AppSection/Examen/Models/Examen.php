@@ -10,7 +10,7 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 class Examen extends ParentModel
 {
     // use HasRecursiveRelationships;
-    protected $with = ['categoria', 'unidads'];
+    protected $with = ['categoria', 'unidads', 'items'];
     public $timestamps = false;
     protected $fillable = [
         'nombre',
@@ -45,6 +45,6 @@ class Examen extends ParentModel
 
     public function items()
     {
-        return $this->belongsToMany(Item::class);
+        return $this->hasMany(Item::class);
     }
 }

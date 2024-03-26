@@ -4,6 +4,7 @@ namespace App\Containers\AppSection\Orden\Models;
 
 use App\Containers\AppSection\Establecimiento\Models\Establecimiento;
 use App\Containers\AppSection\Examen\Models\Examen;
+use App\Containers\AppSection\Item\Models\Item;
 use App\Containers\AppSection\Paciente\Models\Paciente;
 use App\Containers\AppSection\User\Models\User;
 use App\Ship\Parents\Models\Model as ParentModel;
@@ -56,6 +57,16 @@ class Orden extends ParentModel
                 'motivo',
             ])
             ->using(ExamenOrden::class);
+    }
+
+    public function items()
+    {
+        return $this->belongsToMany(Item::class)
+            ->as('item_orden')
+            ->withPivot([
+                'resultado',
+                'unidad_id',
+            ]);
     }
 
     public function user()

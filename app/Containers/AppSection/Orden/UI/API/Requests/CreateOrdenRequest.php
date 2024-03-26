@@ -45,6 +45,8 @@ class CreateOrdenRequest extends ParentRequest
             'medico' => ['required'],
             'examen_ids' => ['array', 'required'],
             'examen_ids.*' => ['required', 'exists:examens,id'],
+            'item_ids' => ['array', 'nullable'],
+            'item_ids.*' => ['required', 'exists:items,id'],
             'paciente_id' => ['required', 'exists:pacientes,id'],
             'establecimiento_id' => ['nullable', 'exists:establecimientos,id'],
             'establecimiento_otro' => ['nullable', 'max:100'],

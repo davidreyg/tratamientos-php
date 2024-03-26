@@ -12,6 +12,7 @@ return new class extends Migration {
     {
         Schema::create('examens', function (Blueprint $table) {
             $table->id();
+            $table->integer('codigo')->unsigned()->unique();
             $table->string('nombre', 200);
             $table->float('precio');
             $table->foreignId('categoria_id')->constrained();

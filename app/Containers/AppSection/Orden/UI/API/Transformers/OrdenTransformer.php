@@ -4,6 +4,7 @@ namespace App\Containers\AppSection\Orden\UI\API\Transformers;
 
 use App\Containers\AppSection\Establecimiento\UI\API\Transformers\EstablecimientoTransformer;
 use App\Containers\AppSection\Examen\UI\API\Transformers\ExamenTransformer;
+use App\Containers\AppSection\Item\UI\API\Transformers\ItemTransformer;
 use App\Containers\AppSection\Orden\Models\Orden;
 use App\Containers\AppSection\Paciente\UI\API\Transformers\PacienteTransformer;
 use App\Ship\Parents\Transformers\Transformer as ParentTransformer;
@@ -15,12 +16,14 @@ class OrdenTransformer extends ParentTransformer
         'examens',
         'establecimiento',
         'paciente',
+        'items',
     ];
 
     protected array $availableIncludes = [
         'examens',
         'establecimiento',
         'paciente',
+        'items',
     ];
 
     public function transform(Orden $orden): array
@@ -51,6 +54,14 @@ class OrdenTransformer extends ParentTransformer
                     'motivo' => $examen->pivot->motivo,
                     'is_completed' => $examen->pivot->is_completed,
                 ];
+            }),
+            'item_orden' => $orden->items->map(function ($item) use ($orden) {
+                return [
+                    'orden_id' => $item->item_orden->orden_id,
+                    'item_id' => $item->item_orden->item_id,
+                    'resultado' => $item->item_orden->resultado,
+                    'unidad_id' => $item->item_orden->unidad_id,
+                ];
             })
         ];
 
@@ -62,6 +73,11 @@ class OrdenTransformer extends ParentTransformer
     public function includeExamens(Orden $orden): Collection
     {
         return $this->collection($orden->examens, new ExamenTransformer());
+    }
+
+    public function includeItems(Orden $orden): Collection
+    {
+        return $this->collection($orden->items, new ItemTransformer());
     }
 
     public function includeEstablecimiento(Orden $orden)

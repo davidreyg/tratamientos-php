@@ -44,6 +44,10 @@ class UpdateOrdenResultadosRequest extends ParentRequest
             'pivot.*.resultado' => ['sometimes', 'nullable', 'numeric', 'gt:0'],
             'pivot.*.motivo' => ['sometimes', 'nullable', 'max:100'],
             'pivot.*.unidad_id' => ['sometimes', 'nullable', 'exists:unidads,id'],
+
+            'item_orden.*.item_id' => ['required', 'exists:items,id'],
+            'item_orden.*.resultado' => ['sometimes', 'nullable', 'numeric', 'gt:0'],
+            'item_orden.*.unidad_id' => ['sometimes', 'nullable', 'exists:unidads,id'],
         ];
         return $rules;
     }

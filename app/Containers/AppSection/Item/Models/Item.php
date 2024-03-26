@@ -7,10 +7,13 @@ use App\Ship\Parents\Models\Model as ParentModel;
 
 class Item extends ParentModel
 {
+    protected $with = ['unidads'];
     public $timestamps = false;
     protected $fillable = [
+        'codigo',
         'nombre',
-        'seccion_id'
+        'seccion_id',
+        'examen_id',
     ];
 
     protected $hidden = [

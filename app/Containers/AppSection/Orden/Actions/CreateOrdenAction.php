@@ -27,6 +27,7 @@ class CreateOrdenAction extends ParentAction
 
         $orden = $this->createOrdenTask->run($data);
         $orden->examens()->sync($request->examen_ids);
+        $orden->items()->sync($request->item_ids);
         return $orden;
     }
 }

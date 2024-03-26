@@ -3,6 +3,7 @@
 namespace App\Containers\AppSection\Examen\UI\API\Transformers;
 
 use App\Containers\AppSection\Examen\Models\Examen;
+use App\Containers\AppSection\Item\UI\API\Transformers\ItemTransformer;
 use App\Containers\AppSection\Unidad\UI\API\Transformers\UnidadTransformer;
 use App\Ship\Parents\Transformers\Transformer as ParentTransformer;
 
@@ -11,11 +12,13 @@ class ExamenTransformer extends ParentTransformer
     protected array $defaultIncludes = [
         'categoria',
         'unidads',
+        'items',
     ];
 
     protected array $availableIncludes = [
         'categoria',
         'unidads',
+        'items',
     ];
 
     public function transform(Examen $examen): array
@@ -51,5 +54,10 @@ class ExamenTransformer extends ParentTransformer
     public function includeUnidads(Examen $examen)
     {
         return $this->collection($examen->unidads, new UnidadTransformer());
+    }
+
+    public function includeItems(Examen $examen)
+    {
+        return $this->collection($examen->items, new ItemTransformer());
     }
 }
