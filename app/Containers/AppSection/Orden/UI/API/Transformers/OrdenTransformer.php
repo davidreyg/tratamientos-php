@@ -61,6 +61,7 @@ class OrdenTransformer extends ParentTransformer
                     'item_id' => $item->item_orden->item_id,
                     'resultado' => $item->item_orden->resultado,
                     'unidad_id' => $item->item_orden->unidad_id,
+                    'is_canceled' => (bool) $item->item_orden->is_canceled,
                 ];
             })
         ];

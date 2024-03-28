@@ -66,6 +66,7 @@ class Orden extends ParentModel
             ->withPivot([
                 'resultado',
                 'unidad_id',
+                'is_canceled',
             ]);
     }
 

@@ -31,7 +31,7 @@ class UpdateOrdenResultadosAction extends ParentAction
 
         // Obtener ids y valores de orden
         $pivotData = array_column($data['pivot'], null, 'examen_id');
-        $itemsData = array_column($data['item_orden'], null, 'item_id');
+
 
         // Formato para sync
         $syncData = [];
@@ -46,20 +46,25 @@ class UpdateOrdenResultadosAction extends ParentAction
             }
         }
 
-        $syncDataItem = [];
-        foreach ($itemsData as $id => $pivot) {
-            $syncDataItem[$id] = $pivot;
-            // if ($pivot['is_canceled']) {
-            //     $syncDataItem[$id]['resultado'] = null;
-            //     $syncDataItem[$id]['unidad_id'] = null;
-            // } else {
-            //     $syncDataItem[$id]['motivo'] = null;
+        if (!empty($data['item_orden'])) {
+            $itemsData = array_column($data['item_orden'], null, 'item_id');
+            $syncDataItem = [];
+            foreach ($itemsData as $id => $pivot) {
+                $syncDataItem[$id] = $pivot;
+                if ($pivot['is_canceled']) {
+                    $syncDataItem[$id]['resultado'] = null;
+                    $syncDataItem[$id]['unidad_id'] = null;
+                } else {
+                    // $syncDataItem[$id]['motivo'] = null;
 
-            // }
+                }
+            }
+
+            $orden->items()->sync($syncDataItem);
         }
         // dd($syncData);
         $orden->examens()->sync($syncData);
-        $orden->items()->sync($syncDataItem);
+
         return $orden;
     }
 }
