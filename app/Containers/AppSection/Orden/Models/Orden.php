@@ -67,7 +67,8 @@ class Orden extends ParentModel
                 'resultado',
                 'unidad_id',
                 'is_canceled',
-            ]);
+            ])
+            ->using(ItemOrden::class);
     }
 
     public function user()
