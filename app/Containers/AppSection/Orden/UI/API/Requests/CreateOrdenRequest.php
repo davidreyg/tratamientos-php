@@ -60,7 +60,7 @@ class CreateOrdenRequest extends ParentRequest
         $this->merge([
             // 'estado' => true,
             'user_id' => auth()->id(),
-            'estado' => Orden::$PENDIENTE,
+            'estado' => Orden::PENDIENTE,
         ]);
     }
 

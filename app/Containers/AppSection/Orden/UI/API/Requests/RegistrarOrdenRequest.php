@@ -44,7 +44,7 @@ class RegistrarOrdenRequest extends ParentRequest
     protected function prepareForValidation(): void
     {
         $this->merge([
-            'estado' => Orden::$REGISTRADO,
+            'estado' => Orden::REGISTRADO,
             'registrador_id' => auth()->id(),
         ]);
     }

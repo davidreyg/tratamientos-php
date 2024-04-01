@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Containers\AppSection\Orden\UI\API\Requests;
+namespace App\Containers\AppSection\Reporte\UI\API\Requests;
 
-use App\Containers\AppSection\Orden\Models\Orden;
 use App\Ship\Parents\Requests\Request as ParentRequest;
 
-class VerificarOrdenRequest extends ParentRequest
+class GetConteoExamensRequest extends ParentRequest
 {
     /**
      * Define which Roles and/or Permissions has access to this request.
@@ -19,7 +18,7 @@ class VerificarOrdenRequest extends ParentRequest
      * Id's that needs decoding before applying the validation rules.
      */
     protected array $decode = [
-        'id',
+        // 'id',
     ];
 
     /**
@@ -27,7 +26,7 @@ class VerificarOrdenRequest extends ParentRequest
      * validation rules on them and allows accessing them like request data.
      */
     protected array $urlParameters = [
-        'id',
+        // 'id',
     ];
 
     /**
@@ -36,18 +35,10 @@ class VerificarOrdenRequest extends ParentRequest
     public function rules(): array
     {
         return [
-            'estado' => ['required', 'numeric', 'integer', 'gt:0'],
-            'verificador_id' => ['required', 'exists:users,id',],
+            // 'id' => 'required',
         ];
     }
 
-    protected function prepareForValidation(): void
-    {
-        $this->merge([
-            'estado' => Orden::VERIFICADO,
-            'verificador_id' => auth()->id(),
-        ]);
-    }
     /**
      * Determine if the user is authorized to make this request.
      */

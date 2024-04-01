@@ -12,9 +12,9 @@ use App\Ship\Parents\Models\Model as ParentModel;
 class Orden extends ParentModel
 {
     protected $with = ['examens', 'paciente', 'establecimiento'];
-    public static $PENDIENTE = 0;
-    public static $REGISTRADO = 1;
-    public static $VERIFICADO = 2;
+    public final const PENDIENTE = 0;
+    public final const REGISTRADO = 1;
+    public final const VERIFICADO = 2;
     public $timestamps = false;
     protected $fillable = [
         'diagnostico',

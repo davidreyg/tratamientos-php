@@ -37,7 +37,8 @@ class ExamenTransformer extends ParentTransformer
                     'minimo' => $unidad->pivot->minimo,
                     'maximo' => $unidad->pivot->maximo
                 ];
-            })
+            }),
+            'ordens_count' => $examen->ordens_count,
 
         ];
 
