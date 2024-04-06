@@ -13,6 +13,10 @@ class ExamenOrden extends Pivot
             return true;
         }
 
+        if (isset($this->respuesta_id) || !empty($this->respuesta_id)) {
+            return true;
+        }
+
         if (isset($this->motivo) || !empty($this->motivo)) {
             return true;
         }

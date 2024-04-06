@@ -48,6 +48,7 @@ class OrdenTransformer extends ParentTransformer
                     'orden_id' => $orden->id,
                     'examen_id' => $examen->id,
                     'resultado' => $examen->pivot->resultado,
+                    'respuesta_id' => $examen->pivot->respuesta_id,
                     'fecha_resultado' => $examen->pivot->fecha_resultado,
                     'unidad_id' => $examen->pivot->unidad_id,
                     'is_canceled' => (bool) $examen->pivot->is_canceled,

@@ -55,6 +55,7 @@ class Orden extends ParentModel
                 'unidad_id',
                 'is_canceled',
                 'motivo',
+                'respuesta_id',
             ])
             ->using(ExamenOrden::class);
     }

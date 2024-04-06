@@ -10,5 +10,10 @@ return [
     |
     |
     */
+    'tipos' => [
+        'string' => 'string',
+        'unidad' => 'unidad',
+        'respuesta' => 'respuesta',
+    ]
 
 ];

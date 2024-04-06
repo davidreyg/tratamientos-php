@@ -41,9 +41,10 @@ class UpdateOrdenResultadosRequest extends ParentRequest
             'pivot.*.is_canceled' => ['required', 'boolean',],
             'pivot.*.fecha_resultado' => ['required', 'date',],
             'pivot.*.examen_id' => ['required', 'exists:examens,id'],
-            'pivot.*.resultado' => ['sometimes', 'nullable', 'numeric', 'gt:0'],
+            'pivot.*.resultado' => ['sometimes', 'nullable', 'string'],
             'pivot.*.motivo' => ['sometimes', 'nullable', 'max:100'],
             'pivot.*.unidad_id' => ['sometimes', 'nullable', 'exists:unidads,id'],
+            'pivot.*.respuesta_id' => ['sometimes', 'nullable', 'exists:respuestas,id'],
 
             'item_orden.*.item_id' => ['required', 'exists:items,id'],
             'item_orden.*.resultado' => ['sometimes', 'nullable', 'numeric', 'gt:0'],

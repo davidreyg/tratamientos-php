@@ -17,6 +17,7 @@ return new class extends Migration {
             $table->float('precio');
             $table->foreignId('categoria_id')->constrained();
             $table->boolean('is_active');
+            $table->string('tipo', 50);
         });
     }
 

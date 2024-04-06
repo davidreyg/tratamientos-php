@@ -40,6 +40,7 @@ class UpdateOrdenResultadosAction extends ParentAction
             if ($pivot['is_canceled']) {
                 $syncData[$id]['resultado'] = null;
                 $syncData[$id]['unidad_id'] = null;
+                $syncData[$id]['respuesta_id'] = null;
             } else {
                 $syncData[$id]['motivo'] = null;
 

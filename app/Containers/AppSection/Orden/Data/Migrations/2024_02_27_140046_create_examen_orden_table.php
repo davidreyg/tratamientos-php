@@ -15,7 +15,8 @@ return new class extends Migration {
             $table->foreignId('orden_id')->constrained();
             $table->foreignId('examen_id')->constrained();
             $table->foreignId('unidad_id')->nullable()->constrained();
-            $table->float('resultado')->nullable();
+            $table->foreignId('respuesta_id')->nullable()->constrained();
+            $table->string('resultado')->nullable();
             $table->date('fecha_resultado')->nullable();
             $table->boolean('is_canceled')->default(false);
             $table->string('motivo', 100)->nullable();

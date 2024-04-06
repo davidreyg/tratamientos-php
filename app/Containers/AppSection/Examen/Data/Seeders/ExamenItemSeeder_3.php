@@ -19,6 +19,7 @@ class ExamenItemSeeder_3 extends ParentSeeder
                 'precio' => '135',
                 'categoria_id' => 1,
                 'is_active' => 1,
+                'tipo' => config('appSection-examen.tipos.string'),
             ]
         );
         $seccion = Seccion::create(['nombre' => 'Microbiologia']);
@@ -30,6 +31,7 @@ class ExamenItemSeeder_3 extends ParentSeeder
                 'precio' => '137',
                 'categoria_id' => 1,
                 'is_active' => 1,
+                'tipo' => config('appSection-examen.tipos.string'),
             ]
         );
         Item::create([

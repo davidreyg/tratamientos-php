@@ -4,6 +4,7 @@ namespace App\Containers\AppSection\Examen\UI\API\Transformers;
 
 use App\Containers\AppSection\Examen\Models\Examen;
 use App\Containers\AppSection\Item\UI\API\Transformers\ItemTransformer;
+use App\Containers\AppSection\Respuesta\UI\API\Transformers\RespuestaTransformer;
 use App\Containers\AppSection\Unidad\UI\API\Transformers\UnidadTransformer;
 use App\Ship\Parents\Transformers\Transformer as ParentTransformer;
 
@@ -13,12 +14,14 @@ class ExamenTransformer extends ParentTransformer
         'categoria',
         'unidads',
         'items',
+        'respuestas',
     ];
 
     protected array $availableIncludes = [
         'categoria',
         'unidads',
         'items',
+        'respuestas',
     ];
 
     public function transform(Examen $examen): array
@@ -30,6 +33,7 @@ class ExamenTransformer extends ParentTransformer
             'precio' => $examen->precio,
             'categoria_id' => $examen->categoria_id,
             'is_active' => $examen->is_active,
+            'tipo' => $examen->tipo,
             'pivot' => $examen->unidads->map(function ($unidad) {
                 return [
                     'examen_id' => $unidad->pivot->examen_id,
@@ -60,5 +64,9 @@ class ExamenTransformer extends ParentTransformer
     public function includeItems(Examen $examen)
     {
         return $this->collection($examen->items, new ItemTransformer());
+    }
+    public function includeRespuestas(Examen $examen)
+    {
+        return $this->collection($examen->respuestas, new RespuestaTransformer());
     }
 }

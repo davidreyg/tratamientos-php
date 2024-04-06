@@ -5,20 +5,20 @@ namespace App\Containers\AppSection\Examen\Models;
 use App\Containers\AppSection\Item\Models\Item;
 use App\Containers\AppSection\Orden\Models\ExamenOrden;
 use App\Containers\AppSection\Orden\Models\Orden;
+use App\Containers\AppSection\Respuesta\Models\Respuesta;
 use App\Containers\AppSection\Unidad\Models\Unidad;
 use App\Ship\Parents\Models\Model as ParentModel;
-use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 class Examen extends ParentModel
 {
-    // use HasRecursiveRelationships;
-    protected $with = ['categoria', 'unidads', 'items'];
+    protected $with = ['categoria', 'unidads', 'items', 'respuestas'];
     public $timestamps = false;
     protected $fillable = [
         'nombre',
         'precio',
         'categoria_id',
         'is_active',
+        'tipo',
     ];
 
     protected $hidden = [
@@ -43,6 +43,12 @@ class Examen extends ParentModel
     {
         return $this->belongsToMany(Unidad::class)
             ->withPivot(['minimo', 'maximo']);
+    }
+
+    public function respuestas()
+    {
+        return $this->belongsToMany(Respuesta::class)
+            ->as('examen_respuesta');
     }
 
     public function items()
