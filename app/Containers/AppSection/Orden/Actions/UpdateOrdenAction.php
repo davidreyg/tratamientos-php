@@ -12,6 +12,10 @@ use App\Ship\Parents\Actions\Action as ParentAction;
 
 class UpdateOrdenAction extends ParentAction
 {
+    public function __construct(
+        private readonly UpdateOrdenTask $updateOrdenTask,
+    ) {
+    }
     /**
      * @param UpdateOrdenRequest $request
      * @return Orden
@@ -23,6 +27,9 @@ class UpdateOrdenAction extends ParentAction
     {
         $data = $request->validated();
 
-        return app(UpdateOrdenTask::class)->run($data, $request->id);
+        $orden = $this->updateOrdenTask->run($data, $request->id);
+        $orden->examens()->sync($request->examen_ids);
+        $orden->items()->sync($request->item_ids);
+        return $orden;
     }
 }

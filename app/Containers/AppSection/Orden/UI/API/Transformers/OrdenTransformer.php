@@ -42,6 +42,7 @@ class OrdenTransformer extends ParentTransformer
             'observaciones' => $orden->observaciones,
             'estado_detalle' => $orden->estado_detalle,
             'establecimiento_id' => $orden->establecimiento_id,
+            'paciente_id' => $orden->paciente_id,
             'establecimiento_otro' => $orden->establecimiento_otro,
             'pivot' => $orden->examens->map(function ($examen) use ($orden) {
                 return [
@@ -64,6 +65,12 @@ class OrdenTransformer extends ParentTransformer
                     'unidad_id' => $item->item_orden->unidad_id,
                     'is_canceled' => (bool) $item->item_orden->is_canceled,
                 ];
+            }),
+            'examen_ids' => $orden->examens->map(function ($examen) {
+                return $examen->id;
+            }),
+            'item_ids' => $orden->items->map(function ($item) {
+                return $item->id;
             })
         ];
 

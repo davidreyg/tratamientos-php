@@ -2,6 +2,7 @@
 
 namespace App\Containers\AppSection\Orden\UI\API\Requests;
 
+use App\Containers\AppSection\Orden\Models\Orden;
 use App\Ship\Parents\Requests\Request as ParentRequest;
 
 class UpdateOrdenRequest extends ParentRequest
@@ -35,8 +36,31 @@ class UpdateOrdenRequest extends ParentRequest
     public function rules(): array
     {
         return [
-            // 'id' => 'required'
+            'diagnostico' => ['required'],
+            'CI10' => ['required'],
+            'CPN' => ['required'],
+            'EG' => ['required'],
+            'codigo_atencion' => ['required'],
+            'fecha_registro' => ['required', 'date'],
+            'medico' => ['required'],
+            'examen_ids' => ['array', 'required'],
+            'examen_ids.*' => ['required', 'exists:examens,id'],
+            'item_ids' => ['array', 'nullable'],
+            'item_ids.*' => ['required', 'exists:items,id'],
+            'paciente_id' => ['required', 'exists:pacientes,id'],
+            'establecimiento_id' => ['nullable', 'exists:establecimientos,id'],
+            'establecimiento_otro' => ['nullable', 'max:100'],
+            'user_id' => ['required', 'exists:users,id'],
+            'estado' => ['required', 'numeric'],
         ];
+    }
+    protected function prepareForValidation(): void
+    {
+        $this->merge([
+            // 'estado' => true,
+            'user_id' => auth()->id(),
+            'estado' => Orden::PENDIENTE,
+        ]);
     }
 
     /**
