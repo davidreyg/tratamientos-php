@@ -15,7 +15,7 @@ return new class extends Migration {
             $table->foreignId('orden_id')->constrained();
             $table->foreignId('item_id')->constrained();
             $table->foreignId('unidad_id')->nullable()->constrained();
-            $table->float('resultado')->nullable();
+            $table->string('resultado')->nullable();
             $table->boolean('is_canceled')->default(false);
         });
     }

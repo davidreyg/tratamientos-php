@@ -14,7 +14,6 @@ class ExamenUnidadSeeder_3 extends ParentSeeder
     {
         $numRespuestasAleatorias = 2; // Cambia el número según tus necesidades
         Examen::get()->each(function (Examen $examen) use ($numRespuestasAleatorias) {
-            $opcionAleatoria = random_int(0, 1); // Genera un número aleatorio entre 0 y 1
 
             if ($examen->tipo === config('appSection-examen.tipos.unidad')) {
                 $examen->unidads()->sync([

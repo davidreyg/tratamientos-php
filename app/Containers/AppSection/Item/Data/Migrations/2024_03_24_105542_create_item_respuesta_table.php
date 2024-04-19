@@ -10,13 +10,10 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('items', function (Blueprint $table) {
+        Schema::create('item_respuesta', function (Blueprint $table) {
             $table->id();
-            $table->integer('codigo')->unsigned()->unique();
-            $table->string('nombre', 100);
-            $table->foreignId('seccion_id')->constrained();
-            $table->foreignId('examen_id')->constrained();
-            $table->string('tipo', 50);
+            $table->foreignId('item_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('respuesta_id')->constrained();
         });
     }
 
@@ -25,6 +22,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('items');
+        Schema::dropIfExists('item_respuesta');
     }
 };

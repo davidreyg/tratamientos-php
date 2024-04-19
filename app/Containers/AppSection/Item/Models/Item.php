@@ -2,12 +2,13 @@
 
 namespace App\Containers\AppSection\Item\Models;
 
+use App\Containers\AppSection\Respuesta\Models\Respuesta;
 use App\Containers\AppSection\Unidad\Models\Unidad;
 use App\Ship\Parents\Models\Model as ParentModel;
 
 class Item extends ParentModel
 {
-    protected $with = ['unidads'];
+    protected $with = ['unidads', 'respuestas'];
     public $timestamps = false;
     protected $fillable = [
         'codigo',
@@ -34,4 +35,11 @@ class Item extends ParentModel
         return $this->belongsToMany(Unidad::class)
             ->withPivot(['minimo', 'maximo']);
     }
+
+    public function respuestas()
+    {
+        return $this->belongsToMany(Respuesta::class)
+            ->as('examen_respuesta');
+    }
+
 }

@@ -5,6 +5,7 @@ namespace App\Containers\AppSection\Examen\Data\Seeders;
 use App\Containers\AppSection\Examen\Models\Examen;
 use App\Containers\AppSection\Item\Models\Item;
 use App\Containers\AppSection\Item\Models\Seccion;
+use App\Containers\AppSection\Respuesta\Models\Respuesta;
 use App\Ship\Parents\Seeders\Seeder as ParentSeeder;
 
 class ExamenItemSeeder_3 extends ParentSeeder
@@ -38,43 +39,50 @@ class ExamenItemSeeder_3 extends ParentSeeder
             'codigo' => 20001,
             'nombre' => 'PH',
             'seccion_id' => $seccion->id,
-            'examen_id' => $examen->id
+            'examen_id' => $examen->id,
+            'tipo' => 'unidad'
         ]);
         Item::create([
             'codigo' => 20002,
             'nombre' => 'Densidad',
             'seccion_id' => $seccion->id,
-            'examen_id' => $examen->id
+            'examen_id' => $examen->id,
+            'tipo' => 'string'
         ]);
         Item::create([
             'codigo' => 20003,
             'nombre' => 'Color',
             'seccion_id' => $seccion->id,
-            'examen_id' => $examen->id
+            'examen_id' => $examen->id,
+            'tipo' => 'respuesta'
         ]);
         Item::create([
             'codigo' => 20004,
             'nombre' => 'Aspecto',
             'seccion_id' => $seccion->id,
-            'examen_id' => $examen->id
+            'examen_id' => $examen->id,
+            'tipo' => 'string'
         ]);
 
         Item::create([
             'codigo' => 30001,
             'nombre' => 'No se',
             'seccion_id' => $seccion->id,
-            'examen_id' => $examen2->id
+            'examen_id' => $examen2->id,
+            'tipo' => 'respuesta'
         ]);
         Item::create([
             'codigo' => 30002,
             'nombre' => 'Ph',
             'seccion_id' => $seccion->id,
-            'examen_id' => $examen2->id
+            'examen_id' => $examen2->id,
+            'tipo' => 'unidad'
         ]);
 
         Item::get()->each(function (Item $item) {
-            $item->unidads()->sync(
-                [
+
+            if ($item->tipo === config('appSection-examen.tipos.unidad')) {
+                $item->unidads()->sync([
                     1 => [
                         'minimo' => fake()->randomFloat(2, 1, 10),
                         'maximo' => fake()->randomFloat(2, 10, 50)
@@ -83,8 +91,12 @@ class ExamenItemSeeder_3 extends ParentSeeder
                         'minimo' => fake()->randomFloat(2, 100, 110),
                         'maximo' => fake()->randomFloat(2, 150, 200)
                     ],
-                ]
-            );
+                ]);
+            } else if ($item->tipo === config('appSection-examen.tipos.respuesta')) {
+                $respuestasAleatorias = Respuesta::inRandomOrder()->take(2)->get();
+                $item->respuestas()->sync($respuestasAleatorias);
+            }
+
         });
     }
 }
