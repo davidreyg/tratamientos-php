@@ -25,6 +25,7 @@ class ItemTransformer extends ParentTransformer
             'object' => $item->getResourceKey(),
             'id' => $item->getHashedKey(),
             'nombre' => $item->nombre,
+            'tipo' => $item->tipo,
             'seccion_id' => $item->seccion_id,
             'examen_id' => $item->examen_id,
             'pivot' => $item->unidads->map(function ($unidad) {

@@ -68,6 +68,7 @@ class Orden extends ParentModel
                 'resultado',
                 'unidad_id',
                 'is_canceled',
+                'respuesta_id',
             ])
             ->using(ItemOrden::class);
     }

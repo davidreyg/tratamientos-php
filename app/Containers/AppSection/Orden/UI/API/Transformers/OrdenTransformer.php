@@ -57,12 +57,13 @@ class OrdenTransformer extends ParentTransformer
                     'is_completed' => $examen->pivot->is_completed,
                 ];
             }),
-            'item_orden' => $orden->items->map(function ($item) use ($orden) {
+            'item_orden' => $orden->items->map(function ($item) {
                 return [
                     'orden_id' => $item->item_orden->orden_id,
                     'item_id' => $item->item_orden->item_id,
                     'resultado' => $item->item_orden->resultado,
                     'unidad_id' => $item->item_orden->unidad_id,
+                    'respuesta_id' => $item->item_orden->respuesta_id,
                     'is_canceled' => (bool) $item->item_orden->is_canceled,
                 ];
             }),

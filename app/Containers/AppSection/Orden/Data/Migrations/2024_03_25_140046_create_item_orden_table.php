@@ -16,6 +16,7 @@ return new class extends Migration {
             $table->foreignId('item_id')->constrained();
             $table->foreignId('unidad_id')->nullable()->constrained();
             $table->string('resultado')->nullable();
+            $table->foreignId('respuesta_id')->nullable()->constrained();
             $table->boolean('is_canceled')->default(false);
         });
     }

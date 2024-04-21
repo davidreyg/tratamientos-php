@@ -47,8 +47,9 @@ class UpdateOrdenResultadosRequest extends ParentRequest
             'pivot.*.respuesta_id' => ['sometimes', 'nullable', 'exists:respuestas,id'],
 
             'item_orden.*.item_id' => ['required', 'exists:items,id'],
-            'item_orden.*.resultado' => ['sometimes', 'nullable', 'numeric', 'gt:0'],
+            'item_orden.*.resultado' => ['sometimes', 'nullable', 'string'],
             'item_orden.*.unidad_id' => ['sometimes', 'nullable', 'exists:unidads,id'],
+            'item_orden.*.respuesta_id' => ['sometimes', 'nullable', 'exists:respuestas,id'],
             'item_orden.*.is_canceled' => ['required', 'boolean',],
         ];
         return $rules;
