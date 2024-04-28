@@ -15,6 +15,7 @@ class Examen extends ParentModel
     public $timestamps = false;
     protected $fillable = [
         'nombre',
+        'codigo',
         'precio',
         'categoria_id',
         'is_active',

@@ -4,6 +4,7 @@ namespace App\Containers\AppSection\Examen\UI\API\Transformers;
 
 use App\Containers\AppSection\Examen\Models\Examen;
 use App\Containers\AppSection\Item\UI\API\Transformers\ItemTransformer;
+use App\Containers\AppSection\Respuesta\Models\Respuesta;
 use App\Containers\AppSection\Respuesta\UI\API\Transformers\RespuestaTransformer;
 use App\Containers\AppSection\Unidad\UI\API\Transformers\UnidadTransformer;
 use App\Ship\Parents\Transformers\Transformer as ParentTransformer;
@@ -31,6 +32,7 @@ class ExamenTransformer extends ParentTransformer
             'id' => $examen->getHashedKey(),
             'nombre' => $examen->nombre,
             'precio' => $examen->precio,
+            'codigo' => $examen->codigo,
             'categoria_id' => $examen->categoria_id,
             'is_active' => $examen->is_active,
             'tipo' => $examen->tipo,
@@ -41,6 +43,9 @@ class ExamenTransformer extends ParentTransformer
                     'minimo' => $unidad->pivot->minimo,
                     'maximo' => $unidad->pivot->maximo
                 ];
+            }),
+            'respuesta_ids' => $examen->respuestas->map(function (Respuesta $respuesta) {
+                return $respuesta->id;
             }),
             'ordens_count' => $examen->ordens_count,
 

@@ -33,7 +33,7 @@ class ExamenController extends ApiController
      */
     public function createExamen(CreateExamenRequest $request): JsonResponse
     {
-        $examen = app(CreateExamenAction::class)->run($request);
+        $examen = app(CreateExamenAction::class)->transactionalRun($request);
 
         return $this->created($this->transform($examen, ExamenTransformer::class));
     }

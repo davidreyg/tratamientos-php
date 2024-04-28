@@ -3,6 +3,7 @@
 namespace App\Containers\AppSection\Examen\UI\API\Requests;
 
 use App\Ship\Parents\Requests\Request as ParentRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateExamenRequest extends ParentRequest
 {
@@ -35,7 +36,23 @@ class UpdateExamenRequest extends ParentRequest
     public function rules(): array
     {
         return [
-            // 'id' => 'required'
+            'nombre' => ['required', 'string'],
+            'codigo' => [
+                'required',
+                'numeric',
+                Rule::unique('examens')->ignore($this->id)
+            ],
+            'precio' => ['required', 'numeric'],
+            'categoria_id' => ['required', 'exists:categorias,id'],
+            'is_active' => ['required', 'boolean'],
+            'tipo' => ['required', 'string'],
+            'pivot' => ['sometimes', 'array'],
+
+            'pivot.*.unidad_id' => ['sometimes', 'nullable', 'exists:unidads,id'],
+            'pivot.*.minimo' => ['sometimes', 'numeric', 'gt:0'],
+            'pivot.*.maximo' => ['sometimes', 'numeric', 'gt:0'],
+            'respuesta_ids' => ['sometimes', 'array'],
+            'respuesta_ids.*' => ['required', 'exists:respuestas,id'],
         ];
     }
 

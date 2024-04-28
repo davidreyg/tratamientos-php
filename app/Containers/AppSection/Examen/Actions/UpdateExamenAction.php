@@ -12,6 +12,10 @@ use App\Ship\Parents\Actions\Action as ParentAction;
 
 class UpdateExamenAction extends ParentAction
 {
+    public function __construct(
+        private readonly UpdateExamenTask $updateExamenTask,
+    ) {
+    }
     /**
      * @param UpdateExamenRequest $request
      * @return Examen
@@ -21,10 +25,31 @@ class UpdateExamenAction extends ParentAction
      */
     public function run(UpdateExamenRequest $request): Examen
     {
-        $data = $request->sanitizeInput([
-            // add your request data here
-        ]);
+        $data = $request->validated();
+        $examen = $this->updateExamenTask->run($data, $request->id);
+        switch ($request->tipo) {
+            case config('appSection-examen.tipos.respuesta'):
+                $examen->unidads()->sync([]);
+                $examen->respuestas()->sync($data['respuesta_ids']);
+                break;
 
-        return app(UpdateExamenTask::class)->run($data, $request->id);
+            case config('appSection-examen.tipos.unidad'):
+                $examen->respuestas()->sync([]);
+                $pivotData = array_column($data['pivot'], null, 'unidad_id');
+                // Formato para sync
+                $syncData = [];
+                foreach ($pivotData as $id => $pivot) {
+                    $syncData[$id] = $pivot;
+                }
+
+                //llenar los unidades
+                $examen->unidads()->sync($syncData);
+                break;
+            case config('appSection-examen.tipos.string'):
+                $examen->respuestas()->sync([]);
+                $examen->unidads()->sync([]);
+                break;
+        }
+        return $examen;
     }
 }
