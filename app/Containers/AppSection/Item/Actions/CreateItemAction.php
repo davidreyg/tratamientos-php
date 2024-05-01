@@ -11,6 +11,10 @@ use App\Ship\Parents\Actions\Action as ParentAction;
 
 class CreateItemAction extends ParentAction
 {
+    public function __construct(
+        private readonly CreateItemTask $createItemTask,
+    ) {
+    }
     /**
      * @param CreateItemRequest $request
      * @return Item
@@ -21,6 +25,25 @@ class CreateItemAction extends ParentAction
     {
         $data = $request->validated();
 
-        return app(CreateItemTask::class)->run($data);
+        $item = $this->createItemTask->run($data);
+
+        // Obtener ids y valores de orden
+        if (!empty($data['pivot'])) {
+            $pivotData = array_column($data['pivot'], null, 'unidad_id');
+            // Formato para sync
+            $syncData = [];
+            foreach ($pivotData as $id => $pivot) {
+                $syncData[$id] = $pivot;
+            }
+
+            //llenar los unidades
+            $item->unidads()->sync($syncData);
+        }
+        if (!empty($data['respuesta_ids'])) {
+            $item->respuestas()->sync($data['respuesta_ids']);
+        }
+
+        //llenar las respuestas
+        return $item;
     }
 }

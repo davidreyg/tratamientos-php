@@ -4,8 +4,8 @@ namespace App\Containers\AppSection\Examen\Data\Seeders;
 
 use App\Containers\AppSection\Examen\Models\Examen;
 use App\Containers\AppSection\Item\Models\Item;
-use App\Containers\AppSection\Item\Models\Seccion;
 use App\Containers\AppSection\Respuesta\Models\Respuesta;
+use App\Containers\AppSection\Seccion\Models\Seccion;
 use App\Ship\Parents\Seeders\Seeder as ParentSeeder;
 
 class ExamenItemSeeder_3 extends ParentSeeder

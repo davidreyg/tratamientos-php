@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Containers\AppSection\Item\UI\API\Requests;
+namespace App\Containers\AppSection\Seccion\UI\API\Requests;
 
 use App\Ship\Parents\Requests\Request as ParentRequest;
+use Illuminate\Validation\Rule;
 
-class CreateItemRequest extends ParentRequest
+class UpdateSeccionRequest extends ParentRequest
 {
     /**
      * Define which Roles and/or Permissions has access to this request.
@@ -18,7 +19,7 @@ class CreateItemRequest extends ParentRequest
      * Id's that needs decoding before applying the validation rules.
      */
     protected array $decode = [
-        // 'id',
+        'id',
     ];
 
     /**
@@ -26,7 +27,7 @@ class CreateItemRequest extends ParentRequest
      * validation rules on them and allows accessing them like request data.
      */
     protected array $urlParameters = [
-        // 'id',
+        'id',
     ];
 
     /**
@@ -35,18 +36,11 @@ class CreateItemRequest extends ParentRequest
     public function rules(): array
     {
         return [
-            'nombre' => ['required', 'string'],
-            'codigo' => ['required', 'numeric', 'unique:items'],
-            'seccion_id' => ['required', 'exists:seccions,id'],
-            'examen_id' => ['required', 'exists:examens,id'],
-            'tipo' => ['required', 'string'],
-            'pivot' => ['sometimes', 'array'],
-
-            'pivot.*.unidad_id' => ['sometimes', 'nullable', 'exists:unidads,id'],
-            'pivot.*.minimo' => ['sometimes', 'numeric', 'gt:0'],
-            'pivot.*.maximo' => ['sometimes', 'numeric', 'gt:0'],
-            'respuesta_ids' => ['sometimes', 'array'],
-            'respuesta_ids.*' => ['required', 'exists:respuestas,id'],
+            'nombre' => [
+                'required',
+                'string',
+                Rule::unique('seccions')->ignore($this->id)
+            ],
         ];
     }
 

@@ -21,7 +21,7 @@ class FindItemByIdTask extends ParentTask
     public function run($id): Item
     {
         try {
-            return $this->repository->find($id);
+            return $this->repository->with('examen')->find($id);
         } catch (Exception) {
             throw new NotFoundException();
         }

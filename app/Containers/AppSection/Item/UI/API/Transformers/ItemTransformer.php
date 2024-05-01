@@ -2,8 +2,11 @@
 
 namespace App\Containers\AppSection\Item\UI\API\Transformers;
 
+use App\Containers\AppSection\Examen\UI\API\Transformers\ExamenTransformer;
 use App\Containers\AppSection\Item\Models\Item;
+use App\Containers\AppSection\Respuesta\Models\Respuesta;
 use App\Containers\AppSection\Respuesta\UI\API\Transformers\RespuestaTransformer;
+use App\Containers\AppSection\Seccion\UI\API\Transformers\SeccionTransformer;
 use App\Containers\AppSection\Unidad\UI\API\Transformers\UnidadTransformer;
 use App\Ship\Parents\Transformers\Transformer as ParentTransformer;
 
@@ -12,11 +15,14 @@ class ItemTransformer extends ParentTransformer
     protected array $defaultIncludes = [
         'unidads',
         'respuestas',
+        'seccion',
     ];
 
     protected array $availableIncludes = [
         'unidads',
         'respuestas',
+        'seccion',
+        'examen',
     ];
 
     public function transform(Item $item): array
@@ -25,6 +31,7 @@ class ItemTransformer extends ParentTransformer
             'object' => $item->getResourceKey(),
             'id' => $item->getHashedKey(),
             'nombre' => $item->nombre,
+            'codigo' => $item->codigo,
             'tipo' => $item->tipo,
             'seccion_id' => $item->seccion_id,
             'examen_id' => $item->examen_id,
@@ -35,12 +42,25 @@ class ItemTransformer extends ParentTransformer
                     'minimo' => $unidad->pivot->minimo,
                     'maximo' => $unidad->pivot->maximo
                 ];
-            })
+            }),
+            'respuesta_ids' => $item->respuestas->map(function (Respuesta $respuesta) {
+                return $respuesta->id;
+            }),
         ];
 
         return $this->ifAdmin([
             'real_id' => $item->id,
         ], $response);
+    }
+
+    public function includeSeccion(Item $item)
+    {
+        return $this->item($item->seccion, new SeccionTransformer());
+    }
+
+    public function includeExamen(Item $item)
+    {
+        return $this->item($item->examen, new ExamenTransformer());
     }
 
     public function includeUnidads(Item $item)

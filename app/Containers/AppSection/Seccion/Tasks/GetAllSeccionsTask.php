@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Containers\AppSection\Item\Tasks;
+namespace App\Containers\AppSection\Seccion\Tasks;
 
 use Apiato\Core\Exceptions\CoreInternalErrorException;
-use App\Containers\AppSection\Item\Data\Repositories\ItemRepository;
+use App\Containers\AppSection\Seccion\Data\Repositories\SeccionRepository;
 use App\Ship\Parents\Tasks\Task as ParentTask;
 use Prettus\Repository\Exceptions\RepositoryException;
 
-class GetAllItemsTask extends ParentTask
+class GetAllSeccionsTask extends ParentTask
 {
     public function __construct(
-        protected ItemRepository $repository
+        protected SeccionRepository $repository
     ) {
     }
 
@@ -20,6 +20,6 @@ class GetAllItemsTask extends ParentTask
      */
     public function run(): mixed
     {
-        return $this->addRequestCriteria()->repository->with('examen')->paginate();
+        return $this->addRequestCriteria()->repository->paginate();
     }
 }

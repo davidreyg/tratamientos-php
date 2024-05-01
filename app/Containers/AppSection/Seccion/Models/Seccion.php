@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Containers\AppSection\Item\Models;
+namespace App\Containers\AppSection\Seccion\Models;
 
 use App\Ship\Parents\Models\Model as ParentModel;
 
@@ -8,7 +8,7 @@ class Seccion extends ParentModel
 {
     public $timestamps = false;
     protected $fillable = [
-        'nombre',
+        'nombre'
     ];
 
     protected $hidden = [
