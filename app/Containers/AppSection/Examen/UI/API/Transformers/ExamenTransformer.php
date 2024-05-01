@@ -2,6 +2,7 @@
 
 namespace App\Containers\AppSection\Examen\UI\API\Transformers;
 
+use App\Containers\AppSection\Categoria\UI\API\Transformers\CategoriaTransformer;
 use App\Containers\AppSection\Examen\Models\Examen;
 use App\Containers\AppSection\Item\UI\API\Transformers\ItemTransformer;
 use App\Containers\AppSection\Respuesta\Models\Respuesta;

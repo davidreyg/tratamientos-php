@@ -134,6 +134,13 @@ class AuthorizationPrivilegiosSeeder_1 extends ParentSeeder
 
         ]);
         Privilegio::create([
+            'nombre' => 'Categorias',
+            'icono' => 'fas fa-tree',
+            'ruta' => '/categorias',
+            'parent_id' => $modulo3->id,
+
+        ]);
+        Privilegio::create([
             'nombre' => 'Examenes',
             'icono' => 'fas fa-file-lines',
             'ruta' => '/examens',

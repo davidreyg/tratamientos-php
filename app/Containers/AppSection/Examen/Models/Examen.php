@@ -2,6 +2,7 @@
 
 namespace App\Containers\AppSection\Examen\Models;
 
+use App\Containers\AppSection\Categoria\Models\Categoria;
 use App\Containers\AppSection\Item\Models\Item;
 use App\Containers\AppSection\Orden\Models\ExamenOrden;
 use App\Containers\AppSection\Orden\Models\Orden;

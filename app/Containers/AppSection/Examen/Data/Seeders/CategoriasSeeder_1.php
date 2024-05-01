@@ -2,7 +2,7 @@
 
 namespace App\Containers\AppSection\Examen\Data\Seeders;
 
-use App\Containers\AppSection\Examen\Models\Categoria;
+use App\Containers\AppSection\Categoria\Models\Categoria;
 use App\Ship\Parents\Seeders\Seeder as ParentSeeder;
 
 class CategoriasSeeder_1 extends ParentSeeder
