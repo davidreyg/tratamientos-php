@@ -3,6 +3,7 @@
 namespace App\Containers\AppSection\Unidad\UI\API\Requests;
 
 use App\Ship\Parents\Requests\Request as ParentRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateUnidadRequest extends ParentRequest
 {
@@ -35,7 +36,11 @@ class UpdateUnidadRequest extends ParentRequest
     public function rules(): array
     {
         return [
-            // 'id' => 'required'
+            'nombre' => [
+                'required',
+                'string',
+                Rule::unique('unidads')->ignore($this->id)
+            ],
         ];
     }
 

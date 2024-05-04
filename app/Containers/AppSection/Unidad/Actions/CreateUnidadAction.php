@@ -19,9 +19,7 @@ class CreateUnidadAction extends ParentAction
      */
     public function run(CreateUnidadRequest $request): Unidad
     {
-        $data = $request->sanitizeInput([
-            // add your request data here
-        ]);
+        $data = $request->validated();
 
         return app(CreateUnidadTask::class)->run($data);
     }

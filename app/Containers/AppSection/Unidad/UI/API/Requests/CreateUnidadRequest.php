@@ -35,7 +35,7 @@ class CreateUnidadRequest extends ParentRequest
     public function rules(): array
     {
         return [
-            // 'id' => 'required',
+            'nombre' => ['required', 'unique:unidads'],
         ];
     }
 

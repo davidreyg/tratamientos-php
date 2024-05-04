@@ -21,9 +21,7 @@ class UpdateUnidadAction extends ParentAction
      */
     public function run(UpdateUnidadRequest $request): Unidad
     {
-        $data = $request->sanitizeInput([
-            // add your request data here
-        ]);
+        $data = $request->validated();
 
         return app(UpdateUnidadTask::class)->run($data, $request->id);
     }

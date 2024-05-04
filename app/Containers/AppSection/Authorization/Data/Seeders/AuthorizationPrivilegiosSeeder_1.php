@@ -154,5 +154,19 @@ class AuthorizationPrivilegiosSeeder_1 extends ParentSeeder
             'parent_id' => $modulo3->id,
 
         ]);
+        Privilegio::create([
+            'nombre' => 'Unidades',
+            'icono' => 'fas fa-ruler-combined',
+            'ruta' => '/unidades',
+            'parent_id' => $modulo3->id,
+
+        ]);
+        Privilegio::create([
+            'nombre' => 'Secciones (Items)',
+            'icono' => 'fas fa-list-ol',
+            'ruta' => '/secciones',
+            'parent_id' => $modulo3->id,
+
+        ]);
     }
 }
