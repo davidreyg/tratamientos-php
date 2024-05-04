@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->integer('codigo')->unsigned()->unique();
             $table->string('direccion', 60);
             $table->string('ris', 60);
-            $table->integer('telefono')->unsigned();
+            $table->integer('telefono')->unsigned()->nullable();
             $table->boolean('has_lab');
             // $table->timestamps();
             //$table->softDeletes();

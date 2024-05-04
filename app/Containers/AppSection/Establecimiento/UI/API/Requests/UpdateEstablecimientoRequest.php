@@ -3,6 +3,7 @@
 namespace App\Containers\AppSection\Establecimiento\UI\API\Requests;
 
 use App\Ship\Parents\Requests\Request as ParentRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateEstablecimientoRequest extends ParentRequest
 {
@@ -36,9 +37,13 @@ class UpdateEstablecimientoRequest extends ParentRequest
     {
         return [
             'nombre' => ['required', 'string', 'max:60'],
-            'codigo' => ['required', 'string', 'max:20', 'unique:establecimientos'],
+            'codigo' => [
+                'required',
+                'numeric',
+                Rule::unique('establecimientos')->ignore($this->id)
+            ],
             'direccion' => ['required', 'string', 'max:60',],
-            'telefono' => ['nullable', 'numeric', 'integer', 'gt:0', 'digits:9'],
+            'telefono' => ['nullable', 'numeric', 'integer', 'gt:0'],
             'ris' => ['required', 'string', 'max:60'],
             'has_lab' => ['required', 'boolean'],
         ];

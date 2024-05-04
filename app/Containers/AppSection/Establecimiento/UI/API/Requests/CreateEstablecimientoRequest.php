@@ -36,9 +36,9 @@ class CreateEstablecimientoRequest extends ParentRequest
     {
         return [
             'nombre' => ['required', 'string', 'max:60'],
-            'codigo' => ['required', 'string', 'max:20', 'unique:establecimientos'],
+            'codigo' => ['required', 'numeric', 'unique:establecimientos'],
             'direccion' => ['required', 'string', 'max:60',],
-            'telefono' => ['nullable', 'numeric', 'integer', 'gt:0', 'digits:9'],
+            'telefono' => ['nullable', 'numeric', 'integer', 'gt:0'],
             'ris' => ['required', 'string', 'max:60'],
             'has_lab' => ['required', 'boolean'],
         ];
