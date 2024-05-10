@@ -19,11 +19,13 @@ class ExamenUnidadSeeder_3 extends ParentSeeder
                 $examen->unidads()->sync([
                     1 => [
                         'minimo' => fake()->randomFloat(2, 1, 10),
-                        'maximo' => fake()->randomFloat(2, 10, 50)
+                        'maximo' => fake()->randomFloat(2, 10, 50),
+                        'tipo' => config('appSection-unidad.tipos.multivalor')
                     ],
                     2 => [
                         'minimo' => fake()->randomFloat(2, 100, 110),
-                        'maximo' => fake()->randomFloat(2, 150, 200)
+                        'maximo' => fake()->randomFloat(2, 150, 200),
+                        'tipo' => config('appSection-unidad.tipos.multivalor')
                     ],
                 ]);
             } else if ($examen->tipo === config('appSection-examen.tipos.respuesta')) {

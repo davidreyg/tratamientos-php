@@ -49,7 +49,9 @@ class UpdateItemRequest extends ParentRequest
 
             'pivot.*.unidad_id' => ['sometimes', 'nullable', 'exists:unidads,id'],
             'pivot.*.minimo' => ['sometimes', 'numeric', 'gt:0'],
-            'pivot.*.maximo' => ['sometimes', 'numeric', 'gt:0'],
+            'pivot.*.maximo' => ['sometimes', 'nullable', 'numeric', 'gt:0'],
+            'pivot.*.tipo' => ['sometimes', 'string'],
+            'pivot.*.operador' => ['sometimes', 'nullable', 'string'],
             'respuesta_ids' => ['sometimes', 'array'],
             'respuesta_ids.*' => ['required', 'exists:respuestas,id'],
         ];

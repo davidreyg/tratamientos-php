@@ -36,6 +36,7 @@
         "ext-pdo": "*",
         "ext-sodium": "*",
         "ext-tokenizer": "*",
+        "barryvdh/laravel-dompdf": "^2.1",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^10.0",
         "laravel/tinker": "^2.8",

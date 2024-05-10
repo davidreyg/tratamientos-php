@@ -40,7 +40,9 @@ class ItemTransformer extends ParentTransformer
                     'item_id' => $unidad->pivot->item_id,
                     'unidad_id' => $unidad->pivot->unidad_id,
                     'minimo' => $unidad->pivot->minimo,
-                    'maximo' => $unidad->pivot->maximo
+                    'maximo' => $unidad->pivot->maximo,
+                    'tipo' => $unidad->pivot->tipo,
+                    'operador' => $unidad->pivot->operador,
                 ];
             }),
             'respuesta_ids' => $item->respuestas->map(function (Respuesta $respuesta) {

@@ -15,7 +15,9 @@ return new class extends Migration {
             $table->foreignId('examen_id')->constrained()->cascadeOnDelete();
             $table->foreignId('unidad_id')->constrained();
             $table->float('minimo');
-            $table->float('maximo');
+            $table->float('maximo')->nullable();
+            $table->string('tipo', 100);
+            $table->string('operador', 100)->nullable();
         });
     }
 

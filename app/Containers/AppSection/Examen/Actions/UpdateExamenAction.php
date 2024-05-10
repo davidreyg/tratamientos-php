@@ -40,6 +40,14 @@ class UpdateExamenAction extends ParentAction
                 $syncData = [];
                 foreach ($pivotData as $id => $pivot) {
                     $syncData[$id] = $pivot;
+                    if ($pivot['tipo'] === config('appSection-unidad.tipos.multivalor')) {
+                        $syncData[$id]['operador'] = null;
+                    } else if ($pivot['tipo'] === config('appSection-unidad.tipos.operador')) {
+                        $syncData[$id]['maximo'] = null;
+                    } else if ($pivot['tipo'] === config('appSection-unidad.tipos.unico')) {
+                        $syncData[$id]['maximo'] = null;
+                        $syncData[$id]['operador'] = null;
+                    }
                 }
 
                 //llenar los unidades

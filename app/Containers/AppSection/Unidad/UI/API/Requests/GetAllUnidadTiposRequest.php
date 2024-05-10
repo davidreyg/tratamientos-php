@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Containers\AppSection\Examen\UI\API\Requests;
+namespace App\Containers\AppSection\Unidad\UI\API\Requests;
 
 use App\Ship\Parents\Requests\Request as ParentRequest;
 
-class CreateExamenRequest extends ParentRequest
+class GetAllUnidadTiposRequest extends ParentRequest
 {
     /**
      * Define which Roles and/or Permissions has access to this request.
@@ -35,21 +35,7 @@ class CreateExamenRequest extends ParentRequest
     public function rules(): array
     {
         return [
-            'nombre' => ['required', 'string'],
-            'codigo' => ['required', 'numeric', 'unique:examens'],
-            'precio' => ['required', 'numeric'],
-            'categoria_id' => ['required', 'exists:categorias,id'],
-            'is_active' => ['required', 'boolean'],
-            'tipo' => ['required', 'string'],
-            'pivot' => ['sometimes', 'array'],
-
-            'pivot.*.unidad_id' => ['sometimes', 'nullable', 'exists:unidads,id'],
-            'pivot.*.minimo' => ['sometimes', 'numeric', 'gt:0'],
-            'pivot.*.maximo' => ['sometimes', 'numeric', 'gt:0'],
-            'pivot.*.tipo' => ['sometimes', 'string'],
-            'pivot.*.operador' => ['sometimes', 'nullable', 'string'],
-            'respuesta_ids' => ['sometimes', 'array'],
-            'respuesta_ids.*' => ['required', 'exists:respuestas,id'],
+            // 'id' => 'required',
         ];
     }
 

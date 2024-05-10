@@ -42,7 +42,9 @@ class ExamenTransformer extends ParentTransformer
                     'examen_id' => $unidad->pivot->examen_id,
                     'unidad_id' => $unidad->pivot->unidad_id,
                     'minimo' => $unidad->pivot->minimo,
-                    'maximo' => $unidad->pivot->maximo
+                    'maximo' => $unidad->pivot->maximo,
+                    'tipo' => $unidad->pivot->tipo,
+                    'operador' => $unidad->pivot->operador
                 ];
             }),
             'respuesta_ids' => $examen->respuestas->map(function (Respuesta $respuesta) {

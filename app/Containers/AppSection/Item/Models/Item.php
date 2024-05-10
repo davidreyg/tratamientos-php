@@ -36,7 +36,7 @@ class Item extends ParentModel
     public function unidads()
     {
         return $this->belongsToMany(Unidad::class)
-            ->withPivot(['minimo', 'maximo']);
+            ->withPivot(['minimo', 'maximo', 'tipo', 'operador']);
     }
 
     public function respuestas()
