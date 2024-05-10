@@ -23,7 +23,7 @@ class DescargarOrdenController extends ApiController
      */
     public function updateOrden(DescargarOrdenRequest $request)
     {
-        $orden = Orden::first();
+        $orden = Orden::findOrFail($request->id);
         // Supongamos que $orden es la instancia de la Orden de la que deseas obtener las categorías de exámenes
         $categorias = $orden->examens()->with('categoria')->get()->pluck('categoria');
 
@@ -35,14 +35,9 @@ class DescargarOrdenController extends ApiController
         // return $categoriasUnicas;
         $data = ['categorias' => $categoriasUnicas, 'orden' => $orden];
         $pdf = Pdf::loadView('appSection@orden::orden', $data)
-            ->setPaper('a5')
-            ->setOptions([
-                'margin_top' => 0, // Margen superior en pulgadas
-                'margin_right' => 0, // Margen derecho en pulgadas
-                'margin_bottom' => 0, // Margen inferior en pulgadas
-                'margin_left' => 0, // Margen izquierdo en pulgadas
-            ]);
+            ->setPaper('a5');
         return $pdf->stream('document.pdf');
+        // return $data;
         // return view('appSection@orden::orden', $data);
     }
 }

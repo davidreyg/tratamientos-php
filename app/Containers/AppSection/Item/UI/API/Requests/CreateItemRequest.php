@@ -43,7 +43,7 @@ class CreateItemRequest extends ParentRequest
             'pivot' => ['sometimes', 'array'],
 
             'pivot.*.unidad_id' => ['sometimes', 'nullable', 'exists:unidads,id'],
-            'pivot.*.minimo' => ['sometimes', 'numeric', 'gt:0'],
+            'pivot.*.minimo' => ['sometimes', 'numeric', 'gt:-1'],
             'pivot.*.maximo' => ['sometimes', 'nullable', 'numeric', 'gt:0'],
             'pivot.*.tipo' => ['sometimes', 'string'],
             'pivot.*.operador' => ['sometimes', 'nullable', 'string'],

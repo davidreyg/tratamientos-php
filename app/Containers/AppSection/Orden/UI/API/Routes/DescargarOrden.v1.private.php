@@ -25,5 +25,5 @@
 use App\Containers\AppSection\Orden\UI\API\Controllers\DescargarOrdenController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('ordens/pdf', [DescargarOrdenController::class, 'updateOrden']);
+Route::get('ordens/{id}/pdf', [DescargarOrdenController::class, 'updateOrden']);
 
