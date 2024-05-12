@@ -119,85 +119,83 @@
         </div>
     </div>
     <div class="container" id="main">
-        @for ($i = 0; $i < 10; $i++)
-            <div class="fw-bold">
-                <table class="table" width="100%">
-                    @foreach ($categorias as $categoria)
-                        <div class="">{{ $categoria->nombre }}</div>
-                        <tbody class="fw-normal">
-                            @foreach ($orden->examens as $examen)
-                                @if ($examen->categoria_id == $categoria->id && !$examen->items->isNotEmpty())
-                                    <tr>
-                                        <td style="width: 160px" class="text-left">{{ $examen->nombre }}</td>
-                                        <td style="width: 60px" class="text-center">{{ $examen->pivot->resultado }}
-                                        </td>
-                                        <td style="width: 60px" class="text-center">
-                                            @foreach ($examen->unidads as $unidad)
-                                                @if ($unidad->id == $examen->pivot->unidad_id)
-                                                    {{ $unidad->nombre }}
-                                                @endif
-                                            @endforeach
-                                        </td>
-                                        <td style="width: 60px" class="text-center">
-                                            @foreach ($examen->unidads as $unidad)
-                                                @if ($unidad->id == $examen->pivot->unidad_id)
-                                                    {{ $unidad->pivot->minimo }} - {{ $unidad->pivot->maximo }}
-                                                @endif
-                                            @endforeach
-                                        </td>
-                                    </tr>
-                                @else
-                                    <tr>
-                                        <td style="width: 160px" class="text-left">{{ $examen->nombre }}</td>
-                                    </tr>
-                                    @foreach ($orden->items as $item)
-                                        <tr class="fst-italic">
-                                            @if ($item->examen_id == $examen->id)
-                                                <td style="width: 160px;padding-left: 0.8rem" class="text-left">
-                                                    <li>{{ $item->nombre }}</li>
-                                                </td>
-                                                <td style="width: 60px" class="text-center">
-                                                    @if ($item->tipo === 'respuesta')
-                                                        @foreach ($item->respuestas as $respuesta)
-                                                            @if ($respuesta->id == $item->item_orden->respuesta_id)
-                                                                {{ $respuesta->nombre }}
-                                                            @endif
-                                                        @endforeach
-                                                    @else
-                                                        {{ $item->item_orden->resultado }}
-                                                    @endif
-                                                </td>
-                                                <td style="width: 60px" class="text-center">
-                                                    @foreach ($item->unidads as $unidad)
-                                                        @if ($unidad->id == $item->item_orden->unidad_id)
-                                                            {{ $unidad->nombre }}
-                                                        @endif
-                                                    @endforeach
-                                                </td>
-                                                <td style="width: 60px" class="text-center">
-                                                    @foreach ($item->unidads as $unidad)
-                                                        @if ($unidad->id == $item->item_orden->unidad_id)
-                                                            @if ($unidad->pivot->tipo === 'multivalor')
-                                                                {{ $unidad->pivot->minimo }} -
-                                                                {{ $unidad->pivot->maximo }}
-                                                            @elseif ($unidad->pivot->tipo === 'operador')
-                                                                {{ $unidad->pivot->operador }}
-                                                                {{ $unidad->pivot->minimo }}
-                                                            @endif
-                                                        @endif
-                                                    @endforeach
-                                                </td>
+        <div class="fw-bold">
+            <table class="table" width="100%">
+                @foreach ($categorias as $categoria)
+                    <div class="">{{ $categoria->nombre }}</div>
+                    <tbody class="fw-normal">
+                        @foreach ($orden->examens as $examen)
+                            @if ($examen->categoria_id == $categoria->id && !$examen->items->isNotEmpty())
+                                <tr>
+                                    <td style="width: 160px" class="text-left">{{ $examen->nombre }}</td>
+                                    <td style="width: 60px" class="text-center">{{ $examen->pivot->resultado }}
+                                    </td>
+                                    <td style="width: 60px" class="text-center">
+                                        @foreach ($examen->unidads as $unidad)
+                                            @if ($unidad->id == $examen->pivot->unidad_id)
+                                                {{ $unidad->nombre }}
                                             @endif
-                                        </tr>
-                                    @endforeach
-                                @endif
-                                <br />
-                            @endforeach
-                        </tbody>
-                    @endforeach
-                </table>
-            </div>
-        @endfor
+                                        @endforeach
+                                    </td>
+                                    <td style="width: 60px" class="text-center">
+                                        @foreach ($examen->unidads as $unidad)
+                                            @if ($unidad->id == $examen->pivot->unidad_id)
+                                                {{ $unidad->pivot->minimo }} - {{ $unidad->pivot->maximo }}
+                                            @endif
+                                        @endforeach
+                                    </td>
+                                </tr>
+                            @else
+                                <tr>
+                                    <td style="width: 160px" class="text-left">{{ $examen->nombre }}</td>
+                                </tr>
+                                @foreach ($orden->items as $item)
+                                    <tr class="fst-italic">
+                                        @if ($item->examen_id == $examen->id)
+                                            <td style="width: 160px;padding-left: 0.8rem" class="text-left">
+                                                <li>{{ $item->nombre }}</li>
+                                            </td>
+                                            <td style="width: 60px" class="text-center">
+                                                @if ($item->tipo === 'respuesta')
+                                                    @foreach ($item->respuestas as $respuesta)
+                                                        @if ($respuesta->id == $item->item_orden->respuesta_id)
+                                                            {{ $respuesta->nombre }}
+                                                        @endif
+                                                    @endforeach
+                                                @else
+                                                    {{ $item->item_orden->resultado }}
+                                                @endif
+                                            </td>
+                                            <td style="width: 60px" class="text-center">
+                                                @foreach ($item->unidads as $unidad)
+                                                    @if ($unidad->id == $item->item_orden->unidad_id)
+                                                        {{ $unidad->nombre }}
+                                                    @endif
+                                                @endforeach
+                                            </td>
+                                            <td style="width: 60px" class="text-center">
+                                                @foreach ($item->unidads as $unidad)
+                                                    @if ($unidad->id == $item->item_orden->unidad_id)
+                                                        @if ($unidad->pivot->tipo === 'multivalor')
+                                                            {{ $unidad->pivot->minimo }} -
+                                                            {{ $unidad->pivot->maximo }}
+                                                        @elseif ($unidad->pivot->tipo === 'operador')
+                                                            {{ $unidad->pivot->operador }}
+                                                            {{ $unidad->pivot->minimo }}
+                                                        @endif
+                                                    @endif
+                                                @endforeach
+                                            </td>
+                                        @endif
+                                    </tr>
+                                @endforeach
+                            @endif
+                            <br />
+                        @endforeach
+                    </tbody>
+                @endforeach
+            </table>
+        </div>
     </div>
 
 
