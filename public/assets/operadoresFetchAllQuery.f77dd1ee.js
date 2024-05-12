@@ -1,0 +1,1 @@
+import{aH as c,aI as n}from"./index.cb32cbc7.js";import{U as u}from"./UnidadApi.e9700d89.js";function f(){const e=async()=>(await u.fetchAllOperadores()).data().data,{data:r,isLoading:a,isSuccess:s,isError:t,isFetching:o,refetch:i}=c([n.UNIDAD_ALL,"operadores"],e);return{data:r,isLoading:a,isSuccess:s,isError:t,isFetching:o,refetch:i}}export{f as u};
