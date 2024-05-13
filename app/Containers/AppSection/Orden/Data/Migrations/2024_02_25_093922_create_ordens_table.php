@@ -13,9 +13,9 @@ return new class extends Migration {
         Schema::create('ordens', function (Blueprint $table) {
             $table->id();
             $table->string('diagnostico', 255);
-            $table->string('CI10', 255);
-            $table->string('CPN', 255);
-            $table->string('EG', 255);
+            $table->string('CI10', 255)->nullable();
+            $table->string('CPN', 255)->nullable();
+            $table->string('EG', 255)->nullable();
             $table->string('codigo_atencion', 255);
             $table->date('fecha_registro');
             $table->foreignId('paciente_id')->constrained();

@@ -29,6 +29,7 @@ class Orden extends ParentModel
         'establecimiento_otro',
         'user_id',
         'registrador_id',
+        'verificador_id',
         'estado',
         'observaciones',
     ];

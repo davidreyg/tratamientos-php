@@ -37,9 +37,9 @@ class UpdateOrdenRequest extends ParentRequest
     {
         return [
             'diagnostico' => ['required'],
-            'CI10' => ['required'],
-            'CPN' => ['required'],
-            'EG' => ['required'],
+            'CI10' => ['nullable'],
+            'CPN' => ['nullable'],
+            'EG' => ['nullable'],
             'codigo_atencion' => ['required'],
             'fecha_registro' => ['required', 'date'],
             'medico' => ['required'],
