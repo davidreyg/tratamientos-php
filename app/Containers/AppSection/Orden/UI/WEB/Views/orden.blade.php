@@ -123,9 +123,10 @@
             <table class="table" width="100%">
                 @foreach ($categorias as $categoria)
                     <div class="">{{ $categoria->nombre }}</div>
+
                     <tbody class="fw-normal">
                         @foreach ($orden->examens as $examen)
-                            @if ($examen->categoria_id == $categoria->id && !$examen->items->isNotEmpty())
+                            @if ($examen->categoria_id === $categoria->id && !$examen->items->isNotEmpty())
                                 <tr>
                                     <td style="width: 160px" class="text-left">{{ $examen->nombre }}</td>
                                     <td style="width: 60px" class="text-center">{{ $examen->pivot->resultado }}
@@ -145,7 +146,8 @@
                                         @endforeach
                                     </td>
                                 </tr>
-                            @else
+                                <br />
+                            @elseif($examen->categoria_id === $categoria->id && $examen->items->isNotEmpty())
                                 <tr>
                                     <td style="width: 160px" class="text-left">{{ $examen->nombre }}</td>
                                 </tr>
@@ -190,8 +192,8 @@
                                     </tr>
                                 @endforeach
                             @endif
-                            <br />
                         @endforeach
+                        <br />
                     </tbody>
                 @endforeach
             </table>
