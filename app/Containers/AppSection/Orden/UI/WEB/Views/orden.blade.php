@@ -13,12 +13,12 @@
 </head>
 <style>
     @page {
-        margin: 3.5cm 0.5cm 4cm 0.5cm;
+        margin: 4cm 0.5cm 4cm 0.5cm;
     }
 
     #header {
         position: fixed;
-        top: -3.5cm;
+        top: -4cm;
         left: 0cm;
         /* right: 0px; */
         /* height: 50px; */
@@ -61,7 +61,7 @@
 
         </table>
         {{-- DATOS DEL PACIENTE Y DE LA ORDEN --}}
-        <table width="100%">
+        <table width="100%" class="mt-3">
             <thead>
                 <tr>
                     <th scope="col" class="has-text-right" style="min-width: 100px"></th>

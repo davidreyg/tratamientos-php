@@ -36,8 +36,9 @@ class DescargarOrdenController extends ApiController
         $data = ['categorias' => $categoriasUnicas, 'orden' => $orden];
         $pdf = Pdf::loadView('appSection@orden::orden', $data)
             ->setPaper('a5');
-        return $pdf->stream('document.pdf');
-        // return $data;
-        // return view('appSection@orden::orden', $data);
+        return response($pdf->output(), 200, [
+            'Content-Type' => 'application/pdf',
+            'Content-Disposition' => 'inline; filename="orden.pdf"',
+        ]);
     }
 }

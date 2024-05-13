@@ -24,6 +24,7 @@ services:
                 uid: 1000
             dockerfile: ./docker/frankenphp/Dockerfile
         restart: unless-stopped
+        container_name: app
         environment:
             - SERVER_NAME=:80
         ports:
