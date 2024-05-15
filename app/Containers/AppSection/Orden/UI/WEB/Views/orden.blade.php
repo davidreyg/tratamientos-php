@@ -78,7 +78,8 @@
                 <tr>
                     <th style="width: 75%"><img src="{{ public_path('cabecera.png') }}" alt="Company Logo"
                             style=" width: 95%"> </th>
-                    <th style="width: 25%" class="align-middle">{{ strtoupper($orden->establecimiento->nombre) }}
+                    <th style="width: 25%" class="align-middle">
+                        {{ strtoupper(auth()->user()->establecimiento->nombre) }}
                     </th>
                 </tr>
             </thead>

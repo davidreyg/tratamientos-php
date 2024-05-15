@@ -54,7 +54,14 @@
                 <tr>
                     <th style="width: 75%"><img src="{{ public_path('cabecera.png') }}" alt="Company Logo"
                             style=" width: 95%"> </th>
-                    <th style="width: 25%" class="align-middle">{{ strtoupper($orden->establecimiento->nombre) }}
+                    <th style="width: 25%" class="align-middle">
+                        {{-- @if (isset($orden->establecimiento) && !$orden->establecimiento->isNotEmpty())
+                            {{ strtoupper($orden->establecimiento->nombre) }}
+                        @else
+                            {{ strtoupper($orden->establecimiento_otro) }}
+                            @endif --}}
+                            {{ strtoupper(auth()->user()->establecimiento->nombre) }}
+
                     </th>
                 </tr>
             </thead>
