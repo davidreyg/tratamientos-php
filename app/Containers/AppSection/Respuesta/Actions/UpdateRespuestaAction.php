@@ -21,9 +21,7 @@ class UpdateRespuestaAction extends ParentAction
      */
     public function run(UpdateRespuestaRequest $request): Respuesta
     {
-        $data = $request->sanitizeInput([
-            // add your request data here
-        ]);
+        $data = $request->validated();
 
         return app(UpdateRespuestaTask::class)->run($data, $request->id);
     }

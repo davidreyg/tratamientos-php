@@ -176,5 +176,12 @@ class AuthorizationPrivilegiosSeeder_1 extends ParentSeeder
             'parent_id' => $modulo3->id,
 
         ]);
+        Privilegio::create([
+            'nombre' => 'Respuestas',
+            'icono' => 'fas fa-question',
+            'ruta' => '/respuestas',
+            'parent_id' => $modulo3->id,
+
+        ]);
     }
 }

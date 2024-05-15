@@ -35,7 +35,7 @@ class CreateRespuestaRequest extends ParentRequest
     public function rules(): array
     {
         return [
-            // 'id' => 'required',
+            'nombre' => ['required', 'string']
         ];
     }
 

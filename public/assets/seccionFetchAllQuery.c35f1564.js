@@ -1,0 +1,1 @@
+import{aH as n,aI as u}from"./index.747a1a42.js";import{S as f}from"./SeccionApi.7ddde17c.js";function p(a){const t=async()=>(await f.fetchAll(a==null?void 0:a.value)).data().data,{data:s,isLoading:c,isSuccess:e,isError:i,isFetching:o,refetch:r}=n([u.SECCION_ALL],t);return{data:s,isLoading:c,isSuccess:e,isError:i,isFetching:o,refetch:r}}export{p as u};

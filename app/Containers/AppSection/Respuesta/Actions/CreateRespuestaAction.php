@@ -19,9 +19,7 @@ class CreateRespuestaAction extends ParentAction
      */
     public function run(CreateRespuestaRequest $request): Respuesta
     {
-        $data = $request->sanitizeInput([
-            // add your request data here
-        ]);
+        $data = $request->validated();
 
         return app(CreateRespuestaTask::class)->run($data);
     }
