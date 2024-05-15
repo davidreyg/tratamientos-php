@@ -17,6 +17,7 @@ return new class extends Migration {
             $table->string('CPN', 255)->nullable();
             $table->string('EG', 255)->nullable();
             $table->string('codigo_atencion', 255);
+            $table->integer('numero_orden')->unsigned();
             $table->date('fecha_registro');
             $table->foreignId('paciente_id')->constrained();
             $table->foreignId('establecimiento_id')->nullable()->constrained();

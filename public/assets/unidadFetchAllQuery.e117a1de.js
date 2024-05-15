@@ -1,1 +1,0 @@
-import{aH as o,aI as d}from"./index.95cf0a1c.js";import{U as u}from"./UnidadApi.b8245a94.js";function l(a){const t=async()=>(await u.fetchAll(a==null?void 0:a.value)).data().data,{data:s,isLoading:e,isSuccess:i,isError:r,isFetching:c,refetch:n}=o([d.UNIDAD_ALL],t);return{data:s,isLoading:e,isSuccess:i,isError:r,isFetching:c,refetch:n}}export{l as u};

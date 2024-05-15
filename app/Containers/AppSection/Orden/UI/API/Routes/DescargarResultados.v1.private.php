@@ -22,8 +22,8 @@
  * }
  */
 
-use App\Containers\AppSection\Orden\UI\API\Controllers\DescargarOrdenController;
+use App\Containers\AppSection\Orden\UI\API\Controllers\DescargarResultadosController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('ordens/{id}/orden-pdf', [DescargarOrdenController::class, 'updateOrden']);
+Route::get('ordens/{id}/resultados-pdf', [DescargarResultadosController::class, 'updateOrden']);
 

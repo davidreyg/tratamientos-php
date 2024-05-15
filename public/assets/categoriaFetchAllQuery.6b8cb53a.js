@@ -1,1 +1,0 @@
-import{aH as c,aI as u}from"./index.95cf0a1c.js";import{C as n}from"./CategoriaApi.d2087eb0.js";function h(){const a=async()=>(await n.fetchAll()).data().data,{data:t,isLoading:e,isSuccess:r,isError:s,isFetching:i,refetch:o}=c([u.CATEGORIA_ALL],a);return{data:t,isLoading:e,isSuccess:r,isError:s,isFetching:i,refetch:o}}export{h as u};

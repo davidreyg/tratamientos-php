@@ -36,6 +36,7 @@ class OrdenTransformer extends ParentTransformer
             'CPN' => $orden->CPN,
             'EG' => $orden->EG,
             'codigo_atencion' => $orden->codigo_atencion,
+            'numero_orden' => $orden->numero_orden,
             'fecha_registro' => $orden->fecha_registro,
             'medico' => $orden->medico,
             'estado' => $orden->estado,

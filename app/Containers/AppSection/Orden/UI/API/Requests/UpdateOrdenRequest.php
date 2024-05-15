@@ -41,6 +41,7 @@ class UpdateOrdenRequest extends ParentRequest
             'CPN' => ['nullable'],
             'EG' => ['nullable'],
             'codigo_atencion' => ['required'],
+            'numero_orden' => ['required', 'numeric', 'integer'],
             'fecha_registro' => ['required', 'date'],
             'medico' => ['required'],
             'examen_ids' => ['array', 'required'],

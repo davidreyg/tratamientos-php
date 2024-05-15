@@ -22,6 +22,7 @@ class Orden extends ParentModel
         'CPN',
         'EG',
         'codigo_atencion',
+        'numero_orden',
         'fecha_registro',
         'medico',
         'paciente_id',
@@ -97,5 +98,24 @@ class Orden extends ParentModel
     public function getEstadoDetalleAttribute()
     {
         return config('appSection-orden.estados')[$this->estado];
+    }
+    // CALCULO DE SUBTOTAL Y TOTAL
+    public function getTotal()
+    {
+        $subTotal = 0;
+        $IGV = 0.18;
+        $total = 0;
+
+        // Sumamos el precio de cada examen asociado a la orden
+        foreach ($this->examens as $examen) {
+            $subTotal += $examen->precio;
+            $total += $examen->precio;
+        }
+
+        return [
+            'subTotal' => $subTotal,
+            'IGV' => $IGV,
+            'total' => $total,
+        ];
     }
 }

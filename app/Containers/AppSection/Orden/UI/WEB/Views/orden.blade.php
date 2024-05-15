@@ -34,6 +34,30 @@
         /* background-color: yellowgreen; */
     }
 
+    .tabla-orden {
+        /* border-left: 0.01em solid #ccc; */
+        /* border-right: 0; */
+        /* border-top: 0.01em solid #ccc; */
+        border-bottom: 0.1rem solid black;
+        border-collapse: collapse;
+    }
+
+    .tabla-orden th{
+        /* border-left: 0; */
+        /* border-right: 0.01em solid #ccc; */
+        /* border-top: 0; */
+        border-top: 0.1rem solid black;
+        border-bottom: 0.1rem solid black;
+        /* border-left: 0.1rem solid black; */
+        /* border-right: 0.1rem solid black; */
+    }
+    .tabla-orden td,{
+        /* border-left: 0; */
+        /* border-right: 0.01em solid #ccc; */
+        /* border-top: 0; */
+        border-bottom: 0.1rem solid grey;
+    }
+
     #footer {
         position: fixed;
         bottom: -4cm;
@@ -74,7 +98,7 @@
             <tbody>
                 <tr>
                     <th scope="row">N° de Orden</th>
-                    <td>: {{ $orden->codigo_atencion }}</td>
+                    <td>: {{ $orden->numero_orden }}</td>
                     {{-- <td></td> --}}
                     <th scope="row">Historia Clínica</th>
                     <td>: {{ $orden->paciente->historia_clinica }}</td>
@@ -102,13 +126,12 @@
             </tbody>
         </table>
         <br />
-        <table class="" width="100%">
+        <table class="tabla-orden" width="100%">
             <thead>
                 <tr>
-                    <th scope="col" style="width: 160px" class="text-left">Análisis Clinico</th>
-                    <th scope="col" style="width: 60px" class="text-center">Resultado </th>
-                    <th scope="col" style="width: 60px" class="text-center">Unidad</th>
-                    <th scope="col" style="width: 60px" class="text-center">Rango de Referencia</th>
+                    <th scope="col" style="width: 60px" class="text-left">CÓDIGO</th>
+                    <th scope="col" style="width: 160px" class="text-center">EXAMEN </th>
+                    <th scope="col" style="width: 60px" class="text-end">PRECIO</th>
                 </tr>
             </thead>
         </table>
@@ -119,85 +142,37 @@
         </div>
     </div>
     <div class="container" id="main">
-        <div class="fw-bold">
-            <table class="table" width="100%">
-                @foreach ($categorias as $categoria)
-                    <div class="">{{ $categoria->nombre }}</div>
+        <table class="table tabla-orden" width="100%">
 
-                    <tbody class="fw-normal">
-                        @foreach ($orden->examens as $examen)
-                            @if ($examen->categoria_id === $categoria->id && !$examen->items->isNotEmpty())
-                                <tr>
-                                    <td style="width: 160px" class="text-left">{{ $examen->nombre }}</td>
-                                    <td style="width: 60px" class="text-center">{{ $examen->pivot->resultado }}
-                                    </td>
-                                    <td style="width: 60px" class="text-center">
-                                        @foreach ($examen->unidads as $unidad)
-                                            @if ($unidad->id == $examen->pivot->unidad_id)
-                                                {{ $unidad->nombre }}
-                                            @endif
-                                        @endforeach
-                                    </td>
-                                    <td style="width: 60px" class="text-center">
-                                        @foreach ($examen->unidads as $unidad)
-                                            @if ($unidad->id == $examen->pivot->unidad_id)
-                                                {{ $unidad->pivot->minimo }} - {{ $unidad->pivot->maximo }}
-                                            @endif
-                                        @endforeach
-                                    </td>
-                                </tr>
-                                <br />
-                            @elseif($examen->categoria_id === $categoria->id && $examen->items->isNotEmpty())
-                                <tr>
-                                    <td style="width: 160px" class="text-left">{{ $examen->nombre }}</td>
-                                </tr>
-                                @foreach ($orden->items as $item)
-                                    <tr class="fst-italic">
-                                        @if ($item->examen_id == $examen->id)
-                                            <td style="width: 160px;padding-left: 0.8rem" class="text-left">
-                                                <li>{{ $item->nombre }}</li>
-                                            </td>
-                                            <td style="width: 60px" class="text-center">
-                                                @if ($item->tipo === 'respuesta')
-                                                    @foreach ($item->respuestas as $respuesta)
-                                                        @if ($respuesta->id == $item->item_orden->respuesta_id)
-                                                            {{ $respuesta->nombre }}
-                                                        @endif
-                                                    @endforeach
-                                                @else
-                                                    {{ $item->item_orden->resultado }}
-                                                @endif
-                                            </td>
-                                            <td style="width: 60px" class="text-center">
-                                                @foreach ($item->unidads as $unidad)
-                                                    @if ($unidad->id == $item->item_orden->unidad_id)
-                                                        {{ $unidad->nombre }}
-                                                    @endif
-                                                @endforeach
-                                            </td>
-                                            <td style="width: 60px" class="text-center">
-                                                @foreach ($item->unidads as $unidad)
-                                                    @if ($unidad->id == $item->item_orden->unidad_id)
-                                                        @if ($unidad->pivot->tipo === 'multivalor')
-                                                            {{ $unidad->pivot->minimo }} -
-                                                            {{ $unidad->pivot->maximo }}
-                                                        @elseif ($unidad->pivot->tipo === 'operador')
-                                                            {{ $unidad->pivot->operador }}
-                                                            {{ $unidad->pivot->minimo }}
-                                                        @endif
-                                                    @endif
-                                                @endforeach
-                                            </td>
-                                        @endif
-                                    </tr>
-                                @endforeach
-                            @endif
-                        @endforeach
-                        <br />
-                    </tbody>
+            <tbody class="fw-normal">
+                @foreach ($orden->examens as $examen)
+                    <tr>
+                        <td style="width: 60px" class="text-left">{{ $examen->codigo }}</td>
+                        <td style="width: 160px" class="text-left">{{ $examen->nombre }}</td>
+                        <td style="width: 60px" class="text-end">S/. {{ $examen->precio }}</td>
+                    </tr>
                 @endforeach
-            </table>
-        </div>
+            </tbody>
+        </table>
+        <table class="table" width="100%">
+            <tbody>
+                <tr>
+                    <td style="width: 60px" class="text-left"></td>
+                    <td style="width: 160px" class="text-end fw-bold">SUBTOTAL:</td>
+                    <td style="width: 60px" class="text-end">S/. {{ $orden->getTotal()['subTotal'] }}</td>
+                </tr>
+                <tr>
+                    <td style="width: 60px" class="text-left"></td>
+                    <td style="width: 160px" class="text-end fw-bold">IGV (18%):</td>
+                    <td style="width: 60px" class="text-end">S/. {{ $orden->getTotal()['IGV'] }}</td>
+                </tr>
+                <tr>
+                    <td style="width: 60px" class="text-left"></td>
+                    <td style="width: 160px" class="text-end fw-bold">TOTAL:</td>
+                    <td style="width: 60px" class="text-end">S/. {{ $orden->getTotal()['total'] }}</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 
 
