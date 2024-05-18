@@ -1,0 +1,1 @@
+import{aG as o,aH as d}from"./index.ddaffeba.js";import{U as u}from"./UnidadApi.ac181ce7.js";function l(a){const t=async()=>(await u.fetchAll(a==null?void 0:a.value)).data().data,{data:s,isLoading:e,isSuccess:i,isError:r,isFetching:c,refetch:n}=o([d.UNIDAD_ALL],t);return{data:s,isLoading:e,isSuccess:i,isError:r,isFetching:c,refetch:n}}export{l as u};

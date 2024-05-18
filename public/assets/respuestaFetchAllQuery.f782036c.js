@@ -1,0 +1,1 @@
+import{aG as n,aH as u}from"./index.ddaffeba.js";import{R as p}from"./RespuestaApi.7dfd3c6f.js";function l(s){const a=async()=>(await p.fetchAll(s==null?void 0:s.value)).data().data,{data:t,isLoading:e,isSuccess:r,isError:c,isFetching:i,refetch:o}=n([u.RESPUESTA_ALL],a);return{data:t,isLoading:e,isSuccess:r,isError:c,isFetching:i,refetch:o}}export{l as u};
