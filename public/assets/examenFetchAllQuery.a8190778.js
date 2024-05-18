@@ -1,1 +1,0 @@
-import{aH as o,aI as u}from"./index.747a1a42.js";import{E as f}from"./ExamenApi.90f33f4e.js";function h(a){const t=async()=>(await f.fetchAll(a==null?void 0:a.value)).data().data,{data:s,isLoading:e,isSuccess:r,isError:c,isFetching:i,refetch:n}=o([u.EXAMEN_ALL],t);return{data:s,isLoading:e,isSuccess:r,isError:c,isFetching:i,refetch:n}}export{h as u};

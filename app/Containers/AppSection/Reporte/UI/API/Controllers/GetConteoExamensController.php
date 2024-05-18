@@ -10,7 +10,9 @@ use App\Containers\AppSection\Orden\Models\Orden;
 use App\Containers\AppSection\Reporte\Exports\ConteoExamensExport;
 use App\Containers\AppSection\Reporte\UI\API\Requests\GetConteoExamensRequest;
 use App\Ship\Parents\Controllers\ApiController;
+use Illuminate\Database\Eloquent\Builder;
 use Prettus\Repository\Exceptions\RepositoryException;
+use Storage;
 
 class GetConteoExamensController extends ApiController
 {
@@ -21,18 +23,24 @@ class GetConteoExamensController extends ApiController
      */
     public function getConteo(GetConteoExamensRequest $request)
     {
-        $user = auth()->user();
         $examens = Examen::where('is_active', 1)->withCount([
-            'ordens' => function ($query) use ($user) {
+            'ordens' => function (Builder $query) use ($request) {
                 $query
                     ->leftJoin('users', 'ordens.user_id', '=', 'users.id')
-                    ->where('users.establecimiento_id', 1)
+                    ->leftJoin('establecimientos', 'users.establecimiento_id', '=', 'establecimientos.id')
                     ->where('estado', Orden::VERIFICADO)
                     ->where('examen_orden.is_canceled', 0)
+                    ->whereDate('examen_orden.fecha_resultado', '>=', $request->fecha_inicio)
+                    ->whereDate('examen_orden.fecha_resultado', '<=', $request->fecha_fin)
                 ;
+                if (!empty ($request->ris)) {
+                    $query->where('establecimientos.ris', '=', $request->ris);
+                }
+                if (!empty ($request->establecimiento_id)) {
+                    $query->where('users.establecimiento_id', '=', $request->establecimiento_id);
+                }
             }
         ])->get();
-
         return $this->transform($examens, ExamenTransformer::class);
     }
 
